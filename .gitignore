@@ -1,0 +1,21 @@
+# WordPress stuff we don't track
+*.log
+*.zip
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/ai1wm-backups/
+
+# Node / Composer
+node_modules/
+vendor/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment
+wp-config.php
+.env
