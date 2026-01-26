@@ -1,0 +1,38 @@
+---
+description: Core architectural and design rules for the Vagneriga Headless project. Always follow these guidelines for component creation and styling.
+globs: src/**/*, next.config.ts, tailwind.config.ts
+alwaysApply: true
+---
+
+# Vagneriga Headless Project Logic
+
+## 🏗 Architecture
+- **Backend (CMS)**: WordPress (PHP) at `dev.vagneriga.lv`. Admin only.
+- **Frontend (Display)**: Next.js (React) at `dev2.vagneriga.lv`.
+- **Data Fetching**: Use the `getPage` and `getSettings` helpers in `src/lib/wp.ts`.
+- **Auth**: API calls require Basic Auth (credentials stored in `.env.local`).
+
+## 🎨 UI & Design Standards (Design Tokens)
+- **Container**: Max-width `1240px` (use `.vag-container`).
+- **Radius**: Large cards/sections `10px`, Small elements/buttons `5px`.
+- **Shadow**: `0 1px 4px 1px rgba(0,0,0,0.25)`.
+- **Colors**: 
+  - Primary Accent: `#af9f66` (Yellow).
+  - Hover: Use `.btn-flood` (Black fill from left).
+- **Typography**: 
+  - Headings: `Playfair Display` (serif), bold, uppercase.
+  - Body/UI: `Inter` (sans-serif).
+
+## 🧩 Component Mapping
+- **Modular Blocks**: Create sections in `src/components/blocks/`.
+- **Header**: 3-column layout (Logo 20%, Menus 60%, Lang/Social 20%).
+- **Footer**: 4-column layout (Kontakti 40%, Nams 20%, Biedrība 20%, Noteikumi 20%).
+
+## 🚀 Performance & SEO
+- **SEO**: Always fetch metadata from the `seo` field provided by the Yoast-mapped API.
+- **Images**: Use Next.js `<Image />` with `unoptimized: true` in dev config to bypass local resolution issues.
+- **Rendering**: Prefer ISR (Incremental Static Regeneration) with 60s revalidation.
+
+## 🛠 Development Workflow
+- **Branching**: All work happens on the `dev` branch.
+- **Isolation**: Never modify the `dev.vagneriga.lv` PHP templates; only use its API.
