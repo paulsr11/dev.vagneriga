@@ -15,6 +15,12 @@ export default function ZiedojumiClient({ data }: { data: any }) {
   };
 
   const { heroData, doneContent, donationOptions, transparency, rekviziti, finalCta } = data;
+  const paragraphs = Array.isArray(doneContent?.paragraphs) ? doneContent.paragraphs : [];
+  const listItems = Array.isArray(doneContent?.listItems) ? doneContent.listItems : [];
+  const options = Array.isArray(donationOptions) ? donationOptions : [];
+  const usedFor = Array.isArray(transparency?.usedFor) ? transparency.usedFor : [];
+  const notUsedFor = Array.isArray(transparency?.notUsedFor) ? transparency.notUsedFor : [];
+  const rekvizitiList = Array.isArray(rekviziti) ? rekviziti : [];
 
   return (
     <>
@@ -30,7 +36,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
                   {heroData.subtitle}
                 </p>
                 <div className="flex flex-col gap-4">
-                  <button 
+                  <button
                     onClick={() => openPopup('mazais')}
                     className="bg-accent hover:bg-black hover:text-white text-black px-12 py-4 rounded-full font-bold transition-all w-fit uppercase tracking-widest text-sm"
                   >
@@ -43,7 +49,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
               </div>
             </div>
             <div className="w-full md:w-1/2 relative aspect-square md:aspect-auto md:h-[600px] overflow-hidden rounded-[var(--card-radius)]">
-              <Image 
+              <Image
                 src={heroData.image}
                 alt="Vāgnera nams"
                 fill
@@ -65,7 +71,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
 
             <div className="flex flex-col md:flex-row gap-16">
               <div className="w-full md:w-1/2 space-y-6">
-                {doneContent.paragraphs.map((p: string, i: number) => (
+                {paragraphs.map((p: string, i: number) => (
                   <p key={i} className="text-lg leading-relaxed text-gray-700">
                     {p}
                   </p>
@@ -75,7 +81,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
                 <div className="bg-[#FBFBFB] p-10 rounded-xl border border-gray-100 shadow-sm">
                   <h3 className="text-black font-bold uppercase tracking-widest text-sm mb-6">{doneContent.listTitle}</h3>
                   <ul className="space-y-4">
-                    {doneContent.listItems.map((item: string, i: number) => (
+                    {listItems.map((item: string, i: number) => (
                       <li key={i} className="flex items-start gap-3 text-gray-700">
                         <span className="text-accent mt-1">
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -100,7 +106,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
             </div>
 
             <div className="grid gap-10 md:grid-cols-3">
-              {donationOptions.map((option: any, i: number) => (
+              {options.map((option: any, i: number) => (
                 <div key={i} className="flex flex-col p-10 bg-white rounded-xl border border-gray-100 hover:border-accent transition-all hover:shadow-md group">
                   <h3 className="text-black font-serif text-2xl mb-4">{option.name}</h3>
                   <p className="text-gray-600 mb-8 flex-grow">
@@ -110,7 +116,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
                     <span className="text-gray-400 text-xs uppercase tracking-widest block mb-1">Ziedojums</span>
                     <span className="text-black font-bold text-xl">{option.amount}</span>
                   </div>
-                  <button 
+                  <button
                     onClick={() => openPopup(i === 0 ? 'mazais' : i === 1 ? 'partnera' : 'general')}
                     className="w-full bg-accent group-hover:bg-black group-hover:text-white text-black py-4 rounded-full font-bold transition-all uppercase tracking-widest text-xs"
                   >
@@ -143,10 +149,10 @@ export default function ZiedojumiClient({ data }: { data: any }) {
             <div className="grid gap-16 md:grid-cols-2">
             <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm">
               <h3 className="text-black font-bold uppercase tracking-widest text-sm mb-8">
-                Ziedojumi TIEK izmantoti:
+                Izmanto:
               </h3>
               <ul className="space-y-4">
-                {transparency.usedFor.map((item: string, i: number) => (
+                {usedFor.map((item: string, i: number) => (
                   <li key={i} className="text-gray-600 flex items-start gap-3">
                     <span className="text-green-600 mt-1 shrink-0">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -159,10 +165,10 @@ export default function ZiedojumiClient({ data }: { data: any }) {
 
             <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm">
               <h3 className="text-black font-bold uppercase tracking-widest text-sm mb-8">
-                Ziedojumi NETIEK izmantoti:
+                Neizmanto:
               </h3>
               <ul className="space-y-4">
-                {transparency.notUsedFor.map((item: string, i: number) => (
+                {notUsedFor.map((item: string, i: number) => (
                   <li key={i} className="text-gray-600 flex items-start gap-3">
                     <span className="text-red-600 mt-1 shrink-0">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -174,7 +180,26 @@ export default function ZiedojumiClient({ data }: { data: any }) {
             </div>
             </div>
             <p className="text-center mt-12 text-gray-500 font-medium">
-              {transparency.trustNote}
+              {transparency.trustNoteLink?.href && transparency.trustNoteLink?.text ? (
+                <>
+                  Ar biedrības mērķiem var iepazīties biedrības{' '}
+                  {transparency.trustNoteLink.openInNewTab ? (
+                    <a
+                      href={transparency.trustNoteLink.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline font-medium"
+                    >
+                      {transparency.trustNoteLink.text}
+                    </a>
+                  ) : (
+                    <span className="text-accent">{transparency.trustNoteLink.text}</span>
+                  )}
+                  .
+                </>
+              ) : (
+                transparency.trustNote
+              )}
             </p>
           </div>
         </section>
@@ -189,11 +214,11 @@ export default function ZiedojumiClient({ data }: { data: any }) {
             </div>
 
             <div className="max-w-2xl mx-auto">
-              {rekviziti.map((org: any, index: number) => (
+              {rekvizitiList.map((org: any, index: number) => (
                 <div key={index} className="bg-white p-10 rounded-xl shadow-sm border border-gray-100">
                   <h3 className="text-black font-serif text-xl mb-8">{org.title}</h3>
                   <div className="space-y-4">
-                    {org.details.map((detail: any, i: number) => (
+                    {(Array.isArray(org?.details) ? org.details : []).map((detail: any, i: number) => (
                       <div key={i} className="flex justify-between border-b border-gray-50 pb-2 last:border-0">
                         <span className="text-gray-500 text-sm uppercase tracking-wider">{detail.label}</span>
                         <span className="text-black font-medium">{detail.value}</span>
@@ -215,7 +240,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
             <p className="text-lg text-gray-600 mb-12 max-w-xl mx-auto">
               {finalCta.text}
             </p>
-            <button 
+            <button
               onClick={() => openPopup('mazais')}
               className="bg-accent hover:bg-black hover:text-white text-black px-16 py-5 rounded-full font-bold transition-all uppercase tracking-[0.2em] text-sm"
             >
@@ -227,7 +252,7 @@ export default function ZiedojumiClient({ data }: { data: any }) {
         <FAQSection />
       </main>
 
-      <DonationPopup 
+      <DonationPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
         initialLevel={selectedLevel}

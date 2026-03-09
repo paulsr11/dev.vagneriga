@@ -1,0 +1,15 @@
+---
+description: Change safety and minimal-impact workflow for this project
+alwaysApply: true
+---
+
+# Change Safety Rule
+
+- Do not change visual design unless explicitly requested.
+- For small fixes (spacing/font/color/text/link), patch only the specific element/property.
+- Avoid refactoring unrelated code for small requests.
+- Preserve user-provided wording exactly on content updates.
+- After meaningful edits: build, restart, and verify target routes.
+- Always append a concise entry to `LOG.md` after completing a task.
+- Keep `RESTORE_REFERENCE.md` current with recovery steps.
+
