@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  
+  --color-accent: #af9f66;
+  --color-accent-dark: #968958;
+  --color-foreground: #111111;
+  --color-background: #ffffff;
+}
+
+:root {
+  /* Colors */
+  --background: #ffffff;
+  --foreground: #111111;
+  --accent: #af9f66;
+  
+  /* Layout */
+  --container-width: 1240px;
+  --section-padding: 60px;
+  --section-gap: 80px;
+  
+  /* Components */
+  --card-radius: 10px;
+  --card-radius-sm: 5px;
+  --card-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.25);
+  --btn-height: 42px;
+  
+  /* Typography Scale from dev.vagneriga.lv */
+  --h1: 50px;
+  --h2: 32px;
+  --h3: 20px;
+  --h4: 30px;
+  --h5: 16px;
+  --h6: 14px;
+  --body: 15px;
+  --ui-label: 11px;
+  --ui-nav: 13px;
+  
+  /* Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.05em;
+  --tracking-widest: 0.2em;
+  --leading-tight: 1.1;
+  --leading-normal: 1.3;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: var(--body);
+  line-height: 1.5;
+}
+
+h1, .h1 { font-size: var(--h1); font-family: var(--font-serif); font-weight: 700; line-height: 1; }
+h2, .h2 { font-size: var(--h2); font-family: var(--font-serif); font-weight: 700; line-height: 1; text-transform: uppercase; }
+h3, .h3 { font-size: var(--h3); font-family: var(--font-serif); font-weight: 700; line-height: 1; text-transform: uppercase; }
+h4, .h4 { font-size: var(--h4); font-family: var(--font-serif); font-weight: 700; line-height: 1; text-transform: uppercase; }
+h5, .h5 { font-size: var(--h5); font-family: var(--font-serif); font-weight: 700; line-height: 1; text-transform: uppercase; }
+h6, .h6 { font-size: var(--h6); font-family: var(--font-serif); font-weight: 700; line-height: 1; text-transform: uppercase; }
+
+.vag-container {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Animations */
+@keyframes progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.hero-progress-active {
+  animation: progress 5000ms linear forwards;
+}
+
+.btn-flood {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.4s ease;
+}
+
+.btn-flood::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.btn-flood:hover {
+  color: #fff !important;
+}
+
+.btn-flood:hover::after {
+  transform: scaleX(1);
+}
+
+/* WordPress Content Styling */
+.wp-content {
+  @apply max-w-none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Hide Divi "Ghost" modules inside the content */
+.wp-content .et_pb_blog_0,
+.wp-content .et_pb_button,
+.wp-content .et_pb_heading,
+.wp-content .et_pb_divider,
+.wp-content .et_pb_row_1,
+.wp-content .et_pb_row_2,
+.wp-content .et_pb_row_3,
+.wp-content .et_pb_row_4,
+.wp-content .et_pb_row_5 {
+  display: none !important;
+}
+
+/* Global Accent Overrides */
+.accent-color { color: #af9f66 !important; }
+.accent-bg { background-color: #af9f66 !important; }
+.accent-border { border-color: #af9f66 !important; }
+
+.hover\:text-accent:hover { color: #af9f66 !important; }
+.hover\:bg-accent:hover { background-color: #af9f66 !important; }
+.hover\:border-accent:hover { border-color: #af9f66 !important; }
+
+.group:hover .group-hover\:text-accent { color: #af9f66 !important; }
+.group:hover .group-hover\:bg-accent { background-color: #af9f66 !important; }
+.group:hover .group-hover\:border-accent { border-color: #af9f66 !important; }
+
+/* Ensure Tailwind classes use the new color */
+.text-accent { color: #af9f66 !important; }
+.bg-accent { background-color: #af9f66 !important; }
+.border-accent { border-color: #af9f66 !important; }
+
+/* Ensure Divi images and galleries still show but look clean */
+.wp-content .et_pb_image_wrap img {
+  @apply w-full h-auto rounded-[var(--card-radius-sm)] mb-8;
+}
+
+.wp-content .et_pb_gallery_items {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 mb-8;
+}
+
+.wp-content .et_pb_gallery_item {
+  @apply !mb-0;
+}
+
+.wp-content p {
+  @apply mb-6 leading-relaxed text-gray-800;
+  font-size: var(--body);
+}
+
+.wp-content h1, .wp-content h2, .wp-content h3, .wp-content h4, .wp-content h5, .wp-content h6 {
+  @apply mt-12 mb-6 text-black;
+}
+
+.wp-content h2 { font-size: var(--h2); }
+.wp-content h3 { font-size: var(--h3); }
+.wp-content h4 { font-size: var(--h4); }
+
+.wp-content ul, .wp-content ol {
+  @apply mb-8 pl-6 space-y-2;
+}
+
+.wp-content ul { @apply list-disc; }
+.wp-content ol { @apply list-decimal; }
+
+.wp-content blockquote {
+  @apply border-l-4 border-accent pl-6 py-2 italic text-gray-700 mb-8;
+}
+
+.wp-content img {
+  @apply rounded-[var(--card-radius-sm)] mb-8 cursor-zoom-in transition-opacity hover:opacity-90;
+}
+
+.wp-content figure {
+  @apply mb-8;
+}
+
+.wp-content figcaption {
+  @apply text-center text-sm text-gray-500 mt-2 italic;
+}
+
+.wp-content .wp-block-video, .wp-content .wp-block-embed {
+  @apply mb-8 aspect-video w-full rounded-[var(--card-radius-sm)] overflow-hidden;
+}
+
+.wp-content .wp-block-video video, .wp-content .wp-block-embed iframe {
+  @apply w-full h-full;
+}

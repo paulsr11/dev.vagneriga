@@ -9,11 +9,11 @@ const navLabels: Record<string, { lv: string; en: string; de: string }> = {
   jaunumi: { lv: 'JAUNUMI', en: 'NEWS', de: 'NEUIGKEITEN' },
   galerija: { lv: 'GALERIJA', en: 'GALLERY', de: 'GALERIE' },
   biedriba: { lv: 'BIEDRĪBA', en: 'ASSOCIATION', de: 'VEREIN' },
-  sponsori: { lv: 'SPONSORI', en: 'SPONSORS', de: 'SPONSOREN' },
+  sponsori: { lv: 'ATBALSTĪTĀJI', en: 'SUPPORTERS', de: 'UNTERSTÜTZER' },
   kontakti: { lv: 'KONTAKTI', en: 'CONTACTS', de: 'KONTAKTE' },
   sakums: { lv: 'Sākums', en: 'Home', de: 'Start' },
-  muzejs: { lv: 'Muzejs', en: 'Museum', de: 'Museum' },
-  nams: { lv: 'Nams', en: 'House', de: 'Haus' },
+  projekts: { lv: 'Projekts', en: 'Project', de: 'Projekt' },
+  nams: { lv: 'Vēsture', en: 'History', de: 'Geschichte' },
   pasakumi: { lv: 'Pasākumi', en: 'Events', de: 'Veranstaltungen' },
   ziedojumi: { lv: 'Ziedojumi', en: 'Donations', de: 'Spenden' },
   par_mums: { lv: 'Par mums', en: 'About us', de: 'Über uns' },
@@ -60,7 +60,7 @@ export default function Header({ lang }: { lang: string }) {
 
   const secondaryNav = [
     { key: 'sakums', href: '' },
-    { key: 'muzejs', href: '/muzejs' },
+    { key: 'projekts', href: '/projekts' },
     { key: 'nams', href: '/nams' },
     { key: 'pasakumi', href: '/pasakumi' },
     { key: 'ziedojumi', href: '/ziedojumi' },

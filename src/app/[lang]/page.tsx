@@ -84,7 +84,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     })) || [
       { label: lang === 'lv' ? "Mūsu mērķi" : lang === 'en' ? "Our goals" : "Unsere Ziele", link: `/${lang}/biedriba` },
       { label: lang === 'lv' ? "Stipendijas" : lang === 'en' ? "Scholarships" : "Stipendien", link: "#" },
-      { label: lang === 'lv' ? "Sponsori" : lang === 'en' ? "Sponsors" : "Sponsoren", link: `/${lang}/sponsori` }
+      { label: lang === 'lv' ? 'Atbalstītāji' : lang === 'en' ? 'Supporters' : 'Unterstützer', link: `/${lang}/sponsori` }
     ]
   };
 

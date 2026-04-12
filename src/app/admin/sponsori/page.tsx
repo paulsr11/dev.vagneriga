@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function SponsoriAdmin() {
   const [content, setContent] = useState({
-    heroTitle: "Sponsori",
+    heroTitle: "Atbalstītāji",
     heroSubtitle: "Vāgnera biedrības",
     heroText: "Rīgas Vāgnera nams, uzcelts 1782. gadā, sākotnēji tika dēvēts par Rīgas Pilsētas teātri. Periodā no 1837. līdz 1839. gadam, kad par galveno teātra diriģentu tika iecelts Rihards Vāgners, nams kļuva par Rīgas kultūras dzīves centru.",
     supportItems: [

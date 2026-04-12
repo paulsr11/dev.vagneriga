@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* Scan whole `src/` tree so utilities in `src/components/*` (e.g. Footer) are generated. */
+@import "tailwindcss" source("../../");
 
 @theme {
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;

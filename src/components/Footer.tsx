@@ -27,7 +27,7 @@ const footerLabels: Record<string, { lv: string; en: string; de: string }> = {
   biedriba: { lv: 'BIEDRĪBA', en: 'ASSOCIATION', de: 'VEREIN' },
   noteikumi: { lv: 'NOTEIKUMI', en: 'TERMS', de: 'BESTIMMUNGEN' },
   pasakumi: { lv: 'Pasākumi', en: 'Events', de: 'Veranstaltungen' },
-  muzejs: { lv: 'Muzejs', en: 'Museum', de: 'Museum' },
+  projekts: { lv: 'Projekts', en: 'Project', de: 'Projekt' },
   telpu_noma: { lv: 'Telpu noma', en: 'Room rental', de: 'Raumvermietung' },
   par_mums: { lv: 'Par mums', en: 'About us', de: 'Über uns' },
   jaunumi: { lv: 'Jaunumi', en: 'News', de: 'Neuigkeiten' },
@@ -40,7 +40,7 @@ const footerLabels: Record<string, { lv: string; en: string; de: string }> = {
 const FOOTER_LINKS = {
   nams: [
     { labelKey: 'pasakumi', href: '/pasakumi' },
-    { labelKey: 'muzejs', href: '/muzejs' },
+    { labelKey: 'projekts', href: '/projekts' },
     { labelKey: 'telpu_noma', href: '/telpu-noma' },
   ],
   biedriba: [
@@ -104,8 +104,8 @@ export default function Footer({
 
       {/* Main dark footer */}
       <div className="bg-[#1b1c20] py-16 text-white">
-        <div className="vag-container flex flex-wrap gap-y-10">
-          <div className="w-full md:w-[40%] pr-8">
+        <div className="vag-container flex flex-col gap-y-10 md:flex-row md:gap-x-8 md:gap-y-0">
+          <div className="w-full shrink-0 md:w-[40%] md:pr-8">
             <h5 className="mb-6 tracking-[0.1em] text-gray-300">{footerLabels.kontakti[currentLang]}</h5>
             <div className="space-y-3 leading-relaxed text-gray-300">
               <p>{footerLabels.adrese[currentLang]}</p>
@@ -134,7 +134,7 @@ export default function Footer({
             </div>
           </div>
 
-          <div className="w-1/2 md:w-[20%]">
+          <div className="w-full shrink-0 md:w-[20%]">
             <h5 className="mb-6 tracking-[0.1em] text-gray-300">{footerLabels.nams[currentLang]}</h5>
             <nav className="flex flex-col gap-3">
               {FOOTER_LINKS.nams.map((link) => (
@@ -145,7 +145,7 @@ export default function Footer({
             </nav>
           </div>
 
-          <div className="w-1/2 md:w-[20%]">
+          <div className="w-full shrink-0 md:w-[20%]">
             <h5 className="mb-6 tracking-[0.1em] text-gray-300">{footerLabels.biedriba[currentLang]}</h5>
             <nav className="flex flex-col gap-3">
               {FOOTER_LINKS.biedriba.map((link) => (
@@ -156,7 +156,7 @@ export default function Footer({
             </nav>
           </div>
 
-          <div className="w-1/2 md:w-[20%]">
+          <div className="w-full shrink-0 md:w-[20%]">
             <h5 className="mb-6 tracking-[0.1em] text-gray-300">{footerLabels.noteikumi[currentLang]}</h5>
             <nav className="flex flex-col gap-3">
               {FOOTER_LINKS.noteikumi.map((link) => (
