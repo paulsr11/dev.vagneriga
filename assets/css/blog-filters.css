@@ -1,0 +1,384 @@
+/* =========================================
+   FILTER BAR (keeps existing functionality)
+   ========================================= */
+
+   /* --- Hide technical form (we only use chips visually) --- */
+#bf-form {
+  display: none;
+}
+
+/* --- Filter bar: Tema / Kārtot --- */
+.vag-filter-bar {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  font-size: 14px;
+}
+
+.vag-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.vag-filter-label {
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+/* Filter chips (Tema + Kārtot) */
+.vag-filter-chip {
+  border: none;
+  background: none;
+  padding: 0 6px;
+  font: inherit;
+  cursor: pointer;
+  position: relative;
+  color: #555;
+}
+
+.vag-filter-chip + .vag-filter-chip::before {
+  content: "/";
+  position: absolute;
+  left: -7px;
+  color: #aaa;
+}
+
+.vag-filter-chip.is-active {
+  font-weight: 600;
+  color: #111;
+}
+
+.vag-filter-chip.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: #111; /* or your accent color */
+}
+
+
+.bf-form {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.bf-form input[type="search"],
+.bf-form select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+}
+
+.bf-form button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 980px) {
+  .bf-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .bf-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pagination (keep simple for now) */
+.bf-pagination {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+.bf-pagination button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+}
+.bf-pagination button[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Loading state */
+#bf-results.bf-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* =========================================
+   GRID (EXACT 3 COLUMNS, RESPONSIVE)
+   ========================================= */
+
+.vag-grid {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 32px;
+  row-gap: 48px;
+}
+
+@media (max-width: 980px) {
+  .vag-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 24px;
+    row-gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .vag-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 28px;
+  }
+}
+
+/* =========================================
+   CARD (FIGMA-STYLE)
+   ========================================= */
+
+.vag-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 22px 40px rgba(4, 29, 56, 0.12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Thumbnail (4:3 like your screenshot) */
+.vag-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.vag-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Inner padding block for text */
+.vag-meta,
+.vag-title,
+.vag-line,
+.vag-read {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Meta row: category (left) + date (right) */
+.vag-meta {
+  padding-top: 18px;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #8a8a8a;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.vag-cat {
+  color: #8a8a8a;
+}
+
+.vag-date {
+  font-size: 14px;
+}
+
+/* Title */
+.vag-title {
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.vag-title a {
+  color: #111111;
+  text-decoration: none;
+}
+.vag-title a:hover {
+  text-decoration: underline;
+}
+
+/* Yellow line under title */
+.vag-line {
+  width: 64px;
+  height: 3px;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  background: #f2c94c;
+}
+
+/* "LASĪT" link */
+.vag-read {
+  display: block;
+  padding-top: 0;
+  padding-bottom: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: right;
+  text-decoration: none;
+  color: #111111;
+}
+.vag-read:hover {
+  opacity: 0.7;
+}
+
+/* =========================================
+   LIST MODE (PASĀKUMI STYLE)
+   ========================================= */
+
+.vag-list {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  border-top: 1px solid #111;
+  font-size: 18px;
+}
+
+.vag-list-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.7fr 0.7fr 2.5fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #111;
+}
+
+.vag-list-day,
+.vag-list-date,
+.vag-list-time {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.vag-list-title {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+.vag-list-title a {
+  color: #111111;
+  text-decoration: none;
+}
+
+.vag-list-title a:hover {
+  text-decoration: underline;
+}
+
+.vag-list-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111111;
+  text-decoration: none;
+}
+
+.vag-list-cta a:hover {
+  opacity: 0.8;
+}
+
+.vag-list-arrow {
+  color: #f2c94c;
+  font-size: 22px;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .vag-list-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "day cta"
+      "date cta"
+      "time cta"
+      "title title";
+    row-gap: 6px;
+  }
+  .vag-list-day { grid-area: day; }
+  .vag-list-date { grid-area: date; }
+  .vag-list-time { grid-area: time; }
+  .vag-list-title { grid-area: title; }
+  .vag-list-cta { grid-area: cta; justify-self: end; }
+}
+
+@media (max-width: 540px) {
+  .vag-list {
+    font-size: 16px;
+  }
+  .vag-list-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .vag-list-cta {
+    width: 100%;
+  }
+  .vag-list-cta a {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.vag-view-all {
+  max-width: 1200px;
+  margin: 20px auto 70px;
+  text-align: center;
+}
+
+.vag-view-all a {
+  display: inline-block;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+  color: #111111;
+}
+
+.vag-view-all a:hover {
+  opacity: 0.8;
+}
+
+/* Empty state */
+.bf-empty {
+  max-width: 1200px;
+  margin: 20px auto;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}

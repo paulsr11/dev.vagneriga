@@ -1,6 +1,4 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# Next.js / Node dependencies
 /node_modules
 /.pnp
 .pnp.*
@@ -9,19 +7,29 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+vendor/
 
 # testing
 /coverage
 
-# next.js
+# next.js build artifacts
 /.next/
 /out/
-
-# production
 /build
+
+# WordPress artifacts not tracked
+*.log
+*.zip
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/ai1wm-backups/
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
 
 # debug
@@ -30,7 +38,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# environment
+wp-config.php
 .env*
 
 # vercel
