@@ -2,19 +2,20 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 
 export default function FooterSponsorsAdmin() {
   const [sponsors, setSponsors] = useState([
     {
-      logo: "https://dev2.vagneriga.lv/wp-content/uploads/2026/01/logo_1_lat_2-300x59-1.png",
+      logo: `${CMS_MEDIA_BASE}/wp-content/uploads/2026/01/logo_1_lat_2-300x59-1.png`,
       link: "#"
     },
     {
-      logo: "https://dev2.vagneriga.lv/wp-content/uploads/2026/01/images_lvm_lvm_logo_lat_1_png_1722109029_fit_1024_768-300x153-1.png",
+      logo: `${CMS_MEDIA_BASE}/wp-content/uploads/2026/01/images_lvm_lvm_logo_lat_1_png_1722109029_fit_1024_768-300x153-1.png`,
       link: "#"
     },
     {
-      logo: "https://dev2.vagneriga.lv/wp-content/uploads/2026/01/SCHWENK19_Basislogo-4c-300x31-1.png",
+      logo: `${CMS_MEDIA_BASE}/wp-content/uploads/2026/01/SCHWENK19_Basislogo-4c-300x31-1.png`,
       link: "#"
     }
   ]);

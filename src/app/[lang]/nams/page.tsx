@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug, getTranslatedField, getFAQs } from '@/lib/wp';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 import FAQSection from '@/components/blocks/FAQSection';
 import Image from 'next/image';
 
@@ -26,7 +27,7 @@ export default async function NamsPage({ params }: { params: Promise<{ lang: str
     title: getTranslatedField(acf, 'hero_title', lang, "Nams"),
     subtitle: getTranslatedField(acf, 'hero_subtitle', lang, "Vāgnera"),
     text: getTranslatedField(acf, 'hero_text', lang, "Rīgas Vāgnera nams, uzcelts 1782. gadā..."),
-    image: acf.hero_image || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/vagnera_nams.png"
+    image: acf.hero_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagnera_nams.png`
   };
 
   const vestureContent = {
@@ -35,7 +36,7 @@ export default async function NamsPage({ params }: { params: Promise<{ lang: str
       "Jaunais gads iezīmējis otro Vāgnera nama atjaunošanas projekta būvdarbu gadu...",
       "Daudziem ir pārsteigums, ka zem telpas, kas plašāk pazīstama kā Vāgnera vai Musses zāle..."
     ]),
-    image: acf.vesture_image || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/vagnera_nams.png"
+    image: acf.vesture_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagnera_nams.png`
   };
 
   const celtniecibaContent = {
@@ -44,7 +45,7 @@ export default async function NamsPage({ params }: { params: Promise<{ lang: str
       "Jaunais gads iezīmējis otro Vāgnera nama atjaunošanas projekta būvdarbu gadu...",
       "Daudziem ir pārsteigums, ka zem telpas, kas plašāk pazīstama kā Vāgnera vai Musses zāle..."
     ]),
-    image: acf.celtnieciba_image || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/vagnera_nams.png"
+    image: acf.celtnieciba_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagnera_nams.png`
   };
 
   return (

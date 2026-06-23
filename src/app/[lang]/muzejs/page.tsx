@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug, getPosts, getCategoryBySlug, getTranslatedField, getFAQs } from '@/lib/wp';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 import FAQSection from '@/components/blocks/FAQSection';
 import NewsSection from '@/components/blocks/NewsSection';
 import Image from 'next/image';
@@ -46,7 +47,7 @@ export default async function MuzejsPage({ params }: { params: Promise<{ lang: s
     title: getTranslatedField(acf, 'hero_title', lang, "Muzejs"),
     subtitle: getTranslatedField(acf, 'hero_subtitle', lang, "Vāgnera nams"),
     text: getTranslatedField(acf, 'hero_text', lang, "Rīgas Vāgnera nams, uzcelts 1782. gadā..."),
-    image: acf.hero_image || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/manuel-nageli-NsgsQjHA1mM-unsplash-scaled.jpg"
+    image: acf.hero_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/manuel-nageli-NsgsQjHA1mM-unsplash-scaled.jpg`
   };
 
   const workingHours = acf.working_hours || [

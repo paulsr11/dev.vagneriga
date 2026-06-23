@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug, getPosts, getTranslatedField, getFAQs } from '@/lib/wp';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 import NewsSection from '@/components/blocks/NewsSection';
 import FAQSection from '@/components/blocks/FAQSection';
 import Image from 'next/image';
@@ -31,7 +32,7 @@ export default async function BiedribaPage({ params }: { params: Promise<{ lang:
     subtitle: getTranslatedField(acf, 'hero_subtitle', lang, "Rīgas Riharda Vāgnera nams"),
     quote: getTranslatedField(acf, 'hero_quote', lang, "“Esmu izvirzījis mērķi – dabūt atpakaļ pie dzīvības kādreizējo Rīgas operas teātri, kurā Rihards Vāgners savulaik strādāja. Atjaunot to zāli, kas savulaik Vāgneram iniciēja vairākas izcilas idejas, kuras viņš vēlāk izmantoja, veidojot savu operas teātri Baireitā.”"),
     author: getTranslatedField(acf, 'hero_quote_author', lang, "Māris Gailis, biedrības vadītājs"),
-    image: acf.hero_image || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg"
+    image: acf.hero_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg`
   };
 
   // Map About section with translations

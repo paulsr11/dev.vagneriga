@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ConcertCard } from './ConcertsSection';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 
 interface ProjectsFilterGridProps {
   initialProjects: any[];
@@ -166,7 +167,7 @@ export default function ProjectsFilterGrid({
         >
           <AnimatePresence mode='popLayout'>
             {projects.map((project: any) => {
-              const featuredImage = project._embedded?.['wp:featuredmedia']?.[0]?.source_url || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433-1.jpg";
+              const featuredImage = project._embedded?.['wp:featuredmedia']?.[0]?.source_url || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433-1.jpg`;
               const categories = project._embedded?.['wp:term']?.[0] || [];
               
               const translatedTitle = project[`title_${lang}`] || project.title.rendered;

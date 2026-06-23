@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wp';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 import ZiedojumiClient from './ZiedojumiClient';
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ const FALLBACK_DATA = {
     subtitle: 'Palīdzi atjaunot vienu no nozīmīgākajiem kultūras namiem Latvijā. Tava iesaiste palīdz saglabāt Vāgnera nama vērtību nākamajām paaudzēm.',
     cta: 'ZIEDOT TAGAD',
     note: 'Katrs ziedojums ir solis tuvāk Vāgnera nama atdzimšanai.',
-    image: 'https://dev.vagneriga.lv/wp-content/uploads/2025/09/vagnera_nams.png',
+    image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagnera_nams.png`,
   },
   doneContent: {
     title: 'Ceļš uz Vāgnera nama atjaunošanu',

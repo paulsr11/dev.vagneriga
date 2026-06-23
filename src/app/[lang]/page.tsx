@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug, getPosts, getTranslatedField } from '@/lib/wp';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 import Hero from '@/components/blocks/Hero';
 import InfoGrid from '@/components/blocks/InfoGrid';
 import ConcertsSection from '@/components/blocks/ConcertsSection';
@@ -45,13 +46,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       title: lang === 'lv' ? "MŪZIKA ATGRIEŽAS<br />VĀGNERA NAMĀ" : lang === 'en' ? "MUSIC RETURNS TO<br />VAGNER HOUSE" : "MUSIK KEHRT INS<br />WAGNER-HAUS ZURÜCK",
       subtitle: lang === 'lv' ? "2026.gada sezonas atklāšana" : lang === 'en' ? "Opening of the 2026 season" : "Eröffnung der Saison 2026",
       button_text: lang === 'lv' ? "Biļetes un koncerti" : lang === 'en' ? "Tickets and concerts" : "Tickets und Konzerte",
-      image: "https://dev.vagneriga.lv/wp-content/uploads/2025/09/manuel-nageli-NsgsQjHA1mM-unsplash-scaled.jpg"
+      image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/manuel-nageli-NsgsQjHA1mM-unsplash-scaled.jpg`
     },
     {
       title: lang === 'lv' ? "KLEJOJOŠAIS<br />HOLANDIETIS" : lang === 'en' ? "THE FLYING<br />DUTCHMAN" : "DER FLIEGENDE<br />HOLLÄNDER",
       subtitle: lang === 'lv' ? "Operas uzvedums Vāgnera zālē" : lang === 'en' ? "Opera performance in Vagner Hall" : "Opernaufführung in der Wagner-Halle",
       button_text: lang === 'lv' ? "Uzzināt vairāk" : lang === 'en' ? "Learn more" : "Mehr erfahren",
-      image: "https://dev.vagneriga.lv/wp-content/uploads/2025/09/larisa-birta-slbOcNlWNHA-unsplash-scaled.jpg"
+      image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/larisa-birta-slbOcNlWNHA-unsplash-scaled.jpg`
     }
   ];
 
@@ -64,19 +65,19 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     {
       title: lang === 'lv' ? "Klejojošais holandietis" : lang === 'en' ? "The Flying Dutchman" : "Der fliegende Holländer",
       subtitle: lang === 'lv' ? "2026.gada sezonas atklāšana" : lang === 'en' ? "Opening of the 2026 season" : "Eröffnung der Saison 2026",
-      image: "https://dev.vagneriga.lv/wp-content/uploads/2025/09/larisa-birta-slbOcNlWNHA-unsplash-scaled.jpg"
+      image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/larisa-birta-slbOcNlWNHA-unsplash-scaled.jpg`
     },
     {
       title: lang === 'lv' ? "Nama restaurācijas grafiks" : lang === 'en' ? "House restoration schedule" : "Zeitplan der Hausrestaurierung",
       subtitle: lang === 'lv' ? "2026.gada sezonas atklāšana" : lang === 'en' ? "Opening of the 2026 season" : "Eröffnung der Saison 2026",
-      image: "https://dev.vagneriga.lv/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
+      image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg`
     }
   ];
 
   // 3. Map About Section with translations
   const aboutData = {
-    background: acf.about_background || acf.par_mums_fons || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/vagners_biedriba_picture.jpg",
-    logo: acf.about_logo || acf.par_mums_logo || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/VR_logo_white.png",
+    background: acf.about_background || acf.par_mums_fons || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagners_biedriba_picture.jpg`,
+    logo: acf.about_logo || acf.par_mums_logo || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/VR_logo_white.png`,
     title: getTranslatedField(acf, 'about_title', lang, "Par biedrību"),
     items: (acf.about_items || acf.par_mums_punkti)?.map((item: any) => ({
       ...item,

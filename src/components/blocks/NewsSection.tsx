@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 
 interface NewsCardProps {
   title: string;
@@ -68,7 +69,7 @@ export default function NewsSection({ posts, title, lang = 'lv' }: { posts: any[
       
       <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post: any) => {
-          const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433-1.jpg";
+          const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433-1.jpg`;
           const categories = post._embedded?.['wp:term']?.[0] || [];
           
           const translatedTitle = post[`title_${lang}`] || post.title.rendered;

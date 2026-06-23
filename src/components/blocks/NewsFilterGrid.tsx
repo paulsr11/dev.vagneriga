@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NewsCard } from './NewsSection';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 
 interface NewsFilterGridProps {
   initialPosts: any[];
@@ -167,7 +168,7 @@ export default function NewsFilterGrid({
         >
           <AnimatePresence mode='popLayout'>
             {posts.map((post: any) => {
-              const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433-1.jpg";
+              const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433-1.jpg`;
               const categories = post._embedded?.['wp:term']?.[0] || [];
               
               // Handle translated title if available in post data (e.g. title_en)

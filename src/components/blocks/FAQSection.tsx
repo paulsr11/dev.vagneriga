@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { getTranslatedField } from '@/lib/wp';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 
 interface FAQItem {
   id?: number;
@@ -31,7 +32,7 @@ export default function FAQSection({ items, lang = 'lv' }: { items?: FAQItem[], 
       id: 0,
       question: labels.q1[lang],
       answer: labels.a1[lang],
-      image: "https://dev2.vagneriga.lv/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
+      image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg`
     },
     {
       id: 1,

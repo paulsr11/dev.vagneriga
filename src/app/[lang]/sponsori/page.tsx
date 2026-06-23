@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug, getTranslatedField } from '@/lib/wp';
+import { CMS_MEDIA_BASE } from '@/lib/constants';
 import Image from 'next/image';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -30,7 +31,7 @@ export default async function SponsoriPage({ params }: { params: Promise<{ lang:
     title: getTranslatedField(acf, 'hero_title', lang, "Sponsori"),
     subtitle: getTranslatedField(acf, 'hero_subtitle', lang, "Vāgnera biedrības"),
     text: getTranslatedField(acf, 'hero_text', lang, "Rīgas Vāgnera nams, uzcelts 1782. gadā..."),
-    image: acf.hero_image || "https://dev.vagneriga.lv/wp-content/uploads/2025/09/vagnera_nams.png"
+    image: acf.hero_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagnera_nams.png`
   };
 
   const supportItems = acf.support_items?.map((item: any) => ({
@@ -38,7 +39,7 @@ export default async function SponsoriPage({ params }: { params: Promise<{ lang:
     text: getTranslatedField(item, 'text', lang, item.text)
   })) || [
     {
-      image: "https://dev.vagneriga.lv/wp-content/uploads/2025/09/AA_2017_Office_Farbe_de-650x385-1.png",
+      image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/AA_2017_Office_Farbe_de-650x385-1.png`,
       text: lang === 'lv' ? "Projektu... līdzfinansē Vācijas Ārlietu ministrija." : "Project... co-financed by the German Foreign Office."
     }
   ];

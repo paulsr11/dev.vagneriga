@@ -1,5 +1,11 @@
 const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://dev2.vagneriga.lv/wp-json/wp/v2';
-const WP_HOST = 'dev2.vagneriga.lv';
+const WP_HOST = (() => {
+  try {
+    return new URL(WP_API_URL).host;
+  } catch (e) {
+    return 'dev2.vagneriga.lv';
+  }
+})();
 
 function getAuthHeader() {
   const user = process.env.WP_AUTH_USER || 'headless';
