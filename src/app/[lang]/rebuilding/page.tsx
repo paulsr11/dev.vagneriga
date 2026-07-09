@@ -455,7 +455,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
     <main className="min-h-screen bg-white text-black">
       {/* SECTION 1: Hero Block */}
       <section className="vag-container bg-white pb-6 pt-6">
-        <div className="relative h-[42vh] min-h-[320px] w-full overflow-hidden" style={{ height: '42vh', minHeight: '320px', borderRadius: 'var(--card-radius)' }}>
+        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden" style={{ height: '60vh', minHeight: '460px', borderRadius: 'var(--card-radius)' }}>
           <Image 
             src="/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg" 
             alt="Vāgnera Nams"
