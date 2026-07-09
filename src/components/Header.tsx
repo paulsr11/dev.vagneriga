@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { CMS_MEDIA_BASE } from '@/lib/constants';
 
 const navLabels: Record<string, { lv: string; en: string; de: string }> = {
@@ -25,8 +26,53 @@ const INSTAGRAM_URL = 'https://www.instagram.com/wagneriga.lv/';
 
 export default function Header({ lang }: { lang: string }) {
   const currentLang = (lang || 'lv') as 'lv' | 'en' | 'de';
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [condensed, setCondensed] = useState(false);
+
+  const getLanguageHref = (targetLang: 'lv' | 'en' | 'de') => {
+    if (!pathname) return `/${targetLang}`;
+    const segments = pathname.split('/');
+    if (segments.length > 1) {
+      segments[1] = targetLang;
+      return segments.join('/');
+    }
+    return `/${targetLang}`;
+  };
+
+  const handleLangSwitch = async (e: React.MouseEvent<HTMLAnchorElement>, targetLang: 'lv' | 'en' | 'de') => {
+    e.preventDefault();
+    if (!pathname) return;
+
+    const segments = pathname.split('/');
+    if (segments.length <= 1) {
+      window.location.href = `/${targetLang}`;
+      return;
+    }
+
+    const targetSegments = [...segments];
+    targetSegments[1] = targetLang;
+    const targetUrl = targetSegments.join('/');
+
+    // If it's a deep dynamic page, check if it actually exists in the target language
+    if (segments.length > 3) {
+      try {
+        const res = await fetch(targetUrl, { method: 'HEAD' });
+        if (res.ok) {
+          window.location.href = targetUrl;
+          return;
+        }
+      } catch (err) {
+        console.error("Failed to check page availability, falling back:", err);
+      }
+
+      // Default to parent breadcrumb path
+      const parentSegments = targetSegments.slice(0, -1);
+      window.location.href = parentSegments.join('/');
+    } else {
+      window.location.href = targetUrl;
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -112,11 +158,11 @@ export default function Header({ lang }: { lang: string }) {
         {/* Right: Lang + social - desktop */}
         <div className="hidden lg:flex flex-col items-end justify-center gap-3 w-[20%]">
           <div className="flex items-center gap-2 font-bold" style={{ fontSize: 'var(--ui-label)' }}>
-            <Link className={currentLang === 'lv' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href="/lv">LV</Link>
+            <Link className={currentLang === 'lv' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href={getLanguageHref('lv')} onClick={(e) => handleLangSwitch(e, 'lv')}>LV</Link>
             <span className="text-gray-300">/</span>
-            <Link className={currentLang === 'en' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href="/en">EN</Link>
+            <Link className={currentLang === 'en' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href={getLanguageHref('en')} onClick={(e) => handleLangSwitch(e, 'en')}>EN</Link>
             <span className="text-gray-300">/</span>
-            <Link className={currentLang === 'de' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href="/de">DE</Link>
+            <Link className={currentLang === 'de' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href={getLanguageHref('de')} onClick={(e) => handleLangSwitch(e, 'de')}>DE</Link>
           </div>
           <div className="flex items-center gap-4">
             <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-[#212121] hover:text-accent transition-colors" aria-label="Facebook">
@@ -131,11 +177,11 @@ export default function Header({ lang }: { lang: string }) {
         {/* Mobile: hamburger + lang */}
         <div className="flex flex-1 lg:hidden items-center justify-end gap-4">
           <div className="flex items-center gap-2 font-bold" style={{ fontSize: 'var(--ui-label)' }}>
-            <Link className={currentLang === 'lv' ? 'text-black' : 'text-gray-400 hover:text-black'} href="/lv">LV</Link>
+            <Link className={currentLang === 'lv' ? 'text-black' : 'text-gray-400 hover:text-black'} href={getLanguageHref('lv')} onClick={(e) => handleLangSwitch(e, 'lv')}>LV</Link>
             <span className="text-gray-300">/</span>
-            <Link className={currentLang === 'en' ? 'text-black' : 'text-gray-400 hover:text-black'} href="/en">EN</Link>
+            <Link className={currentLang === 'en' ? 'text-black' : 'text-gray-400 hover:text-black'} href={getLanguageHref('en')} onClick={(e) => handleLangSwitch(e, 'en')}>EN</Link>
             <span className="text-gray-300">/</span>
-            <Link className={currentLang === 'de' ? 'text-black' : 'text-gray-400 hover:text-black'} href="/de">DE</Link>
+            <Link className={currentLang === 'de' ? 'text-black' : 'text-gray-400 hover:text-black'} href={getLanguageHref('de')} onClick={(e) => handleLangSwitch(e, 'de')}>DE</Link>
           </div>
           <button
             type="button"

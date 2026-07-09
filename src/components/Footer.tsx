@@ -92,12 +92,23 @@ export default function Footer({
       <section className="bg-white py-12 text-center">
         <div className="vag-container">
           <h2 className="mb-10 font-bold tracking-[0.04em] text-black">{footerLabels.mus_atbalsta[currentLang]}</h2>
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-70 grayscale transition-all hover:grayscale-0">
-            {SUPPORTERS.map((src, i) => (
-              <div key={src} className="relative h-12 w-32 md:w-36 lg:w-40">
-                <Image src={src} alt={`Supporter ${i + 1}`} fill className="object-contain" sizes="160px" />
-              </div>
-            ))}
+          <div className="flex flex-col gap-10 items-center justify-center">
+            {/* First Row: 4 logos */}
+            <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14 opacity-85 grayscale transition-all hover:grayscale-0">
+              {SUPPORTERS.slice(0, 4).map((src, i) => (
+                <div key={src} className="relative" style={{ height: '84px', width: '240px' }}>
+                  <Image src={src} alt={`Supporter ${i + 1}`} fill className="object-contain" sizes="240px" />
+                </div>
+              ))}
+            </div>
+            {/* Second Row: 3 logos */}
+            <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14 opacity-85 grayscale transition-all hover:grayscale-0">
+              {SUPPORTERS.slice(4).map((src, i) => (
+                <div key={src} className="relative" style={{ height: '84px', width: '240px' }}>
+                  <Image src={src} alt={`Supporter ${i + 5}`} fill className="object-contain" sizes="240px" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
