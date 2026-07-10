@@ -187,11 +187,11 @@ const translations: Record<string, TranslationContent> = {
     },
     today: {
       title: "Kur tas atrodas šodien",
-      raised: "Piesaistīts līdz šim — €21M no €45M · Atklāšana 2028",
+      raised: "Piesaistīts līdz šim — €21M no €51M · Atklāšana 2028",
       bars: [
         { label: "Bundestāga €5M grants", value: "€5M" },
         { label: "Messerschmitt fonda atbalsts", value: "~€1M" },
-        { label: "Atlicis piesaistīt", value: "€24M" }
+        { label: "Atlicis piesaistīt", value: "€30M" }
       ],
       status: "Rekonstrukcija sākās 2023. gadā. Pamatu darbi ir pabeigti. Nākamā ir zāles izbūve. Atklājam 2028. gadā.",
       timestamp: "Pēdējoreiz atjaunināts: 2026. gada jūnijā"
@@ -292,11 +292,11 @@ const translations: Record<string, TranslationContent> = {
     },
     today: {
       title: "Where it stands today",
-      raised: "Raised to date — €21M of €45M · Opening 2028",
+      raised: "Raised to date — €21M of €51M · Opening 2028",
       bars: [
         { label: "Bundestag €5M grant", value: "€5M" },
         { label: "Messerschmitt Foundation support", value: "~€1M" },
-        { label: "Still to raise", value: "€24M" }
+        { label: "Still to raise", value: "€30M" }
       ],
       status: "Reconstruction began in 2023. Foundation works are complete. The hall structure is next. We open in 2028.",
       timestamp: "Last updated June 2026"
@@ -397,11 +397,11 @@ const translations: Record<string, TranslationContent> = {
     },
     today: {
       title: "Wo es heute steht",
-      raised: "Bisher gesammelt — €21 Mio. von €45 Mio. · Eröffnung 2028",
+      raised: "Bisher gesammelt — €21 Mio. von €51 Mio. · Eröffnung 2028",
       bars: [
         { label: "Bundestag €5M Förderung", value: "€5M" },
         { label: "Unterstützung der Messerschmitt Stiftung", value: "€1M" },
-        { label: "Verbleibender Spendenbedarf", value: "€24M" }
+        { label: "Verbleibender Spendenbedarf", value: "€30M" }
       ],
       status: "Der Wiederaufbau begann 2023. Die Fundamentarbeiten sind abgeschlossen. Als nächstes folgt das Tragwerk. Wir eröffnen 2028.",
       timestamp: "Zuletzt aktualisiert im Juni 2026"
@@ -741,7 +741,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             <div className="w-full bg-gray-100 h-5 rounded-full overflow-hidden mb-8 border border-gray-200 p-0.5">
               <div 
                 className="bg-[#af9f66] h-full rounded-full transition-all duration-1000 ease-out" 
-                style={{ width: `${(21 / 45) * 100}%` }} 
+                style={{ width: `${(21 / 51) * 100}%` }} 
               />
             </div>
 
