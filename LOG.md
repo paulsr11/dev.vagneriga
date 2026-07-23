@@ -456,6 +456,21 @@
   - `npx tsc --noEmit` clean with 0 errors.
   - New image serving with 200 OK on `http://localhost:3001/images/patrons/steinmeier.jpg`.
 
+### Task: Deployment of updated fundraising branch to live server (dev2.vagneriga.lv)
+- Summary:
+  - Pushed updated `fundraising` and `dev` branches to GitHub repository (`paulsr11/dev.vagneriga`).
+  - Fetched and hard-reset `fundraising` branch on live server (`/home/deploy/sites/dev2.vagneriga.lv`).
+  - Executed `pnpm run build` cleanly on live host and restarted `dev2-vagneriga` systemd service.
+  - Verified live routes and all image assets.
+
+- Files changed:
+  - `LOG.md`
+
+- Verification:
+  - GitHub branch `fundraising` up to date (`849f69d`).
+  - Live server routes `https://dev2.vagneriga.lv/en/rebuilding`, `VR_logo_blue.png`, `steinmeier.jpg`, `levits.jpg`, and `wagner.jpg` returning HTTP 200 OK.
+
+
 
 
 
