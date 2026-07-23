@@ -13,6 +13,7 @@ interface NewsFilterGridProps {
   title?: string;
   subtitle?: string;
   lang: string;
+  type?: 'galerija' | 'jaunumi';
 }
 
 const labels: Record<string, { [key: string]: string }> = {
@@ -36,7 +37,8 @@ export default function NewsFilterGrid({
   initialKartot,
   title,
   subtitle,
-  lang = 'lv'
+  lang = 'lv',
+  type = 'jaunumi'
 }: NewsFilterGridProps) {
   const [activeTema, setActiveTema] = useState(initialTema);
   const [activeSort, setActiveSort] = useState(initialKartot);
@@ -87,6 +89,7 @@ export default function NewsFilterGrid({
       searchParams.set('kartot', sort);
       searchParams.set('page', page.toString());
       searchParams.set('lang', lang);
+      searchParams.set('type', type);
       
       const response = await fetch(`/api/posts?${searchParams.toString()}`);
       if (response.ok) {

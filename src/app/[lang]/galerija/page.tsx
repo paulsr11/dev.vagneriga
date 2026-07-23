@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getPosts, getCategoryBySlug, getPageBySlug, getTranslatedField } from '@/lib/wp';
+import { getPosts, getCategoryBySlug, getPageBySlug, getTranslatedField, GALLERY_CATEGORY_MAP } from '@/lib/wp';
 import NewsFilterGrid from '@/components/blocks/NewsFilterGrid';
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default async function GalerijaPage({ params, searchParams }: GalerijaPag
     subtitle: getTranslatedField(acf, 'subtitle', lang, "Vāgnera Biedrības")
   };
 
-  // Resolve initial category ID
+  // Resolve initial category ID for gallery
   let categoryId: number | undefined = undefined;
   if (currentTema !== 'visi') {
     const cat = await getCategoryBySlug(currentTema);
@@ -40,18 +40,22 @@ export default async function GalerijaPage({ params, searchParams }: GalerijaPag
       categoryId = cat.id;
     }
   } else {
-    // Force specific category for this page
-    const parentCat = await getCategoryBySlug('galerija');
+    // Force language-specific gallery category for gallery page
+    const galleryCatConfig = GALLERY_CATEGORY_MAP[lang] || GALLERY_CATEGORY_MAP.lv;
+    const parentCat = await getCategoryBySlug(galleryCatConfig.slug);
     if (parentCat) {
       categoryId = parentCat.id;
+    } else {
+      categoryId = galleryCatConfig.id;
     }
   }
 
-  // Initial fetch for SSR
+  // Initial fetch for SSR with language filter
   const { posts, totalPages } = await getPosts({
     per_page: 9,
     page: currentPage,
     categories: categoryId,
+    lang: lang,
     orderby: 'date',
     order: 'desc'
   });
@@ -66,6 +70,7 @@ export default async function GalerijaPage({ params, searchParams }: GalerijaPag
         title={pageData.title}
         subtitle={pageData.subtitle}
         lang={lang}
+        type="galerija"
       />
     </main>
   );

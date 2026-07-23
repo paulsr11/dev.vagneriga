@@ -200,3 +200,11 @@ h6, .h6 { font-size: var(--h6); font-family: var(--font-serif); font-weight: 700
 .wp-content .wp-block-video video, .wp-content .wp-block-embed iframe {
   @apply w-full h-full;
 }
+
+/* Patron photo cards: override Tailwind preflight height:auto reset */
+img.patron-photo {
+  height: 280px !important;
+  min-height: 280px !important;
+  object-fit: cover;
+  object-position: top;
+}

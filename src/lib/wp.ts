@@ -66,7 +66,55 @@ export async function getPostBySlug(slug: string) {
   return sanitizeUrls(posts[0]) || null;
 }
 
-export async function getPosts(params: { per_page?: number; page?: number; categories?: string | number; orderby?: string; order?: 'asc' | 'desc' } = {}) {
+export const GALLERY_CATEGORY_MAP: Record<string, { id: number; slug: string }> = {
+  lv: { id: 61, slug: 'foto' },
+  en: { id: 63, slug: 'photo' },
+  de: { id: 65, slug: 'bilder' },
+};
+
+export const NEWS_CATEGORY_MAP: Record<string, { id: number; slug: string }> = {
+  lv: { id: 3, slug: 'jaunumi' },
+  en: { id: 10, slug: 'news' },
+  de: { id: 37, slug: 'nachrichten' },
+};
+
+export function isGalleryPost(post: any): boolean {
+  if (!post) return false;
+  const categories = post._embedded?.['wp:term']?.[0] || post.categories || [];
+  const gallerySlugs = ['foto', 'photo', 'bilder', 'galerija', 'gallery', 'pictures', 'fotoarhīvs'];
+  const galleryIds = [61, 63, 65];
+  
+  return categories.some((cat: any) => {
+    const catId = typeof cat === 'number' ? cat : cat.id;
+    const catSlug = typeof cat === 'object' ? (cat.slug || '').toLowerCase() : '';
+    const catName = typeof cat === 'object' ? (cat.name || '').toLowerCase() : '';
+    return galleryIds.includes(catId) || gallerySlugs.includes(catSlug) || gallerySlugs.some(s => catName.includes(s));
+  });
+}
+
+export function isPostInLanguage(post: any, lang: string): boolean {
+  if (!post) return false;
+  const categories = post._embedded?.['wp:term']?.[0] || [];
+  if (categories.length > 0) {
+    const categoryLink = categories[0]?.link || '';
+    if (lang === 'lv') {
+      return !categoryLink.includes('/en/') && !categoryLink.includes('/de/');
+    } else {
+      return categoryLink.includes(`/${lang}/`);
+    }
+  }
+  return true;
+}
+
+export async function getPosts(params: { 
+  per_page?: number; 
+  page?: number; 
+  categories?: string | number; 
+  tags?: string | number;
+  lang?: string;
+  orderby?: string; 
+  order?: 'asc' | 'desc' 
+} = {}) {
   const query = new URLSearchParams({
     _embed: '1',
     per_page: (params.per_page || 10).toString(),
@@ -75,6 +123,14 @@ export async function getPosts(params: { per_page?: number; page?: number; categ
 
   if (params.categories) {
     query.append('categories', params.categories.toString());
+  }
+
+  if (params.tags) {
+    query.append('tags', params.tags.toString());
+  }
+
+  if (params.lang) {
+    query.append('lang', params.lang);
   }
 
   if (params.orderby) {

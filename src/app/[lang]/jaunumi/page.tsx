@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getPosts, getCategoryBySlug, getPageBySlug, getTranslatedField } from '@/lib/wp';
+import { getPosts, getCategoryBySlug, getPageBySlug, getTranslatedField, NEWS_CATEGORY_MAP } from '@/lib/wp';
 import NewsFilterGrid from '@/components/blocks/NewsFilterGrid';
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default async function JaunumiPage({ params, searchParams }: JaunumiPageP
     subtitle: getTranslatedField(acf, 'subtitle', lang, "Vāgnera Biedrības")
   };
 
-  // Resolve initial category ID
+  // Resolve initial category ID for news
   let categoryId: number | undefined = undefined;
   if (currentTema !== 'visi') {
     const cat = await getCategoryBySlug(currentTema);
@@ -40,17 +40,21 @@ export default async function JaunumiPage({ params, searchParams }: JaunumiPageP
       categoryId = cat.id;
     }
   } else {
-    const parentCat = await getCategoryBySlug('jaunumi');
+    const newsCatConfig = NEWS_CATEGORY_MAP[lang] || NEWS_CATEGORY_MAP.lv;
+    const parentCat = await getCategoryBySlug(newsCatConfig.slug);
     if (parentCat) {
       categoryId = parentCat.id;
+    } else {
+      categoryId = newsCatConfig.id;
     }
   }
 
-  // Initial fetch for SSR
+  // Initial fetch for SSR with language filter
   const { posts, totalPages } = await getPosts({
     per_page: 9,
     page: currentPage,
     categories: categoryId,
+    lang: lang,
     orderby: 'date',
     order: 'desc'
   });
@@ -65,6 +69,7 @@ export default async function JaunumiPage({ params, searchParams }: JaunumiPageP
           title={pageData.title}
           subtitle={pageData.subtitle}
           lang={lang}
+          type="jaunumi"
         />
     </main>
   );

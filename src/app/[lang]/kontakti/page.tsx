@@ -39,13 +39,13 @@ export default async function KontaktiPage({ params }: { params: Promise<{ lang:
   const workingHours = acf.working_hours || {
     biedriba: [
       { day: lang === 'lv' ? "Pirmdiena – Piektdiena" : lang === 'en' ? "Monday – Friday" : "Montag – Freitag", time: "09:00 – 19:00" },
-      { day: lang === 'lv' ? "Sestdiena" : lang === 'en' ? "Saturday" : "Samstag", time: "09:00 – 19:00" },
-      { day: lang === 'lv' ? "Svētdiena" : lang === 'en' ? "Sunday" : "Sonntag", time: "09:00 – 19:00" },
+      { day: lang === 'lv' ? "Sestdiena" : lang === 'en' ? "Saturday" : "Samstag", time: lang === 'lv' ? "Slēgts" : lang === 'en' ? "Closed" : "Geschlossen" },
+      { day: lang === 'lv' ? "Svētdiena" : lang === 'en' ? "Sunday" : "Sonntag", time: lang === 'lv' ? "Slēgts" : lang === 'en' ? "Closed" : "Geschlossen" },
     ],
     muzejs: [
-      { day: lang === 'lv' ? "Pirmdiena – Piektdiena" : lang === 'en' ? "Monday – Friday" : "Montag – Freitag", time: "09:00 – 19:00" },
-      { day: lang === 'lv' ? "Sestdiena" : lang === 'en' ? "Saturday" : "Samstag", time: "09:00 – 19:00" },
-      { day: lang === 'lv' ? "Svētdiena" : lang === 'en' ? "Sunday" : "Sonntag", time: "09:00 – 19:00" },
+      { day: lang === 'lv' ? "Pirmdiena – Piektdiena" : lang === 'en' ? "Monday – Friday" : "Montag – Freitag", time: lang === 'lv' ? "Pēc ēkas atklāšanas" : lang === 'en' ? "Coming after re-opening" : "Nach der Wiedereröffnung" },
+      { day: lang === 'lv' ? "Sestdiena" : lang === 'en' ? "Saturday" : "Samstag", time: lang === 'lv' ? "Pēc ēkas atklāšanas" : lang === 'en' ? "Coming after re-opening" : "Nach der Wiedereröffnung" },
+      { day: lang === 'lv' ? "Svētdiena" : lang === 'en' ? "Sunday" : "Sonntag", time: lang === 'lv' ? "Pēc ēkas atklāšanas" : lang === 'en' ? "Coming after re-opening" : "Nach der Wiedereröffnung" },
     ]
   };
 

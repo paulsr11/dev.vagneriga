@@ -16,7 +16,7 @@ const navLabels: Record<string, { lv: string; en: string; de: string }> = {
   muzejs: { lv: 'Muzejs', en: 'Museum', de: 'Museum' },
   nams: { lv: 'Nams', en: 'House', de: 'Haus' },
   pasakumi: { lv: 'Pasākumi', en: 'Events', de: 'Veranstaltungen' },
-  ziedojumi: { lv: 'Ziedojumi', en: 'Donations', de: 'Spenden' },
+  ziedojumi: { lv: 'ZIEDOJUMI', en: 'DONATIONS', de: 'SPENDEN' },
   par_mums: { lv: 'Par mums', en: 'About us', de: 'Über uns' },
   telpu_noma: { lv: 'Telpu noma', en: 'Room rental', de: 'Raumvermietung' },
 };
@@ -102,15 +102,13 @@ export default function Header({ lang }: { lang: string }) {
     { key: 'biedriba', href: '/biedriba' },
     { key: 'sponsori', href: '/sponsori' },
     { key: 'kontakti', href: '/kontakti' },
+    { key: 'ziedojumi', href: '/ziedojumi', isHighlighted: true },
   ];
 
-  const secondaryNav = [
-    { key: 'sakums', href: '' },
-    { key: 'muzejs', href: '/muzejs' },
-    { key: 'nams', href: '/nams' },
-    { key: 'pasakumi', href: '/pasakumi' },
-    { key: 'ziedojumi', href: '/ziedojumi' },
-  ];
+  // Note: secondaryNav temporarily hidden, design & code preserved
+  // const secondaryNav = [
+  //   { key: 'ziedojumi', href: '/ziedojumi' },
+  // ];
 
   return (
     <header className={`fixed top-0 z-50 w-full bg-white transition-all duration-200 ${condensed ? 'header-condensed' : ''}`}>
@@ -129,28 +127,22 @@ export default function Header({ lang }: { lang: string }) {
           </Link>
         </div>
 
-        {/* Center: Main nav + secondary nav - desktop only (60% width) */}
-        <div className="hidden lg:flex w-[60%] flex-col items-center justify-center">
-          <nav className={`flex items-center gap-6 transition-all duration-200 ${condensed ? 'mb-1' : 'mb-2'}`}>
+        {/* Center: Vertically centered main nav - desktop only (60% width) */}
+        <div className="hidden lg:flex w-[60%] items-center justify-center">
+          <nav className="flex items-center gap-6">
             {mainNav.map((item) => (
               <Link
                 key={item.key}
                 href={getHref(item.href)}
-                className="font-bold tracking-widest text-[#212121] hover:text-accent transition-colors"
+                className={`font-bold tracking-widest transition-colors ${
+                  item.isHighlighted
+                    ? 'text-[#af9f66] hover:text-black'
+                    : 'text-[#212121] hover:text-[#af9f66]'
+                }`}
                 style={{ fontSize: 'var(--ui-label)' }}
               >
                 {navLabels[item.key][currentLang]}
               </Link>
-            ))}
-          </nav>
-          <nav className="flex items-center font-medium text-[#212121]" style={{ fontSize: 'var(--body)' }}>
-            {secondaryNav.map((item, i) => (
-              <span key={item.key} className="flex items-center">
-                <Link href={getHref(item.href)} className="hover:text-accent transition-colors">
-                  {navLabels[item.key][currentLang]}
-                </Link>
-                {i < secondaryNav.length - 1 && <span className="mx-3 text-gray-300">/</span>}
-              </span>
             ))}
           </nav>
         </div>
@@ -206,26 +198,14 @@ export default function Header({ lang }: { lang: string }) {
         className={`fixed right-0 bottom-0 w-[min(320px,85vw)] lg:hidden z-50 bg-white shadow-xl overflow-y-auto transition-all duration-300 ease-out ${condensed ? 'top-12' : 'top-20'} ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <nav className="flex flex-col py-6 px-6">
-          {/* Secondary nav first (Sākums, Muzejs, etc.) */}
-          <div className="space-y-2 pb-4 border-b border-gray-100">
-            {secondaryNav.map((item) => (
-              <Link
-                key={item.key}
-                href={getHref(item.href)}
-                className="block py-2 text-[#212121] hover:text-accent"
-                style={{ fontSize: 'var(--body)' }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {navLabels[item.key][currentLang]}
-              </Link>
-            ))}
-          </div>
-          {/* Main nav second */}
+          {/* Main nav */}
           {mainNav.map((item) => (
             <Link
               key={item.key}
               href={getHref(item.href)}
-              className="block py-4 font-bold uppercase tracking-widest text-[#212121] border-b border-gray-100"
+              className={`block py-4 font-bold uppercase tracking-widest border-b border-gray-100 ${
+                item.isHighlighted ? 'text-[#af9f66]' : 'text-[#212121]'
+              }`}
               style={{ fontSize: 'var(--ui-label)' }}
               onClick={() => setMobileOpen(false)}
             >

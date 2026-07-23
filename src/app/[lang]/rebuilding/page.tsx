@@ -9,18 +9,10 @@ interface Milestone {
   text: string;
 }
 
-interface Card {
-  title: string;
-}
-
 interface Endorsement {
   category: string;
   name: string;
   detail: string;
-}
-
-interface DataBox {
-  text: string;
 }
 
 interface TimelineEvent {
@@ -52,6 +44,8 @@ interface TranslationContent {
   hero: {
     title: string;
     text: string;
+    overlayTitle: string;
+    overlayCta: string;
   };
   rebuilding: {
     title: string;
@@ -60,10 +54,15 @@ interface TranslationContent {
     imageCaption: string;
   };
   renovation: {
+    eyebrow: string;
     title: string;
-    paragraphs: string[];
-    cards: Card[];
-    button: string;
+    text: string;
+    feature1Title: string;
+    feature1Text: string;
+    feature2Title: string;
+    feature2Text: string;
+    imageCaption: string;
+    imageSrc: string;
   };
   team: {
     title: string;
@@ -75,11 +74,16 @@ interface TranslationContent {
     button: string;
   };
   proof: {
+    eyebrow: string;
     title: string;
     text: string;
+    steinmeierComment: string;
+    levitsComment: string;
+    evaComment: string;
+    evaQuote: string;
     endorsements: Endorsement[];
-    data: DataBox[];
     logos: PartnerLogo[];
+    acousticsNote: string;
   };
   history: {
     title: string;
@@ -104,6 +108,12 @@ interface TranslationContent {
   };
 }
 
+const thetisSlug: Record<string, string> = {
+  lv: 'iesvetits-pirmais-rigas-vagnera-muzeja-eksponats-soneris-thetis',
+  en: 'the-first-exhibit-of-the-riga-wagner-museum-christened-the-schooner-thetis',
+  de: 'das-erste-exponat-des-richard-wagner-museums-in-riga-wurde-feierlich-enthuellt-der-schoner-thetis',
+};
+
 // Translations Dictionary for LV, EN, DE
 const translations: Record<string, TranslationContent> = {
   lv: {
@@ -112,32 +122,31 @@ const translations: Record<string, TranslationContent> = {
       description: "Uzziniet vairāk par Rīgas Riharda Vāgnera teātra atjaunošanas projektu, vēsturi un to, kā jūs varat palīdzēt atdzimt šim kultūras mantojumam."
     },
     hero: {
+      overlayTitle: "Ieraksti savu vārdu ēkā, kas tevi pārdzīvos.",
+      overlayCta: "Skatīt, kā atbalstīt",
       title: "Vāgnera pirmais teātris. Pasaules nākamais.",
       text: "1837. gadā Rihards Vāgners ieradās Rīgā. Šeit atrastais veidoja Baireitu un uz visiem laikiem mainīja operu. Mēs atjaunojam šo teātri — un veidojam vietu, kas iedvesmo nākamo mūziķu paaudzi, tāpat kā tā iedvesmoja viņu."
     },
     rebuilding: {
       title: "Kā Rīga veidoja Vāgneru",
       milestones: [
-        { date: "1837. gada augustā", text: "Vāgners ieradās Rīgā kā pilsētas teātra galvenais diriģents. Viņam bija 24 gadi, viņš bija nezināms un parādos." },
-        { date: "1837–1839", text: "Šeit viņš sastapās ar idejām, kas definēja operu: stāvais grieķu stila izkārtojums, aptumšotā zāle, dziļā orķestra bedre — tas viss pirmo reizi tika realizēts šajā ēkā. Viņš paņēma katru no tiem uz Baireitu." },
-        { date: "1839", text: "Rīgā viņš sāka komponēt operu Rienzi — savu izrāviena darbu. Kad viņš 1839. gadā bēga no pilsētas kreditoru vajāts, vētra Baltijas jūrā deva viņam vīziju par «Klejojošais holandietis»." }
+        { date: "1837. GADA AUGUSTĀ", text: "Rihards Vāgners ieradās kā Pilsētas teātra galvenais diriģents –\ndivdesmit četrus gadus vecs, nezināms un parādos." },
+        { date: "1837–1839", text: "Šajā zālē viņš sastapās ar idejām, kas definēja operu – to, ko viņš vēlāk atcerējās kā “auditorijas stāvo kāpumu, skatītāju zāles puskrēslu, orķestri apakšā”. Viņš paņēma katru no tām uz Baireitu.\nŠeit viņš sāka komponēt «Rienzi», savu izrāviena darbu." },
+        { date: "1839", text: "Bēgot no kreditoriem 1839. gadā, vētra Baltijas jūrā deva viņam vīziju par «Klejojošo holandieti» – un no Rīgas viņš devās iekarot Eiropu.\n\nŠis teātris joprojām stāv Rīgā. Aizmirsts.\nKluss jau divdesmit gadus." }
       ],
-      button: "Lasīt pilnu stāstu →",
+      button: "Lasīt vairāk par Vāgneru Rīgā →",
       imageCaption: "Šeit Rihards Vāgners atklāja savu aicinājumu."
     },
     renovation: {
-      title: "Nevis restaurācija. Bet augšāmcelšanās.",
-      paragraphs: [
-        "Šis teātris nostādīja Vāgneru uz viņa ceļa. Tas deva viņam telpu, akustiku un vīziju, kas padarīja viņu par to, kas viņš kļuva.",
-        "Mēs ne tikai atjaunojam ēku. Mēs atjaunojam to, ko tā pārstāvēja — vietu, kur tiek radīta nopietna mūzika, un kur nākamā mūziķu paaudze atrod to, ko Vāgners šeit atrada pirmais.",
-        "Kad tas tiks atvērts 2028. gadā, Rīgas Vāgnera teātris būs vienīgā aktīvā koncertzāle Eiropā, kur dzima Baireitas idejas. Rezidences, jauni pasūtījumi, meistarklases, Rīgas muzikālās dzīves muzejs. Mājvieta, kas rada māksliniekus, nevis tikai priekšnesumus."
-      ],
-      cards: [
-        { title: "Arhitektūras šķērsgriezums" },
-        { title: "Zāles vizualizācija" },
-        { title: "Mūziķu mēģinājums" }
-      ],
-      button: "Skatīt projekta vīziju →"
+      eyebrow: "NEVIS RESTAURĀCIJA. BET AUGŠĀMCELŠANĀS.",
+      title: "Vieta, kas iedvesmoja Vāgneru, iedvesmos nākamo mūziķu paaudzi.",
+      text: "Mēs ne tikai atjaunojam ēku. Mēs atjaunojam to, ko tā pārstāvēja – vietu, kur tiek radīta nopietna mūzika un kur jaunie mākslinieki atrod to, ko Vāgners šeit atrada pirmais. Mājas jaunajiem māksliniekiem jaunu darbu radīšanai bija paša Vāgnera ideja kopš 1882. gada. Tā atdzimst vietā, kur tā sākās. Kad nepieciešamais finansējums ir nodrošināts, durvis vērsies 2028. gadā – un zāle, kurā tapa Baireitas idejas, skanēs atkal.",
+      feature1Title: "Operas teātris",
+      feature1Text: "Darba skatuve izrādēm, rezidencēm un jauniem iestudējumiem.",
+      feature2Title: "Vāgnera muzejs",
+      feature2Text: "Stāsts par viņa Rīgas gadiem, izstāstīts ēkā, kurā tie risinājās.",
+      imageCaption: "Teātris šodien, aktīvas rekonstrukcijas procesā.",
+      imageSrc: "/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
     },
     team: {
       title: "Cilvēki aiz tā",
@@ -149,18 +158,18 @@ const translations: Record<string, TranslationContent> = {
       button: "Skatīt komandu →"
     },
     proof: {
-      title: "Pierādījums, ka tas ir reāls",
-      text: "Ēkā notiek aktīva rekonstrukcija. Divi prezidenti ir saistījuši savus vārdus ar to. Ir iesaistīts pasaulē vadošais koncertzāļu akustiķis. Tas nav tikai priekšlikums.",
+      eyebrow: "ATBALSTS VISAUGSTĀKAJĀ LĪMENĪ",
+      title: "Atbalsts visaugstākajā līmenī",
+      text: "Rīgas Vāgnera nama rekonstrukcijas projektu un atdzimšanu personīgi atbalsta Vācijas un Latvijas valsts vadītāji un Vāgneru dzimta.",
+      steinmeierComment: "Vācijas Federālais prezidents oficiāli kļuva par projekta patronu, uzsverot Vācijas un Latvijas kopīgo kultūras mantojumu.",
+      levitsComment: "Latvijas Valsts prezidents kopā ar Vācijas prezidentu pārņēma patronāžu pār Rīgas Vāgnera nama atdzimšanu.",
+      evaComment: "Riharda Vāgnera mazmazmeita un Baireitas festivāla bijusī līdzdirektore aktīvi atbalsta teātra un muzeja izveidi Rīgā.",
+      evaQuote: "“Kad esat pabijis ēkā un iztēlojies, kā to varētu iedzīvināt un piepildīt ar mūziku, tā vairs nekad neatlaiž. Unikāla ēka ar muzikāli vēsturisku nozīmi kļūs par satikšanās vietu jaunajiem mūziķiem no visas pasaules.”",
       endorsements: [
         { category: "Patroni", name: "Franks Valters Šteinmeiers, Egils Levits", detail: "Vācijas un Latvijas prezidenti" },
         { category: "Vāgneru ģimene", name: "Eva Vāgnere-Paskjē", detail: "Mazmazmeita · patrone kopš 2019. gada" },
         { category: "Akustika", name: "Jasuhisa Tojoda", detail: "Elbphilharmonie · Suntory Hall · LA Phil" },
         { category: "Dibināšanas fonds", name: "Messerschmitt Stiftung", detail: "~€1M piešķirti" }
-      ],
-      data: [
-        { text: "Būvdarbu foto 2024. gada oktobrī" },
-        { text: "Pāļu dzīšanas darbi procesā" },
-        { text: "Venēcijas biennāles modelis 2025" }
       ],
       logos: [
         { title: "Deutscher Bundestag", subtitle: "€5M grants" },
@@ -168,21 +177,26 @@ const translations: Record<string, TranslationContent> = {
         { title: "Eva Wagner-Pasquier", subtitle: "Patrone" },
         { title: "Messerschmitt Stiftung", subtitle: "Fonds" },
         { title: "Yasuhisa Toyota", subtitle: "Akustika" }
-      ]
+      ],
+      acousticsNote: "Akustikas vadību nodrošina Dr. Jasuhisa Tojoda — akustiķis, kas stāv aiz Hamburgas Elbas filharmonijas un citām pasaules vadošajām koncertzālēm."
     },
     history: {
       title: "Kā mēs šeit nokļuvām",
       text: "No strukturālas avārijas līdz aktīvai būvniecībai — vienpadsmit gadus tapis projekts.",
       events: [
-        { date: "2025", label: "Venēcijas arhitektūras biennāle", text: "Mēroga modelis izstādīts. «Nav nekādu šaubu par to»." },
-        { date: "Okt 2024", label: "Pamatu nostiprināšana sākas [AKTĪVS]", text: "Pāļu dzīšanas darbi procesā. Strukturālā pastiprināšana." },
-        { date: "Apr 2024", label: "Demontāža pabeigta", text: "Vēsturiskie elementi saglabāti. Tehniskais projekts pabeigts." },
-        { date: "Maij 2023", label: "Pamatakmens ielikšana", text: "Vāgnera 210. dzimšanas diena. Piedalās Vācijas parlamenta delegācija." },
-        { date: "Okt 2022", label: "Parakstīts €5M līgums ar Vāciju", text: "Apstiprināts pilns nolīgums." },
-        { date: "Aug 2021", label: "Parakstīts pirmais līgums", text: "€200K. Sākas plānošanas fāze." },
-        { date: "Okt 2020", label: "Ēku pārņem Latvijas valsts", text: "Projekts oficiāli sākas." },
-        { date: "2014", label: "Dibināta Vāgnera biedrība", text: "Glābšanas misija sākas." },
-        { date: "2007", label: "Ēka tiek slēgta", text: "Koncerta darbība apstājas. Strukturāla avārija." }
+        { date: "2023", label: "Būvdarbi [AKTĪVS]", text: "Apstiprināta būvatļauja; darbi norit kopš decembra." },
+        { date: "2023", label: "Pamatakmens un laika kapsulas ceremonija", text: "Tuvu Vāgnera 210. dzimšanas dienai, piedaloties Vācijas federālajai delegācijai." },
+        { date: "2022", label: "Messerschmitt fonda atbalsts €700 000", text: "Piešķirts kāpņu telpas restaurācijas atbalstam." },
+        { date: "2022", label: "Piešķirti €15 miljoni Vāgnera teātrim", text: "No Latvijas Emisijas kvotu izsolīšanas instrumenta (EKII)." },
+        { date: "2020", label: "Vācijas Bundestāgs piešķir €5,2M", text: "Nodrošināts Vācijas federālais finansējums ēkas atjaunošanai." },
+        { date: "2020", label: "Saeima nodod ēku Vāgnera biedrībai", text: "Atdzimšana var sākties." },
+        { date: "2015", label: "Dibināta Rīgas Riharda Vāgnera biedrība", text: "Glābšanas misija sākas." },
+        { date: "2007", label: "Ēka tiek slēgta", text: "Koncertdarbība apstājas ēkas avārijas stāvokļa dēļ." },
+        { date: "1988–2007", label: "Vāgnera zāle", text: "Rīgas Kamermūzikas zāle uzņem koncertus gandrīz divas desmitgades." },
+        { date: "1945–1992", label: "Ēkā atrodas Fundamentālā bibliotēka", text: "Kalpo par nozīmīgu pētniecības bibliotēku Latvijā." },
+        { date: "1787–1939", label: "Biedrības «Musse» mājvieta", text: "Biedrība izveido vienu no ietekmīgākajiem kultūras saloniem Baltijā." },
+        { date: "1837–1839", label: "Rihards Vāgners Rīgā", text: "Vāgners strādā par Rīgas Pilsētas teātra galveno diriģentu." },
+        { date: "1782", label: "Rīgas Pilsētas teātra atklāšana", text: "Durvis ver pirmais pastāvīgais teātris Rīgā." }
       ]
     },
     today: {
@@ -217,32 +231,31 @@ const translations: Record<string, TranslationContent> = {
       description: "Learn about the restoration of the historic Richard Wagner Theatre in Riga."
     },
     hero: {
+      overlayTitle: "Put your name in the building that outlasts you.",
+      overlayCta: "See how to support",
       title: "Wagner's first theatre. The world's next one.",
       text: "In 1837, Richard Wagner arrived in Riga. What he found here shaped Bayreuth and changed opera forever. We are resurrecting that theatre — and building a place that inspires the next generation of musicians, just as it inspired him."
     },
     rebuilding: {
       title: "How Riga made Wagner",
       milestones: [
-        { date: "In August 1837", text: "Wagner arrived in Riga as chief conductor of the City Theatre. He was 24, unknown, and in debt." },
-        { date: "1837–1839", text: "Here he encountered ideas that would define opera: the steep Greek-style seating, the darkened hall, the deep orchestra pit — all first realised in this building. He took every one of them to Bayreuth." },
-        { date: "1839", text: "In Riga he began composing Rienzi — his breakthrough work. When he fled the city in 1839, pursued by creditors, a violent storm in the Baltic gave him the vision for The Flying Dutchman." }
+        { date: "IN AUGUST 1837", text: "Richard Wagner arrived as chief conductor of the City Theatre –\ntwenty-four, unknown, and in debt." },
+        { date: "1837–1839", text: "Inside this hall he met the ideas that would define opera – what he later recalled as “the steeply rising floor of the auditorium, the semi-darkness of the audience area, the orchestra below”. He carried every one to Bayreuth.\nHere he began Rienzi, his breakthrough." },
+        { date: "1839", text: "Fleeing creditors in 1839, a Baltic storm gave him the vision for The Flying Dutchman – and from Riga he went out to conquer Europe.\n\nThat theatre is still standing in Riga. Forgotten.\nSilent for twenty years." }
       ],
-      button: "Read the full story →",
+      button: "Read more about Wagner in Riga →",
       imageCaption: "This is where Richard Wagner discovered his calling."
     },
     renovation: {
-      title: "Not a restoration. A resurrection.",
-      paragraphs: [
-        "That theatre set Wagner on his way. It gave him the space, the acoustics, and the vision that made him who he became.",
-        "We are not only restoring the building. We are restoring what it stood for — a place where serious music is made, and where the next generation of musicians finds what Wagner found here first.",
-        "When it opens in 2028, Wagner Theatre Riga will be the only active concert hall in Europe where the ideas behind Bayreuth were born. Residencies, new commissions, masterclasses, a museum of Riga's musical life. A home that produces artists, not just performances."
-      ],
-      cards: [
-        { title: "Architectural section drawing" },
-        { title: "Hall render or scale model" },
-        { title: "Musicians in rehearsal" }
-      ],
-      button: "See the project vision →"
+      eyebrow: "NOT A RESTORATION. A RESURRECTION.",
+      title: "The place that inspired Wagner will inspire the next generation of musicians.",
+      text: "We are not only restoring a building. We are restoring what it stood for – a place where serious music is made, and where young artists find what Wagner found here first. A home for young artists making new work was Wagner’s own idea, from 1882. It is being reborn in the place where it started. With the necessary funding secured, the doors open in 2028 – and the hall where the ideas behind Bayreuth took shape will sound again.",
+      feature1Title: "An opera theatre",
+      feature1Text: "A working stage for performances, residencies and new productions.",
+      feature2Title: "A Wagner museum",
+      feature2Text: "The story of his Riga years, told in the building where they happened.",
+      imageCaption: "The theatre today, under active reconstruction.",
+      imageSrc: "/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
     },
     team: {
       title: "The people behind it",
@@ -254,18 +267,18 @@ const translations: Record<string, TranslationContent> = {
       button: "Meet the team →"
     },
     proof: {
-      title: "Proof it is real",
-      text: "The building is under active reconstruction. Two presidents have staked their names on it. The world's leading concert hall acoustician is involved. This is not a proposal.",
+      eyebrow: "ENDORSED AT THE HIGHEST LEVEL",
+      title: "Endorsed at the highest level",
+      text: "The restoration and revival of Riga's Wagner House is personally endorsed by the heads of state of Germany and Latvia and the Wagner family.",
+      steinmeierComment: "The Federal President of Germany officially assumed patronage, highlighting the shared German-Latvian cultural legacy.",
+      levitsComment: "The President of Latvia jointly undertook the patronage for the resurrection of Riga's Wagner House.",
+      evaComment: "Great-granddaughter of Richard Wagner and former co-director of the Bayreuth Festival actively supports the project.",
+      evaQuote: "\"Once you've been in the building and imagined how it could be enlivened and filled with music, it never lets you go. A unique building with music-historical significance will become a meeting place for young musicians from all over the world.\"",
       endorsements: [
         { category: "Patrons", name: "Frank-Walter Steinmeier, Egils Levits", detail: "Presidents of Germany and Latvia" },
         { category: "Wagner Family", name: "Eva Wagner-Pasquier", detail: "Great-granddaughter · Patron since 2019" },
         { category: "Acoustics", name: "Yasuhisa Toyota", detail: "Elbphilharmonie · Suntory Hall · LA Phil" },
         { category: "Founding Foundation", name: "Messerschmitt Stiftung", detail: "~€1M committed" }
-      ],
-      data: [
-        { text: "Construction photo dated Oct 2024" },
-        { text: "Piling works underway" },
-        { text: "Venice Biennale model 2025" }
       ],
       logos: [
         { title: "Deutscher Bundestag", subtitle: "€5M grant" },
@@ -273,21 +286,26 @@ const translations: Record<string, TranslationContent> = {
         { title: "Eva Wagner-Pasquier", subtitle: "Patron" },
         { title: "Messerschmitt Stiftung", subtitle: "Foundation" },
         { title: "Yasuhisa Toyota", subtitle: "Acoustics" }
-      ]
+      ],
+      acousticsNote: "Acoustics are led by Dr. Yasuhisa Toyota, the acoustician behind Hamburg's Elbphilharmonie and other venues."
     },
     history: {
       title: "How we got here",
       text: "From structural failure to active construction — a project eleven years in the making.",
       events: [
-        { date: "2025", label: "Venice Architecture Biennale", text: "Scale model exhibited. \"No Doubt About It.\"" },
-        { date: "Oct 2024", label: "Foundation reinforcement begins [ACTIVE]", text: "Piling works underway. Structural reinforcement." },
-        { date: "Apr 2024", label: "Demolition complete", text: "Historic elements saved. Technical design finalised." },
-        { date: "May 2023", label: "Foundation stone laid", text: "Wagner's 210th birthday. German parliamentary delegation present." },
-        { date: "Oct 2022", label: "€5M contract signed with Germany", text: "Full agreement confirmed." },
-        { date: "Aug 2021", label: "First contract signed", text: "€200K. Planning phase begins." },
-        { date: "Oct 2020", label: "Building handed over by Latvian state", text: "Project officially begins." },
-        { date: "2014", label: "Wagner Society founded", text: "Rescue mission starts." },
-        { date: "2007", label: "Building closes", text: "Concerts stop. Structural failure." }
+        { date: "2023", label: "Construction ACTIVE", text: "Approved building permit; works underway since December." },
+        { date: "2023", label: "Cornerstone and time-capsule ceremony", text: "Near Wagner's 210th birthday, German federal delegation present." },
+        { date: "2022", label: "Messerschmitt Stiftung commits €700,000", text: "To support the renovation of the staircase." },
+        { date: "2022", label: "€15 million secured for the Wagner Theatre", text: "From the Latvian “Emissions Quota Auctioning Instrument” (EKII)." },
+        { date: "2020", label: "German Bundestag allocates €5.2M", text: "Federal funding secured for the renovation." },
+        { date: "2020", label: "Latvian Parliament transfers the building to the Society", text: "The resurrection can begin." },
+        { date: "2015", label: "Riga Richard Wagner Society founded", text: "The rescue mission starts." },
+        { date: "2007", label: "Building closes", text: "Concerts cease due to the building's deteriorating condition." },
+        { date: "1988–2007", label: "Wagner Hall", text: "Riga's Chamber Music Hall hosts concerts for nearly two decades." },
+        { date: "1945–1992", label: "Building houses the Fundamental Library", text: "Serves as a vital research library for Latvia." },
+        { date: "1787–1939", label: "Home of the Musse Society", text: "The Society establishes one of the Baltic region's most influential cultural salons." },
+        { date: "1837–1839", label: "Richard Wagner in Riga", text: "Wagner serves as chief conductor of the Riga City Theatre." },
+        { date: "1782", label: "Opening of the Riga City Theatre", text: "Riga's first permanent theatre opens its doors." }
       ]
     },
     today: {
@@ -322,32 +340,31 @@ const translations: Record<string, TranslationContent> = {
       description: "Erfahren Sie mehr über das Projekt zur Restaurierung des historischen Richard-Wagner-Theaters in Riga."
     },
     hero: {
+      overlayTitle: "Verewigen Sie Ihren Namen in einem Gebäude, das Sie überdauert.",
+      overlayCta: "Erfahren Sie, wie Sie unterstützen können",
       title: "Wagners erstes Theater. Das nächste der Welt.",
-      text: "1837 kam Richard Wagner nach Riga. Was er hier fand, prägte Bayreuth und veränderte die Oper für immer. Wir erwecken dieses Theater wieder zum Leben – und bauen einen Ort, der die nächste Generation von Musikern inspiriert, so wie er ihn inspiriert hat."
+      text: "1837 kam Richard Wagner nach Riga. Was er hier fand, prägte Bayreuth und verände die Oper für immer. Wir erwecken dieses Theater wieder zum Leben – und bauen einen Ort, der die nächste Generation von Musikern inspiriert, so wie er ihn inspiriert hat."
     },
     rebuilding: {
       title: "Wie Riga Wagner prägte",
       milestones: [
-        { date: "Im August 1837", text: "Wagner kam als Chefdirigent des Stadttheaters nach Riga. Er war 24, unbekannt und verschuldet." },
-        { date: "1837–1839", text: "Hier stieß er auf Ideen, die die Oper definieren sollten: die steile Bestuhlung nach griechischem Vorbild, der abgedunkelte Saal, der tiefe Orchestergraben – alles wurde zuerst in diesem Gebäude realisiert. Er nahm jede einzelne davon mit nach Bayreuth." },
-        { date: "1839", text: "In Riga begann er mit der Komposition von Rienzi – seinem Durchbruchswerk. Als er 1839 vor Gläubigern aus der Stadt floh, gab ihm ein schwerer Sturm auf der Ostsee die Vision für Der fliegende Holländer." }
+        { date: "IM AUGUST 1837", text: "Richard Wagner kam als Chefdirigent des Stadttheaters an –\nvierundzwanzig, unbekannt und verschuldet." },
+        { date: "1837–1839", text: "In diesem Saal stieß er auf die Ideen, die die Oper definieren sollten – was er später als „den steil ansteigenden Boden des Zuschauerraums, das Halbdunkel des Publikumsbereichs, das Orchester darunter“ in Erinnerung rief. Er nahm jede einzelne davon mit nach Bayreuth.\nHier begann er Rienzi, seinen Durchbruch." },
+        { date: "1839", text: "Auf der Flucht vor Gläubigern im Jahr 1839 gab ihm ein Sturm auf der Ostsee die Vision für Der fliegende Holländer – und von Riga aus zog er los, um Europa zu erobern.\n\nDieses Theater steht immer noch in Riga. Vergessen.\nSeit zwanzig Jahren stumm." }
       ],
-      button: "Die ganze Geschichte lesen →",
+      button: "Mehr über Wagner in Riga lesen →",
       imageCaption: "Hier entdeckte Richard Wagner seine Berufung."
     },
     renovation: {
-      title: "Keine Restaurierung. Eine Auferstehung.",
-      paragraphs: [
-        "Dieses Theater wies Wagner den Weg. Es gab ihm den Raum, die Akustik und die Vision, die ihn zu dem machten, der er wurde.",
-        "Wir restaurieren nicht nur das Gebäude. Wir restaurieren das, wofür es stand – einen Ort, an dem ernsthafte Musik gemacht wird und an dem die nächste Generation von Musikern das findet, was Wagner hier zuerst fand.",
-        "Wenn es 2028 eröffnet wird, wird das Wagner-Theater Riga das einzige aktive Konzerthaus in Europa sein, das sich dort befindet, wo die Ideen hinter Bayreuth geboren wurden. Residenzen, neue Aufträge, Meisterklassen, ein Museum des Rigaer Musiklebens. Ein Zuhause, das Künstler hervorbringt, nicht nur Aufführungen."
-      ],
-      cards: [
-        { title: "Architektonische Querschnittszeichnung" },
-        { title: "Saal-Visualisierung" },
-        { title: "Musiker bei der Probe" }
-      ],
-      button: "Siehe die Projektaufsicht →"
+      eyebrow: "KEINE RESTAURIERUNG. EINE AUFERSTEHUNG.",
+      title: "Der Ort, der Wagner inspirierte, wird die nächste Generation von Musikern inspirieren.",
+      text: "Wir restaurieren nicht nur ein Gebäude. Wir restaurieren das, wofür es stand – einen Ort, an dem ernsthafte Musik gemacht wird und junge Künstler das finden, was Wagner hier zuerst fand. Ein Zuhause für junge Künstler war Wagners eigene Idee von 1882. Es wird an dem Ort wiedergeboren, an dem es begann. Die Türen öffnen sich 2028 – und der Saal, in dem die Ideen hinter Bayreuth Gestalt annahmen, wird wieder erklingen.",
+      feature1Title: "Ein Operntheater",
+      feature1Text: "Eine Bühne für Aufführungen, Residenzen und Neuproduktionen.",
+      feature2Title: "Ein Wagner-Museum",
+      feature2Text: "Die Geschichte seiner Rigaer Jahre, erzählt in dem Gebäude, in dem sie stattfanden.",
+      imageCaption: "Das Theater heute, im aktiven Wiederaufbau.",
+      imageSrc: "/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
     },
     team: {
       title: "Die Menschen dahinter",
@@ -359,18 +376,18 @@ const translations: Record<string, TranslationContent> = {
       button: "Meet the team →"
     },
     proof: {
-      title: "Beweis, dass es real ist",
-      text: "Das Gebäude befindet sich im aktiven Wiederaufbau. Zwei Präsidenten haben sich darin verewigt. Der weltweit führende Akustiker für Konzertgebäude ist beteiligt. Dies ist kein bloßer Vorschlag.",
+      eyebrow: "UNTERSTÜTZT AUF HÖCHSTER EBENE",
+      title: "Unterstützt auf höchster Ebene",
+      text: "Der Wiederaufbau des Rigaer Wagner-Hauses wird von den Staatsoberhäuptern Deutschlands und Lettlands sowie der Familie Wagner persönlich unterstützt.",
+      steinmeierComment: "Der Bundespräsident übernahm offiziell die Schirmherrschaft und betonte das gemeinsame kulturelle Erbe.",
+      levitsComment: "Der lettische Staatspräsident übernahm gemeinsam die Schirmherrschaft für die Wiederbelebung des Wagner-Hauses.",
+      evaComment: "Urenkelin von Richard Wagner und ehemalige Co-Leiterin der Bayreuther Festspiele unterstützt das Projekt aktiv.",
+      evaQuote: "„Wenn man erst einmal im Gebäude war und sich vorgestellt hat, wie es belebt und mit Musik erfüllt werden könnte, lässt es einen nie wieder los. Ein einzigartiges Gebäude wird zu einem Treffpunkt für junge Musiker aus aller Welt.“",
       endorsements: [
         { category: "Schirmherren", name: "Frank-Walter Steinmeier, Egils Levits", detail: "Präsidenten von Deutschland und Lettland" },
         { category: "Familie Wagner", name: "Eva Wagner-Pasquier", detail: "Urenkelin · Schirmherrin seit 2019" },
         { category: "Akustik", name: "Yasuhisa Toyota", detail: "Elbphilharmonie · Suntory Hall · LA Phil" },
         { category: "Gründungsstiftung", name: "Messerschmitt Stiftung", detail: "~€1M zugesagt" }
-      ],
-      data: [
-        { text: "Baustellenfoto datiert Okt 2024" },
-        { text: "Pfahlgründung im Gange" },
-        { text: "Modell der Biennale Venedig 2025" }
       ],
       logos: [
         { title: "Deutscher Bundestag", subtitle: "€5M Förderung" },
@@ -378,21 +395,26 @@ const translations: Record<string, TranslationContent> = {
         { title: "Eva Wagner-Pasquier", subtitle: "Schirmherrin" },
         { title: "Messerschmitt Stiftung", subtitle: "Stiftung" },
         { title: "Yasuhisa Toyota", subtitle: "Akustik" }
-      ]
+      ],
+      acousticsNote: "Die Akustik wird von Dr. Yasuhisa Toyota geleitet, dem Akustiker hinter der Hamburger Elbphilharmonie und anderen Veranstaltungsorten."
     },
     history: {
       title: "Wie wir hierher gekommen sind",
       text: "Vom strukturellen Versagen bis zum aktiven Bau – ein Projekt, das seit elf Jahren in Arbeit ist.",
       events: [
-        { date: "2025", label: "Architekturbiennale Venedig", text: "Maßstabsmodell ausgestellt. «Kein Zweifel daran»." },
-        { date: "Okt 2024", label: "Fundamentverstärkung beginnt [AKTIV]", text: "Pfahlgründungsarbeiten im Gange. Strukturverstärkung." },
-        { date: "Apr 2024", label: "Abriss abgeschlossen", text: "Historische Elemente gesichert. Technischer Entwurf finalisiert." },
-        { date: "Mai 2023", label: "Grundsteinlegung", text: "Wagners 210. Geburtstag. Delegation des deutschen Bundestags anwesend." },
-        { date: "Okt 2022", label: "€5M Vertrag mit Deutschland unterzeichnet", text: "Vollständige Vereinbarung bestätigt." },
-        { date: "Aug 2021", label: "Erster Vertrag unterzeichnet", text: "€200K. Planungsphase beginnt." },
-        { date: "Okt 2020", label: "Übergabe des Gebäudes durch den lettischen Staat", text: "Projekt beginnt offiziell." },
-        { date: "2014", label: "Wagner-Gesellschaft gegründet", text: "Rettungsmission beginnt." },
-        { date: "2007", label: "Schließung des Gebäudes", text: "Konzerte stoppen. Strukturelles Versagen." }
+        { date: "2023", label: "Bauarbeiten [AKTIV]", text: "Baugenehmigung erteilt; Arbeiten laufen seit Dezember." },
+        { date: "2023", label: "Grundsteinlegung und Zeitkapsel-Zeremonie", text: "Nahe Wagners 210. Geburtstag, deutsche Bundesdelegation anwesend." },
+        { date: "2022", label: "Messerschmitt Stiftung sagt €700.000 zu", text: "Zur Unterstützung der Treppenhaussanierung." },
+        { date: "2022", label: "€15 Millionen für das Wagner-Theater gesichert", text: "Aus dem lettischen Emissionshandelsinstrument (EKII)." },
+        { date: "2020", label: "Deutscher Bundestag bewilligt €5,2M", text: "Bundeszuschuss für die Sanierung gesichert." },
+        { date: "2020", label: "Lettisches Parlament übergibt Gebäude an den Verein", text: "Die Auferstehung kann beginnen." },
+        { date: "2015", label: "Rigaer Richard-Wagner-Gesellschaft gegründet", text: "Die Rettungsmission beginnt." },
+        { date: "2007", label: "Schließung des Gebäudes", text: "Konzerte stoppen wegen des baufälligen Zustands." },
+        { date: "1988–2007", label: "Wagner-Saal", text: "Rigas Kammermusiksaal beherbergt fast zwei Jahrzehnte lang Konzerte." },
+        { date: "1945–1992", label: "Gebäude beherbergt die Fundamentalbibliothek", text: "Dient als zentrale Forschungsbibliothek Lettlands." },
+        { date: "1787–1939", label: "Heimat der Musse-Gesellschaft", text: "Die Gesellschaft etabliert einen der einflussreichsten Kultursalons des Baltikums." },
+        { date: "1837–1839", label: "Richard Wagner in Riga", text: "Wagner dient als Chefdirigent des Rigaischen Stadttheaters." },
+        { date: "1782", label: "Eröffnung des Rigaischen Stadttheaters", text: "Rigas erstes ständiges Theater öffnet seine Pforten." }
       ]
     },
     today: {
@@ -455,25 +477,67 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
     <main className="min-h-screen bg-white text-black">
       {/* SECTION 1: Hero Block */}
       <section className="vag-container bg-white pb-6 pt-6">
-        <div className="relative h-[60vh] min-h-[460px] w-full overflow-hidden" style={{ height: '60vh', minHeight: '460px', borderRadius: 'var(--card-radius)' }}>
+        {/* Hero Image with overlay text and CTA button */}
+        <div 
+          className="relative h-[60vh] min-h-[460px] w-full overflow-hidden" 
+          style={{ borderRadius: 'var(--card-radius)' }}
+        >
+          {/* Layer 1 (bottom): Photo */}
           <Image 
             src="/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg" 
             alt="Vāgnera Nams"
             fill
-            className="object-cover"
+            className="object-cover object-center"
+            style={{ zIndex: 0 }}
             priority
           />
-          <div className="absolute inset-0 bg-black/15" />
+
+          {/* Layer 2: Dark gradient overlay — above image, below text */}
+          <div 
+            style={{ 
+              position: 'absolute',
+              inset: 0,
+              zIndex: 1,
+              background: 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.82) 100%)',
+              pointerEvents: 'none'
+            }} 
+          />
+
+          {/* Layer 3 (top): Text and CTA */}
+          <div 
+            style={{ position: 'absolute', inset: 0, zIndex: 2 }}
+            className="flex flex-col justify-end pb-20 md:pb-28 px-8 md:px-[68px]"
+          >
+            <div className="max-w-3xl text-left">
+              <h2 className="mb-6 text-white uppercase tracking-tight font-serif text-2xl md:text-4xl lg:text-5xl leading-tight font-normal drop-shadow-md">
+                {t.hero.overlayTitle}
+              </h2>
+              <div>
+                <a 
+                  href="#support" 
+                  className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-12 md:px-16 font-bold uppercase tracking-wider text-black whitespace-nowrap min-w-[280px] md:min-w-[340px] text-center transition-all hover:bg-[#988a55]"
+                  style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
+                >
+                  {t.hero.overlayCta}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="pt-12 pb-8">
-          <h1 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl lg:text-6xl leading-tight font-normal" dangerouslySetInnerHTML={{ __html: t.hero.title }} />
+
+        {/* Text and subtext below the hero image - aligned horizontally with hero heading */}
+        <div className="pt-6 pb-6 px-8 md:px-[68px]">
+          <h3 
+            className="text-black font-serif font-bold uppercase tracking-tight m-0 mb-3 text-xl md:text-2xl leading-tight" 
+            dangerouslySetInnerHTML={{ __html: t.hero.title }} 
+          />
           <div className="max-w-4xl">
-            <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
+            <p className="text-base md:text-lg leading-relaxed text-gray-700 font-sans m-0">
               {t.hero.text}
             </p>
           </div>
         </div>
-        <div className="h-px bg-gray-200 my-6" />
+        <div className="h-px bg-gray-200 my-4" />
       </section>
 
       {/* SECTION 2: How Riga Made Wagner */}
@@ -485,20 +549,20 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               <div className="space-y-8">
                 {t.rebuilding.milestones.map((m, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#af9f66]/10 text-[#af9f66] font-bold text-sm">
+                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#af9f66]/10 text-[#af9f66] font-bold text-sm mt-0.5">
                       {i + 1}
                     </div>
                     <div>
-                      <h4 className="font-bold text-black mb-1" style={{ fontSize: 'var(--body)' }}>{m.date}</h4>
-                      <p className="text-gray-700 leading-relaxed font-sans">{m.text}</p>
+                      <h4 className="font-bold text-black mb-1 uppercase tracking-wider" style={{ fontSize: 'var(--body)' }}>{m.date}</h4>
+                      <p className="text-gray-700 leading-relaxed font-sans whitespace-pre-line">{m.text}</p>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="mt-8">
                 <Link 
-                  href={`/${currentLang}/biedriba`} 
-                  className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-8 font-bold uppercase tracking-wider text-black transition-all" 
+                  href={`/${currentLang}/jaunumi/${thetisSlug[currentLang] || thetisSlug.lv}`} 
+                  className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-8 font-bold uppercase tracking-wider text-black transition-all hover:bg-[#988a55]" 
                   style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                 >
                   {t.rebuilding.button}
@@ -506,9 +570,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md" style={{ borderRadius: 'var(--card-radius)' }}>
+              <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md border border-gray-100" style={{ borderRadius: 'var(--card-radius)' }}>
                 <Image 
-                  src="/wp-content/uploads/2025/09/vagners_biedriba_picture.jpg" 
+                  src="/images/projekts/wagner_side_profile.jpg" 
                   alt={t.rebuilding.title}
                   fill
                   className="object-cover"
@@ -523,57 +587,61 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       </section>
 
       {/* SECTION 3: Not a restoration. A resurrection. */}
-      <section className="py-16 bg-[#F9F9F9]">
+      <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-100">
         <div className="vag-container">
-          <div className="mb-12">
-            <h2 className="mb-6 text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">{t.renovation.title}</h2>
-            <div className="space-y-4 text-lg leading-relaxed text-gray-700 font-sans">
-              {t.renovation.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+          <div className="mb-10 max-w-4xl">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#af9f66] mb-3">
+              {t.renovation.eyebrow}
+            </p>
+            <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl lg:text-6xl font-normal leading-tight uppercase">
+              {t.renovation.title}
+            </h2>
+            <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
+              {t.renovation.text}
+            </p>
+          </div>
+
+          <div className="grid gap-12 md:grid-cols-2 items-center pt-6">
+            {/* Left side: Feature 1 & Feature 2 */}
+            <div className="space-y-10">
+              <div>
+                <h3 className="font-serif text-2xl md:text-3xl text-black font-normal mb-2 uppercase">
+                  {t.renovation.feature1Title}
+                </h3>
+                <p className="text-gray-600 text-base md:text-lg font-sans leading-relaxed">
+                  {t.renovation.feature1Text}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-serif text-2xl md:text-3xl text-black font-normal mb-2 uppercase">
+                  {t.renovation.feature2Title}
+                </h3>
+                <p className="text-gray-600 text-base md:text-lg font-sans leading-relaxed">
+                  {t.renovation.feature2Text}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="grid gap-6 md:grid-cols-3 mb-12">
-            {t.renovation.cards.map((card, i) => {
-              const images = [
-                "/images/projekts/08_Wagner-theater_Section-A-A-1000x625.jpg",
-                "/images/projekts/4.png",
-                "/wp-content/uploads/2025/09/larisa-birta-slbOcNlWNHA-unsplash.jpg"
-              ];
-              return (
-                <div key={i} className="flex flex-col">
-                  <div 
-                    className="relative overflow-hidden h-48 w-full shadow-md mb-3 border border-gray-100 group" 
-                    style={{ borderRadius: 'var(--card-radius-sm)' }}
-                  >
-                    <Image 
-                      src={images[i]} 
-                      alt={card.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <h3 className="text-black font-semibold text-sm uppercase tracking-wider font-sans leading-snug text-left">
-                    {card.title}
-                  </h3>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-left">
-            <Link 
-              href={`/${currentLang}/nams`} 
-              className="text-[#af9f66] font-bold hover:underline inline-flex items-center gap-1 uppercase tracking-wider text-sm"
-            >
-              {t.renovation.button}
-            </Link>
+            {/* Right side: Image with standard caption line UNDER the picture */}
+            <div className="w-full">
+              <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md rounded-[var(--card-radius)] border border-gray-100">
+                <Image 
+                  src={t.renovation.imageSrc} 
+                  alt={t.renovation.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="mt-3 text-sm text-gray-500 italic font-sans text-center md:text-left">
+                {t.renovation.imageCaption}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: The people behind it (2 Column Layout with new image on right) */}
+      {/* SECTION 4: The people behind it */}
       <section className="py-16 bg-white">
         <div className="vag-container">
           <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
@@ -584,12 +652,10 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               </h2>
               
               <div className="space-y-8 mb-8 font-sans">
-                {/* Profile 1 Text */}
                 <p className="text-gray-700 leading-relaxed text-base">
                   {t.team.profile1}
                 </p>
                 
-                {/* Profile 2 Quote */}
                 <div className="border-l-2 border-[#af9f66] pl-6 py-1">
                   <blockquote className="text-gray-700 italic leading-relaxed text-lg mb-2">
                     {t.team.profile2.text}
@@ -625,23 +691,89 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 5: Proof it is real */}
-      <section className="py-16 bg-[#F9F9F9]">
+      {/* SECTION 5: Endorsed at the Highest Level */}
+      <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-200">
         <div className="vag-container">
-          <div className="mb-12 max-w-3xl">
-            <h2 className="mb-6 text-black tracking-widest font-sans text-3xl md:text-4xl font-bold">{t.proof.title}</h2>
-            <p className="text-lg leading-relaxed text-gray-600 font-sans">
+          <div className="mb-16 max-w-3xl">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#af9f66] mb-3">
+              {t.proof.eyebrow}
+            </p>
+            <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase">
+              {t.proof.title}
+            </h2>
+            <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
               {t.proof.text}
             </p>
           </div>
 
-          {/* Endorsement Grid (Styled 2x2 as in mockup image) */}
+          {/* Patron People Cards Grid (3 patrons) */}
+          <div className="grid gap-8 md:grid-cols-3 mb-12">
+            {/* Frank-Walter Steinmeier */}
+            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+              <div>
+                <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                </div>
+                <h3 className="font-serif font-bold text-black text-lg leading-snug">Frank-Walter Steinmeier</h3>
+                <p className="text-xs text-[#af9f66] font-bold uppercase tracking-wider mt-1 mb-3">Vācijas Federālais Prezidents</p>
+                <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                  {t.proof.steinmeierComment}
+                </p>
+              </div>
+            </div>
+
+            {/* Egils Levits */}
+            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+              <div>
+                <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/patrons/levits.jpg" alt="Egils Levits" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                </div>
+                <h3 className="font-serif font-bold text-black text-lg leading-snug">Egils Levits</h3>
+                <p className="text-xs text-[#af9f66] font-bold uppercase tracking-wider mt-1 mb-3">Latvijas Valsts Prezidents (2019–2023)</p>
+                <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                  {t.proof.levitsComment}
+                </p>
+              </div>
+            </div>
+
+            {/* Eva Wagner-Pasquier */}
+            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+              <div>
+                <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                </div>
+                <h3 className="font-serif font-bold text-black text-lg leading-snug">Eva Wagner-Pasquier</h3>
+                <p className="text-xs text-[#af9f66] font-bold uppercase tracking-wider mt-1 mb-3">Vāgnera mazmazmeita · Patrone</p>
+                <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                  {t.proof.evaComment}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Highlighted Quote from Eva Wagner-Pasquier */}
+          <div className="bg-black text-white p-8 md:p-10 rounded-[var(--card-radius)] mb-12 shadow-xl border-l-4 border-l-[#af9f66] relative overflow-hidden">
+            <div className="relative z-10">
+              <span className="text-[#af9f66] text-xs font-bold uppercase tracking-[0.2em] block mb-3">Vāgneru Dzimtas Mantojums</span>
+              <blockquote className="font-serif italic text-lg md:text-2xl leading-relaxed text-gray-100 mb-4">
+                {t.proof.evaQuote}
+              </blockquote>
+              <cite className="not-italic text-sm font-semibold text-gray-400 font-sans block">
+                — Eva Wagner-Pasquier, Vāgnera mazmazmeita un projekta patrone
+              </cite>
+            </div>
+          </div>
+
+          {/* Endorsements & Foundation Partners Grid */}
           <div className="grid gap-6 md:grid-cols-2 mb-8">
             {t.proof.endorsements.map((end, i) => (
               <div 
                 key={i} 
-                className="bg-white p-8 border border-gray-200 flex flex-col justify-between" 
-                style={{ borderRadius: 'var(--card-radius-sm)', minHeight: '140px' }}
+                className="bg-white p-6 border border-gray-200 flex flex-col justify-between" 
+                style={{ borderRadius: 'var(--card-radius-sm)', minHeight: '120px' }}
               >
                 <div>
                   <h4 className="font-sans text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">{end.category}</h4>
@@ -652,46 +784,20 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             ))}
           </div>
 
-          {/* 3 Real Photos with double the height and aligned text below (clean readability) */}
-          <div className="grid gap-6 md:grid-cols-3 mb-12">
-            {t.proof.data.map((d, i) => {
-              const projectImages = [
-                "/images/projekts/VC481gnera4070.jpg",
-                "/images/projekts/MG_6845.jpg",
-                "/wp-content/uploads/2025/09/Thetis_3.jpeg"
-              ];
-              return (
-                <div key={i} className="flex flex-col">
-                  <div 
-                    className="relative overflow-hidden w-full shadow-md mb-3" 
-                    style={{ height: '320px', borderRadius: 'var(--card-radius-sm)' }}
-                  >
-                    <Image 
-                      src={projectImages[i]} 
-                      alt={d.text}
-                      fill
-                      className="object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                  <p className="text-gray-500 text-[10px] md:text-xs font-sans uppercase tracking-wider font-semibold leading-relaxed text-left">
-                    {d.text}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Partner Bar (Re-designed matching the mockup columns & lines) */}
-          <div 
-            className="grid grid-cols-2 md:grid-cols-5 border-t border-b border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 bg-white py-6"
-            style={{ borderRadius: 'var(--card-radius-sm)' }}
-          >
-            {t.proof.logos.map((logo, i) => (
-              <div key={i} className="px-6 py-2 text-left font-sans flex flex-col justify-center">
-                <div className="text-black font-semibold text-sm leading-snug">{logo.title}</div>
-                <div className="text-gray-500 text-xs mt-1 leading-normal">{logo.subtitle}</div>
-              </div>
-            ))}
+          {/* Additional Acoustics Note at the bottom */}
+          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <span className="text-[#af9f66] font-serif font-bold text-3xl shrink-0">
+                ♪
+              </span>
+              <p className="text-gray-800 font-sans font-medium text-sm md:text-base leading-relaxed">
+                {t.proof.acousticsNote}
+              </p>
+            </div>
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Akustika:</span>
+              <span className="bg-gray-100 text-black px-3 py-1 rounded text-xs font-bold">Dr. Yasuhisa Toyota</span>
+            </div>
           </div>
         </div>
       </section>
@@ -699,26 +805,33 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       {/* SECTION 6: How we got here (Timeline) */}
       <section className="py-16 bg-white">
         <div className="vag-container max-w-4xl">
-          {/* Aligned to the left */}
           <div className="text-left mb-16">
             <h2 className="text-black uppercase tracking-widest mb-4 font-serif text-2xl md:text-3xl font-normal">{t.history.title}</h2>
-            <p className="text-gray-600 max-w-2xl font-sans">{t.history.text}</p>
+            <p className="text-gray-600 max-w-2xl font-sans text-sm md:text-base">{t.history.text}</p>
           </div>
 
-          <div className="relative border-l border-gray-200 pl-6 ml-4 md:ml-32 space-y-12">
+          <div className="space-y-6 max-w-3xl">
             {t.history.events.map((ev, i) => (
-              <div key={i} className="relative">
-                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-[#af9f66] border-4 border-white" />
-                <div className="flex flex-col md:flex-row md:items-baseline">
-                  <div className="md:absolute md:-left-36 md:w-28 text-left md:text-right font-bold font-serif text-2xl text-[#af9f66] mb-1 md:mb-0">
-                    {ev.date}
-                  </div>
-                  <div>
-                    <h4 className="font-sans font-bold text-black mb-1">{ev.label}</h4>
-                    <p className="text-gray-700 leading-relaxed font-sans">
-                      {ev.text}
-                    </p>
-                  </div>
+              <div key={i} className="flex gap-4 md:gap-6 items-start">
+                {/* Column 1: Fixed-width Date column (e.g. 128px on mobile, 160px on desktop) */}
+                <div className="w-32 md:w-40 shrink-0 text-right font-serif font-bold text-sm md:text-base text-[#af9f66] pt-0.5">
+                  {ev.date}
+                </div>
+
+                {/* Column 2: Bullet dot + vertical line */}
+                <div className="relative flex flex-col items-center self-stretch shrink-0 w-4">
+                  <div className="w-3 h-3 rounded-full bg-[#af9f66] border-2 border-white shrink-0 z-10 mt-1" />
+                  <div className="w-px bg-gray-200 flex-1 -mt-1" />
+                </div>
+
+                {/* Column 3: Heading + Subtext (ALL start at exact same horizontal position!) */}
+                <div className="pb-6 flex-1 min-w-0">
+                  <h4 style={{ fontSize: '12px', fontFamily: 'Inter, sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', lineHeight: 1.3, color: '#111111' }}>
+                    {ev.label}
+                  </h4>
+                  <p className="text-gray-600 leading-relaxed font-sans text-xs md:text-sm m-0">
+                    {ev.text}
+                  </p>
                 </div>
               </div>
             ))}
@@ -726,7 +839,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 7: Where it stands today (Single Slider with Frame) */}
+      {/* SECTION 7: Where it stands today */}
       <section className="py-16 bg-[#F9F9F9]">
         <div className="vag-container max-w-3xl">
           <div className="border-2 border-[#af9f66] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
@@ -737,7 +850,6 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               {t.today.raised}
             </div>
             
-            {/* The Framed impact slider */}
             <div className="w-full bg-gray-100 h-5 rounded-full overflow-hidden mb-8 border border-gray-200 p-0.5">
               <div 
                 className="bg-[#af9f66] h-full rounded-full transition-all duration-1000 ease-out" 
@@ -765,62 +877,50 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 8: WordPress News Grid */}
+      {/* SECTION 8: Put your name in the building that outlasts you (Black Framed CTA Card matching Section 7 design) */}
+      <section id="support" className="py-16 bg-[#F9F9F9]">
+        <div className="vag-container max-w-3xl">
+          <div 
+            className="border-2 border-[#af9f66] p-8 md:p-12 bg-black text-white text-center shadow-xl" 
+            style={{ borderRadius: 'var(--card-radius)' }}
+          >
+            <h2 className="text-[#af9f66] uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal leading-tight">
+              {t.support.title}
+            </h2>
+            <p className="text-gray-300 font-sans max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-8">
+              {t.support.text}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-sans text-sm mb-8 border-t border-b border-gray-800 py-6">
+              {t.support.items.map((item, i) => (
+                <div key={i} className="bg-gray-900/60 p-4 rounded border border-gray-800">
+                  <span className="block text-[#af9f66] font-bold mb-1">{item.title}</span>
+                  <span className="text-gray-300 text-xs leading-relaxed block">{item.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <a 
+                href={`/${currentLang}/ziedojumi`} 
+                className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-10 font-bold uppercase tracking-wider text-black transition-all hover:bg-[#988a55]"
+                style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
+              >
+                {t.support.button}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: WordPress News Grid */}
       {newsPosts.length > 0 && (
         <NewsSection 
           posts={newsPosts} 
           title={t.news.title} 
-          lang={currentLang} 
+          lang={currentLang}
         />
       )}
-
-      {/* SECTION 9: Support Call-To-Action (Premium Dark Section) */}
-      <section className="vag-container pb-16 pt-8">
-        <div className="bg-[#111111] text-white p-8 md:p-16" style={{ borderRadius: 'var(--card-radius)' }}>
-          <div className="max-w-3xl mb-12">
-            <h2 className="text-white uppercase tracking-wider mb-4 font-serif text-2xl md:text-3xl leading-snug font-normal">
-              {t.support.title}
-            </h2>
-            <p className="text-gray-300 font-sans leading-relaxed mt-4">
-              {t.support.text}
-            </p>
-          </div>
-          
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-            {t.support.items.map((item, i) => (
-              <div key={i} className="border-t border-white/20 pt-6">
-                <h4 className="font-serif text-[#af9f66] tracking-wide mb-3" style={{ fontSize: 'var(--body)' }}>
-                  {item.title}
-                </h4>
-                <p className="text-gray-300 text-sm leading-relaxed font-sans">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Impactful CTA button (Much bigger) */}
-          <div className="text-left">
-            <Link 
-              href={`/${currentLang}/ziedojumi`} 
-              className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-12 font-bold uppercase tracking-wider text-black transition-all hover:bg-white hover:scale-105" 
-              style={{ 
-                height: '60px', 
-                paddingLeft: '3rem', 
-                paddingRight: '3rem', 
-                borderRadius: 'var(--card-radius-sm)', 
-                fontSize: '1rem', 
-                letterSpacing: '0.15em' 
-              }}
-            >
-              {t.support.button}
-            </Link>
-          </div>
-        </div>
-      </section>
-      
-      {/* Spacer to align with current pages layout */}
-      <div className="h-10" />
     </main>
   );
 }
