@@ -335,6 +335,23 @@
   - `npx tsc --noEmit` clean with 0 errors.
   - Route `/lv/rebuilding` returns 200 OK on localhost.
 
+### Task: Deployment of fundraising branch to live server (dev2.vagneriga.lv)
+- Summary:
+  - Created and pushed new `fundraising` branch to GitHub repository (`paulsr11/dev.vagneriga`).
+  - Switched live production host (`204.168.171.251` / `dev2.vagneriga.lv`) to `fundraising` branch.
+  - Executed `pnpm run build` cleanly on live server and restarted `dev2-vagneriga` systemd service.
+  - Preserved original `dev` branch on server and GitHub for fast rollback when needed.
+
+- Files changed:
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `src/app/[lang]/globals.css`
+  - `LOG.md`
+
+- Verification:
+  - GitHub branch `fundraising` active and up to date.
+  - Live server route `https://dev2.vagneriga.lv/en/rebuilding` returning 200 OK.
+
+
 
 
 
