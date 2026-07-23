@@ -478,13 +478,13 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       {/* SECTION 1: Hero Block */}
       <section className="vag-container bg-white pb-6 pt-6">
         {/* Hero Image with overlay text and CTA button */}
-        <div 
-          className="relative h-[60vh] min-h-[460px] w-full overflow-hidden" 
+        <div
+          className="relative h-[60vh] min-h-[460px] w-full overflow-hidden"
           style={{ borderRadius: 'var(--card-radius)' }}
         >
           {/* Layer 1 (bottom): Photo */}
-          <Image 
-            src="/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg" 
+          <Image
+            src="/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
             alt="Vāgnera Nams"
             fill
             className="object-cover object-center"
@@ -493,18 +493,18 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           />
 
           {/* Layer 2: Dark gradient overlay — above image, below text */}
-          <div 
-            style={{ 
+          <div
+            style={{
               position: 'absolute',
               inset: 0,
               zIndex: 1,
               background: 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.82) 100%)',
               pointerEvents: 'none'
-            }} 
+            }}
           />
 
           {/* Layer 3 (top): Text and CTA */}
-          <div 
+          <div
             style={{ position: 'absolute', inset: 0, zIndex: 2 }}
             className="flex flex-col justify-end pb-20 md:pb-28 px-8 md:px-[68px]"
           >
@@ -513,9 +513,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                 {t.hero.overlayTitle}
               </h2>
               <div>
-                <a 
-                  href="#support" 
-                  className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-12 md:px-16 font-bold uppercase tracking-wider text-black whitespace-nowrap min-w-[280px] md:min-w-[340px] text-center transition-all hover:bg-[#988a55]"
+                <a
+                  href="#support"
+                  className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-12 md:px-16 font-bold uppercase tracking-wider text-white whitespace-nowrap min-w-[280px] md:min-w-[340px] text-center transition-all hover:bg-[#9F834F]"
                   style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                 >
                   {t.hero.overlayCta}
@@ -527,9 +527,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
 
         {/* Text and subtext below the hero image - aligned horizontally with hero heading */}
         <div className="pt-6 pb-6 px-8 md:px-[68px]">
-          <h3 
-            className="text-black font-serif font-bold uppercase tracking-tight m-0 mb-3 text-xl md:text-2xl leading-tight" 
-            dangerouslySetInnerHTML={{ __html: t.hero.title }} 
+          <h3
+            className="text-black font-serif font-bold uppercase tracking-tight m-0 mb-3 text-xl md:text-2xl leading-tight"
+            dangerouslySetInnerHTML={{ __html: t.hero.title }}
           />
           <div className="max-w-4xl">
             <p className="text-base md:text-lg leading-relaxed text-gray-700 font-sans m-0">
@@ -549,7 +549,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               <div className="space-y-8">
                 {t.rebuilding.milestones.map((m, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#af9f66]/10 text-[#af9f66] font-bold text-sm mt-0.5">
+                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#B49661]/10 text-[#B49661] font-bold text-sm mt-0.5">
                       {i + 1}
                     </div>
                     <div>
@@ -560,9 +560,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                 ))}
               </div>
               <div className="mt-8">
-                <Link 
-                  href={`/${currentLang}/jaunumi/${thetisSlug[currentLang] || thetisSlug.lv}`} 
-                  className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-8 font-bold uppercase tracking-wider text-black transition-all hover:bg-[#988a55]" 
+                <Link
+                  href={`/${currentLang}/jaunumi/${thetisSlug[currentLang] || thetisSlug.lv}`}
+                  className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-8 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
                   style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                 >
                   {t.rebuilding.button}
@@ -571,8 +571,8 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             </div>
             <div className="w-full md:w-1/2">
               <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md border border-gray-100" style={{ borderRadius: 'var(--card-radius)' }}>
-                <Image 
-                  src="/images/projekts/wagner_side_profile.jpg" 
+                <Image
+                  src="/images/projekts/wagner_side_profile.jpg"
                   alt={t.rebuilding.title}
                   fill
                   className="object-cover"
@@ -590,7 +590,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-100">
         <div className="vag-container">
           <div className="mb-10 max-w-4xl">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#af9f66] mb-3">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#B49661] mb-3">
               {t.renovation.eyebrow}
             </p>
             <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl lg:text-6xl font-normal leading-tight uppercase">
@@ -626,8 +626,8 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             {/* Right side: Image with standard caption line UNDER the picture */}
             <div className="w-full">
               <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md rounded-[var(--card-radius)] border border-gray-100">
-                <Image 
-                  src={t.renovation.imageSrc} 
+                <Image
+                  src={t.renovation.imageSrc}
                   alt={t.renovation.title}
                   fill
                   className="object-cover"
@@ -650,13 +650,13 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               <h2 className="mb-8 text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">
                 {t.team.title}
               </h2>
-              
+
               <div className="space-y-8 mb-8 font-sans">
                 <p className="text-gray-700 leading-relaxed text-base">
                   {t.team.profile1}
                 </p>
-                
-                <div className="border-l-2 border-[#af9f66] pl-6 py-1">
+
+                <div className="border-l-2 border-[#B49661] pl-6 py-1">
                   <blockquote className="text-gray-700 italic leading-relaxed text-lg mb-2">
                     {t.team.profile2.text}
                   </blockquote>
@@ -667,20 +667,20 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               </div>
 
               <div>
-                <Link 
-                  href={`/${currentLang}/biedriba`} 
-                  className="text-[#af9f66] font-bold hover:underline inline-flex items-center gap-1 uppercase tracking-wider text-sm"
+                <Link
+                  href={`/${currentLang}/biedriba`}
+                  className="text-[#B49661] font-bold hover:underline inline-flex items-center gap-1 uppercase tracking-wider text-sm"
                 >
                   {t.team.button}
                 </Link>
               </div>
             </div>
-            
+
             {/* Right Column - Large Image of Maris & Zaiga */}
             <div className="w-full md:w-1/2">
               <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md" style={{ borderRadius: 'var(--card-radius)' }}>
-                <Image 
-                  src="/images/projekts/maris_zaiga.jpg" 
+                <Image
+                  src="/images/projekts/maris_zaiga.jpg"
                   alt="Māris Gailis & Zaiga Gaile"
                   fill
                   className="object-cover"
@@ -695,7 +695,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-200">
         <div className="vag-container">
           <div className="mb-16 max-w-3xl">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#af9f66] mb-3">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#B49661] mb-3">
               {t.proof.eyebrow}
             </p>
             <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase">
@@ -713,10 +713,10 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               <div>
                 <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                  <img src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
                 </div>
                 <h3 className="font-serif font-bold text-black text-lg leading-snug">Frank-Walter Steinmeier</h3>
-                <p className="text-xs text-[#af9f66] font-bold uppercase tracking-wider mt-1 mb-3">Vācijas Federālais Prezidents</p>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">Vācijas Federālais Prezidents</p>
                 <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.steinmeierComment}
                 </p>
@@ -728,10 +728,10 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               <div>
                 <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/patrons/levits.jpg" alt="Egils Levits" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                  <img src="/images/patrons/levits.jpg" alt="Egils Levits" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', display: 'block' }} />
                 </div>
                 <h3 className="font-serif font-bold text-black text-lg leading-snug">Egils Levits</h3>
-                <p className="text-xs text-[#af9f66] font-bold uppercase tracking-wider mt-1 mb-3">Latvijas Valsts Prezidents (2019–2023)</p>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">Latvijas Valsts Prezidents (2019–2023)</p>
                 <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.levitsComment}
                 </p>
@@ -743,10 +743,10 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               <div>
                 <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                  <img src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
                 </div>
                 <h3 className="font-serif font-bold text-black text-lg leading-snug">Eva Wagner-Pasquier</h3>
-                <p className="text-xs text-[#af9f66] font-bold uppercase tracking-wider mt-1 mb-3">Vāgnera mazmazmeita · Patrone</p>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">Vāgnera mazmazmeita · Patrone</p>
                 <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.evaComment}
                 </p>
@@ -755,9 +755,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           </div>
 
           {/* Highlighted Quote from Eva Wagner-Pasquier */}
-          <div className="bg-black text-white p-8 md:p-10 rounded-[var(--card-radius)] mb-12 shadow-xl border-l-4 border-l-[#af9f66] relative overflow-hidden">
+          <div className="bg-[#002142] text-white p-8 md:p-10 rounded-[var(--card-radius)] mb-12 shadow-xl border-l-4 border-l-[#B49661] relative overflow-hidden">
             <div className="relative z-10">
-              <span className="text-[#af9f66] text-xs font-bold uppercase tracking-[0.2em] block mb-3">Vāgneru Dzimtas Mantojums</span>
+              <span className="text-[#B49661] text-xs font-bold uppercase tracking-[0.2em] block mb-3">Vāgneru Dzimtas Mantojums</span>
               <blockquote className="font-serif italic text-lg md:text-2xl leading-relaxed text-gray-100 mb-4">
                 {t.proof.evaQuote}
               </blockquote>
@@ -770,9 +770,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           {/* Endorsements & Foundation Partners Grid */}
           <div className="grid gap-6 md:grid-cols-2 mb-8">
             {t.proof.endorsements.map((end, i) => (
-              <div 
-                key={i} 
-                className="bg-white p-6 border border-gray-200 flex flex-col justify-between" 
+              <div
+                key={i}
+                className="bg-white p-6 border border-gray-200 flex flex-col justify-between"
                 style={{ borderRadius: 'var(--card-radius-sm)', minHeight: '120px' }}
               >
                 <div>
@@ -787,7 +787,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           {/* Additional Acoustics Note at the bottom */}
           <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <span className="text-[#af9f66] font-serif font-bold text-3xl shrink-0">
+              <span className="text-[#B49661] font-serif font-bold text-3xl shrink-0">
                 ♪
               </span>
               <p className="text-gray-800 font-sans font-medium text-sm md:text-base leading-relaxed">
@@ -796,7 +796,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             </div>
             <div className="flex items-center gap-3 shrink-0">
               <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Akustika:</span>
-              <span className="bg-gray-100 text-black px-3 py-1 rounded text-xs font-bold">Dr. Yasuhisa Toyota</span>
+              <span className="bg-gray-100 text-[#002142] px-3 py-1 rounded text-xs font-bold">Dr. Yasuhisa Toyota</span>
             </div>
           </div>
         </div>
@@ -814,19 +814,19 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             {t.history.events.map((ev, i) => (
               <div key={i} className="flex gap-4 md:gap-6 items-start">
                 {/* Column 1: Fixed-width Date column (e.g. 128px on mobile, 160px on desktop) */}
-                <div className="w-32 md:w-40 shrink-0 text-right font-serif font-bold text-sm md:text-base text-[#af9f66] pt-0.5">
+                <div className="w-32 md:w-40 shrink-0 text-right font-serif font-bold text-sm md:text-base text-[#B49661] pt-0.5">
                   {ev.date}
                 </div>
 
                 {/* Column 2: Bullet dot + vertical line */}
                 <div className="relative flex flex-col items-center self-stretch shrink-0 w-4">
-                  <div className="w-3 h-3 rounded-full bg-[#af9f66] border-2 border-white shrink-0 z-10 mt-1" />
+                  <div className="w-3 h-3 rounded-full bg-[#B49661] border-2 border-white shrink-0 z-10 mt-1" />
                   <div className="w-px bg-gray-200 flex-1 -mt-1" />
                 </div>
 
                 {/* Column 3: Heading + Subtext (ALL start at exact same horizontal position!) */}
                 <div className="pb-6 flex-1 min-w-0">
-                  <h4 style={{ fontSize: '12px', fontFamily: 'Inter, sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', lineHeight: 1.3, color: '#111111' }}>
+                  <h4 style={{ fontSize: '12px', fontFamily: 'Inter, sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', lineHeight: 1.3, color: '#002142' }}>
                     {ev.label}
                   </h4>
                   <p className="text-gray-600 leading-relaxed font-sans text-xs md:text-sm m-0">
@@ -842,18 +842,18 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       {/* SECTION 7: Where it stands today */}
       <section className="py-16 bg-[#F9F9F9]">
         <div className="vag-container max-w-3xl">
-          <div className="border-2 border-[#af9f66] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
+          <div className="border-2 border-[#B49661] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
             <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-xl font-normal">
               {t.today.title}
             </h2>
-            <div className="text-3xl md:text-5xl font-serif font-bold text-[#af9f66] mb-8">
+            <div className="text-3xl md:text-5xl font-serif font-bold text-[#B49661] mb-8">
               {t.today.raised}
             </div>
-            
+
             <div className="w-full bg-gray-100 h-5 rounded-full overflow-hidden mb-8 border border-gray-200 p-0.5">
-              <div 
-                className="bg-[#af9f66] h-full rounded-full transition-all duration-1000 ease-out" 
-                style={{ width: `${(21 / 51) * 100}%` }} 
+              <div
+                className="bg-[#B49661] h-full rounded-full transition-all duration-1000 ease-out"
+                style={{ width: `${(21 / 51) * 100}%` }}
               />
             </div>
 
@@ -861,7 +861,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               {t.today.bars.map((bar, i) => (
                 <div key={i} className="bg-gray-50 p-3 rounded">
                   <span className="block text-xs text-gray-400 uppercase mb-1">{bar.label}</span>
-                  <span className="text-[#af9f66] font-bold text-base">{bar.value}</span>
+                  <span className="text-[#B49661] font-bold text-base">{bar.value}</span>
                 </div>
               ))}
             </div>
@@ -877,33 +877,33 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 8: Put your name in the building that outlasts you (Black Framed CTA Card matching Section 7 design) */}
+      {/* SECTION 8: Put your name in the building that outlasts you (Brand Blue Framed CTA Card matching Section 7 design) */}
       <section id="support" className="py-16 bg-[#F9F9F9]">
         <div className="vag-container max-w-3xl">
-          <div 
-            className="border-2 border-[#af9f66] p-8 md:p-12 bg-black text-white text-center shadow-xl" 
+          <div
+            className="border-2 border-[#B49661] p-8 md:p-12 bg-[#002142] text-white text-center shadow-xl"
             style={{ borderRadius: 'var(--card-radius)' }}
           >
-            <h2 className="text-[#af9f66] uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal leading-tight">
+            <h2 className="text-[#B49661] uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal leading-tight">
               {t.support.title}
             </h2>
             <p className="text-gray-300 font-sans max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-8">
               {t.support.text}
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-sans text-sm mb-8 border-t border-b border-gray-800 py-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-sans text-sm mb-8 border-t border-b border-white/10 py-6">
               {t.support.items.map((item, i) => (
-                <div key={i} className="bg-gray-900/60 p-4 rounded border border-gray-800">
-                  <span className="block text-[#af9f66] font-bold mb-1">{item.title}</span>
-                  <span className="text-gray-300 text-xs leading-relaxed block">{item.text}</span>
+                <div key={i} className="bg-white/10 p-4 rounded border border-white/10">
+                  <span className="block text-[#B49661] font-bold mb-1">{item.title}</span>
+                  <span className="text-gray-200 text-xs leading-relaxed block">{item.text}</span>
                 </div>
               ))}
             </div>
 
             <div className="text-center">
-              <a 
-                href={`/${currentLang}/ziedojumi`} 
-                className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-10 font-bold uppercase tracking-wider text-black transition-all hover:bg-[#988a55]"
+              <a
+                href={`/${currentLang}/ziedojumi`}
+                className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-10 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
                 style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
               >
                 {t.support.button}
@@ -915,9 +915,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
 
       {/* SECTION 9: WordPress News Grid */}
       {newsPosts.length > 0 && (
-        <NewsSection 
-          posts={newsPosts} 
-          title={t.news.title} 
+        <NewsSection
+          posts={newsPosts}
+          title={t.news.title}
           lang={currentLang}
         />
       )}

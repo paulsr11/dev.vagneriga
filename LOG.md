@@ -351,6 +351,117 @@
   - GitHub branch `fundraising` active and up to date.
   - Live server route `https://dev2.vagneriga.lv/en/rebuilding` returning 200 OK.
 
+### Task: Global color system update — brand blue (#002142) and gold (#B49661)
+- Summary:
+  - Updated global design tokens in `globals.css`: accent gold updated to `#B49661` (`--accent`, `--color-accent`) and brand blue set to `#002142` (`--brand-blue`).
+  - Added `.logo-blue` CSS filter class (`invert(9%) sepia(85%) saturate(3478%) hue-rotate(193deg) brightness(97%) contrast(107%)`), rendering the header and about logos in brand blue `#002142`.
+  - Updated main footer background to `#002142` (`Footer.tsx`).
+  - Updated black background cards, quote boxes, CTA panels, timeline headings, borders, and lines across `rebuilding/page.tsx`, `Header.tsx`, `Footer.tsx`, and block components to brand blue `#002142` and gold `#B49661`.
+
+- Files changed:
+  - `src/app/[lang]/globals.css`
+  - `src/components/Header.tsx`
+  - `src/components/Footer.tsx`
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `src/components/blocks/InfoGrid.tsx`
+  - `src/components/blocks/EventsList.tsx`
+  - `src/components/blocks/FAQSection.tsx`
+  - `src/components/blocks/ConcertsSection.tsx`
+  - `src/components/blocks/AboutSection.tsx`
+  - `src/components/blocks/Hero.tsx`
+  - `src/components/blocks/SponsorsView.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server (`http://localhost:3001/en/rebuilding`) returning 200 OK.
+
+### Task: Generate exact #002142 logo PNG and restore genuine patron JPEG photos
+- Summary:
+  - Generated dedicated PNG image file `public/images/VR_logo_blue.png` with exact RGB `(0, 33, 66)` (`#002142`) recolored from `VR_logo_white.png` preserving smooth alpha transparency.
+  - Updated `Header.tsx` and `AboutSection.tsx` to display `public/images/VR_logo_blue.png` directly, removing CSS filter dependency.
+  - Downloaded genuine high-resolution portrait JPEG files for all 3 patrons into `public/images/patrons/`:
+    - `steinmeier.jpg` (960x1340 JPEG, Frank-Walter Steinmeier)
+    - `levits.jpg` (450x625 JPEG, Egils Levits)
+    - `wagner.jpg` (960x1280 JPEG, Eva Wagner-Pasquier)
+
+- Files changed:
+  - `public/images/VR_logo_blue.png` [NEW]
+  - `public/images/patrons/steinmeier.jpg`
+  - `public/images/patrons/levits.jpg`
+  - `public/images/patrons/wagner.jpg`
+  - `src/components/Header.tsx`
+  - `src/components/blocks/AboutSection.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - All 4 images return `HTTP/1.1 200 OK` with valid binary JPEG/PNG data on local server.
+
+### Task: Replace patron photos with exact user-provided images
+- Summary:
+  - Replaced `public/images/patrons/levits.jpg` with the user-provided 400x600 portrait photo of Egils Levits.
+  - Replaced `public/images/patrons/wagner.jpg` with the user-provided 400x400 portrait photo of Eva Wagner-Pasquier.
+  - Converted `public/images/patrons/steinmeier.jpg` from the original 1000x1000 WebP asset.
+
+- Files changed:
+  - `public/images/patrons/steinmeier.jpg`
+  - `public/images/patrons/levits.jpg`
+  - `public/images/patrons/wagner.jpg`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - All patron images load with 200 OK on `http://localhost:3001`.
+
+### Task: Patron cards vertical eye/face level alignment
+- Summary:
+  - Adjusted `objectPosition` on Steinmeier's image to `50% 35%` (shifting his face lower into the frame to align with Eva Wagner).
+  - Adjusted `objectPosition` on Levits' image to `50% 0%` (top aligned, shifting his face higher in the card frame).
+  - Kept Eva Wagner's image at `50% 0%` (`top`).
+
+- Files changed:
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server (`http://localhost:3001/en/rebuilding`) returning 200 OK.
+
+### Task: Re-frame Steinmeier image with natural headroom and set Levits 50% 15%
+- Summary:
+  - Re-framed `public/images/patrons/steinmeier.jpg` with natural top background headroom (matching background `#e9edf0`) so his face sits lower naturally without top-cutting or negative offset gaps.
+  - Set Levits (`levits.jpg`) `objectPosition: '50% 15%'` per user specification.
+  - Set Steinmeier (`steinmeier.jpg`) `objectPosition: '50% 0%'` (`top`).
+
+- Files changed:
+  - `public/images/patrons/steinmeier.jpg`
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server (`http://localhost:3001/en/rebuilding`) returning 200 OK.
+
+### Task: Replace Steinmeier image with new high-res official portrait
+- Summary:
+  - Replaced `public/images/patrons/steinmeier.jpg` with the new 767x930 official portrait image provided by user.
+  - Preserved `objectPosition: '50% 0%'` (`top`) in `src/app/[lang]/rebuilding/page.tsx`.
+
+- Files changed:
+  - `public/images/patrons/steinmeier.jpg`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - New image serving with 200 OK on `http://localhost:3001/images/patrons/steinmeier.jpg`.
+
+
+
+
+
+
+
 
 
 

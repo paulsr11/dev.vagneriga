@@ -4,17 +4,19 @@
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
   
-  --color-accent: #af9f66;
-  --color-accent-dark: #968958;
+  --color-accent: #B49661;
+  --color-accent-dark: #9F834F;
   --color-foreground: #111111;
   --color-background: #ffffff;
+  --color-brand-blue: #002142;
 }
 
 :root {
   /* Colors */
   --background: #ffffff;
   --foreground: #111111;
-  --accent: #af9f66;
+  --accent: #B49661;
+  --brand-blue: #002142;
   
   /* Layout */
   --container-width: 1240px;
@@ -90,7 +92,7 @@ h6, .h6 { font-size: var(--h6); font-family: var(--font-serif); font-weight: 700
   content: "";
   position: absolute;
   inset: 0;
-  background: #000;
+  background: #002142;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.4s ease;
@@ -104,6 +106,16 @@ h6, .h6 { font-size: var(--h6); font-family: var(--font-serif); font-weight: 700
 .btn-flood:hover::after {
   transform: scaleX(1);
 }
+
+/* Logo Blue Filter */
+.logo-blue {
+  filter: invert(9%) sepia(85%) saturate(3478%) hue-rotate(193deg) brightness(97%) contrast(107%);
+}
+
+/* Brand Blue Utility Classes */
+.bg-brand-blue { background-color: #002142 !important; }
+.text-brand-blue { color: #002142 !important; }
+.border-brand-blue { border-color: #002142 !important; }
 
 /* WordPress Content Styling */
 .wp-content {
@@ -127,22 +139,22 @@ h6, .h6 { font-size: var(--h6); font-family: var(--font-serif); font-weight: 700
 }
 
 /* Global Accent Overrides */
-.accent-color { color: #af9f66 !important; }
-.accent-bg { background-color: #af9f66 !important; }
-.accent-border { border-color: #af9f66 !important; }
+.accent-color { color: #B49661 !important; }
+.accent-bg { background-color: #B49661 !important; }
+.accent-border { border-color: #B49661 !important; }
 
-.hover\:text-accent:hover { color: #af9f66 !important; }
-.hover\:bg-accent:hover { background-color: #af9f66 !important; }
-.hover\:border-accent:hover { border-color: #af9f66 !important; }
+.hover\:text-accent:hover { color: #B49661 !important; }
+.hover\:bg-accent:hover { background-color: #B49661 !important; }
+.hover\:border-accent:hover { border-color: #B49661 !important; }
 
-.group:hover .group-hover\:text-accent { color: #af9f66 !important; }
-.group:hover .group-hover\:bg-accent { background-color: #af9f66 !important; }
-.group:hover .group-hover\:border-accent { border-color: #af9f66 !important; }
+.group:hover .group-hover\:text-accent { color: #B49661 !important; }
+.group:hover .group-hover\:bg-accent { background-color: #B49661 !important; }
+.group:hover .group-hover\:border-accent { border-color: #B49661 !important; }
 
 /* Ensure Tailwind classes use the new color */
-.text-accent { color: #af9f66 !important; }
-.bg-accent { background-color: #af9f66 !important; }
-.border-accent { border-color: #af9f66 !important; }
+.text-accent { color: #B49661 !important; }
+.bg-accent { background-color: #B49661 !important; }
+.border-accent { border-color: #B49661 !important; }
 
 /* Ensure Divi images and galleries still show but look clean */
 .wp-content .et_pb_image_wrap img {

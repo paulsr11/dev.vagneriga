@@ -47,7 +47,7 @@ export function ConcertCard({ title, category, date, time, image, slug, lang = '
         </h3>
       </div>
       <div 
-        className="w-full mt-auto flex items-center justify-center bg-[#af9f66] font-bold tracking-[0.1em] text-black transition-all group-hover:bg-black group-hover:text-white uppercase"
+        className="w-full mt-auto flex items-center justify-center bg-[#B49661] font-bold tracking-[0.1em] text-white transition-all group-hover:bg-[#002142] group-hover:text-white uppercase"
         style={{ height: 'var(--btn-height)', fontSize: 'var(--ui-label)' }}
       >
         {labels.biletes[lang]}

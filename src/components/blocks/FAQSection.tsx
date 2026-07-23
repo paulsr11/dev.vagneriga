@@ -56,19 +56,19 @@ export default function FAQSection({ items, lang = 'lv' }: { items?: FAQItem[], 
       <div className="vag-container">
         <h2 className="text-3xl font-serif mb-16 text-center text-black uppercase tracking-[0.2em]">{labels.title[lang]}</h2>
         
-        <div className="max-w-4xl mx-auto border-t border-black">
+        <div className="max-w-4xl mx-auto border-t border-[#002142]">
           {faqItems.map((item) => (
-            <div key={item.id} className="border-b border-black">
+            <div key={item.id} className="border-b border-[#002142]">
               <button 
                 onClick={() => setOpenId(openId === item.id ? null : item.id)}
                 className="w-full py-6 flex justify-between items-center text-left group transition-all"
               >
-                <span className={`text-lg font-bold tracking-tight text-black group-hover:text-gray-600 ${openId === item.id ? 'text-gray-600' : ''}`}>
+                <span className={`text-lg font-bold tracking-tight text-[#002142] group-hover:text-gray-600 ${openId === item.id ? 'text-gray-600' : ''}`}>
                   {item.question}
                 </span>
                 <span className={`transition-transform duration-300 ${openId === item.id ? 'rotate-180' : ''}`}>
                   <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L10 10L19 1" stroke="#af9f66" strokeWidth="3"/>
+                    <path d="M1 1L10 10L19 1" stroke="#B49661" strokeWidth="3"/>
                   </svg>
                 </span>
               </button>

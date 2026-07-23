@@ -479,18 +479,18 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
       {/* SECTION 4b: Where it stands today — 1:1 from Rebuilding page */}
       <section className="py-16 bg-[#F9F9F9]">
         <div className="vag-container max-w-3xl">
-          <div className="border-2 border-[#af9f66] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
+          <div className="border-2 border-[#B49661] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
             <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-xl">
               {t.fundraising.title}
             </h2>
-            <div className="text-3xl md:text-5xl font-serif font-bold text-[#af9f66] mb-8">
+            <div className="text-3xl md:text-5xl font-serif font-bold text-[#B49661] mb-8">
               {t.fundraising.raised}
             </div>
 
             {/* Progress bar */}
             <div className="w-full bg-gray-100 h-5 rounded-full overflow-hidden mb-8 border border-gray-200 p-0.5">
               <div
-                className="bg-[#af9f66] h-full rounded-full transition-all duration-1000 ease-out"
+                className="bg-[#B49661] h-full rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${(21 / 51) * 100}%` }}
               />
             </div>
@@ -499,7 +499,7 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
               {t.fundraising.bars.map((bar, i) => (
                 <div key={i} className="bg-gray-50 p-3 rounded">
                   <span className="block text-xs text-gray-400 uppercase mb-1">{bar.label}</span>
-                  <span className="text-[#af9f66] font-bold text-base">{bar.value}</span>
+                  <span className="text-[#B49661] font-bold text-base">{bar.value}</span>
                 </div>
               ))}
             </div>
@@ -546,8 +546,8 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
                         key={i}
                         className={`border font-sans font-bold text-sm px-5 transition-all ${
                           i === 1
-                            ? 'border-black bg-black text-white'
-                            : 'border-gray-300 bg-white text-black hover:border-black'
+                            ? 'border-[#002142] bg-[#002142] text-white'
+                            : 'border-gray-300 bg-white text-black hover:border-[#002142]'
                         }`}
                         style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)' }}
                       >
@@ -558,7 +558,7 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
                   </div>
 
                   <button
-                    className="btn-flood inline-flex items-center justify-center border border-black px-8 font-bold uppercase tracking-wider text-black transition-all"
+                    className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] transition-all"
                     style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                   >
                     {t.friend.button}
@@ -571,7 +571,7 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
                     {t.friend.benefits.map((benefit, i) => (
                       <li key={i} className="flex items-start gap-3 font-sans text-gray-600" style={{ fontSize: 'var(--body)' }}>
                         <svg className="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M3 8L6.5 11.5L13 5" stroke="#af9f66" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M3 8L6.5 11.5L13 5" stroke="#B49661" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         {benefit}
                       </li>

@@ -36,19 +36,19 @@ export default function EventsList({ title, lang = 'lv' }: EventsListProps) {
          <h2 className="tracking-[0.1em] text-black">{sectionTitle}</h2>
       </div>
 
-      <div className="w-full overflow-hidden border-t-[3px] border-black">
+      <div className="w-full overflow-hidden border-t-[3px] border-[#002142]">
         {events.map((event, i) => (
           <div 
             key={i} 
-            className="grid grid-cols-2 items-center gap-4 border-b-[3px] border-black py-5 md:grid-cols-5"
+            className="grid grid-cols-2 items-center gap-4 border-b-[3px] border-[#002142] py-5 md:grid-cols-5"
           >
-            <span className="font-medium text-black">{event.day}</span>
-            <span className="font-medium text-black md:text-center">{event.date}</span>
-            <span className="font-medium text-black md:text-center">{event.time}</span>
+            <span className="font-medium text-[#002142]">{event.day}</span>
+            <span className="font-medium text-[#002142] md:text-center">{event.date}</span>
+            <span className="font-medium text-[#002142] md:text-center">{event.time}</span>
             <span className="col-span-2 font-serif font-bold uppercase tracking-[0.05em] md:col-span-1">{event.title}</span>
             <div className="col-span-2 flex justify-end md:col-span-1">
               <button className="flex items-center gap-2 font-bold uppercase tracking-widest hover:text-accent transition-colors" style={{ fontSize: 'var(--ui-nav)' }}>
-                {labels.biletes[lang]} <span className="text-xl text-[#af9f66] font-bold leading-none">›</span>
+                {labels.biletes[lang]} <span className="text-xl text-[#B49661] font-bold leading-none">›</span>
               </button>
             </div>
           </div>

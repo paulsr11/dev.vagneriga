@@ -195,15 +195,15 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
             {/* Quick Metrics Badges */}
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
               <div>
-                <div className="font-serif text-2xl md:text-3xl font-bold text-[#af9f66]">€21M+</div>
+                <div className="font-serif text-2xl md:text-3xl font-bold text-[#B49661]">€21M+</div>
                 <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">Piesaistīti fondi</div>
               </div>
               <div>
-                <div className="font-serif text-2xl md:text-3xl font-bold text-black">140+</div>
+                <div className="font-serif text-2xl md:text-3xl font-bold text-[#002142]">140+</div>
                 <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">Meceenāti</div>
               </div>
               <div>
-                <div className="font-serif text-2xl md:text-3xl font-bold text-black">2028</div>
+                <div className="font-serif text-2xl md:text-3xl font-bold text-[#002142]">2028</div>
                 <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">Atklāšanas gads</div>
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white text-left z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#af9f66] text-black text-xs font-bold uppercase tracking-wider rounded mb-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#B49661] text-white text-xs font-bold uppercase tracking-wider rounded mb-2">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   Kultūras Mantojuma Glābšana
                 </div>
@@ -248,7 +248,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
             {mainSupporters.map((item, index) => (
               <div 
                 key={index}
-                className="bg-white p-8 md:p-10 border border-gray-200 border-t-4 border-t-[#af9f66] shadow-md flex flex-col justify-between hover:shadow-xl transition-all duration-300 rounded-[var(--card-radius)]"
+                className="bg-white p-8 md:p-10 border border-gray-200 border-t-4 border-t-[#B49661] shadow-md flex flex-col justify-between hover:shadow-xl transition-all duration-300 rounded-[var(--card-radius)]"
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-6">
@@ -256,7 +256,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
                       <Image src={item.image} alt={item.title} fill className="object-contain object-left" sizes="200px" />
                     </div>
                     {item.badge && (
-                      <span className="inline-block bg-[#af9f66]/10 text-[#af9f66] border border-[#af9f66]/30 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full">
+                      <span className="inline-block bg-[#B49661]/10 text-[#B49661] border border-[#B49661]/30 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full">
                         {item.badge}
                       </span>
                     )}
@@ -286,12 +286,12 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
             {STRATEGIC_PARTNERS.map((partner, index) => (
               <div 
                 key={index} 
-                className="group bg-white p-6 border border-gray-200 rounded-xl flex flex-col items-center justify-center text-center h-36 hover:border-[#af9f66] hover:shadow-lg transition-all duration-300"
+                className="group bg-white p-6 border border-gray-200 rounded-xl flex flex-col items-center justify-center text-center h-36 hover:border-[#B49661] hover:shadow-lg transition-all duration-300"
               >
                 <div className="relative h-16 w-full mb-2 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
                   <Image src={partner.src} alt={partner.name} fill className="object-contain" sizes="160px" />
                 </div>
-                <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider group-hover:text-[#af9f66] transition-colors">
+                <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider group-hover:text-[#B49661] transition-colors">
                   {partner.category}
                 </span>
               </div>
@@ -302,7 +302,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
 
       {/* 4. STARPTAUTISKĀS VĀGNERA BIEDRĪBAS */}
       <section className="vag-container py-12">
-        <div className="bg-[#111111] text-white p-8 md:p-14 rounded-[var(--card-radius)]">
+        <div className="bg-[#002142] text-white p-8 md:p-14 rounded-[var(--card-radius)]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-white/15">
             <div>
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Baireitas Ideju Tīkls</span>
@@ -311,15 +311,15 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
               </h3>
             </div>
             <div className="flex items-center gap-2 text-xs text-gray-400 font-sans">
-              <Award className="w-4 h-4 text-[#af9f66]" />
+              <Award className="w-4 h-4 text-[#B49661]" />
               Starptautiskā Vāgnera Biedrību Apvienība
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {WAGNER_SOCIETIES.map((society, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-6 rounded-lg text-left hover:border-[#af9f66] transition-colors">
-                <div className="text-[#af9f66] text-xs font-bold tracking-widest uppercase mb-2">{society.location}</div>
+              <div key={i} className="bg-white/5 border border-white/10 p-6 rounded-lg text-left hover:border-[#B49661] transition-colors">
+                <div className="text-[#B49661] text-xs font-bold tracking-widest uppercase mb-2">{society.location}</div>
                 <div className="font-serif font-bold text-white text-base leading-snug">{society.name}</div>
               </div>
             ))}
@@ -345,7 +345,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t('searchPlaceholder')}
-                className="w-full bg-white border border-gray-300 rounded-full py-4 pl-12 pr-6 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-[#af9f66] focus:ring-2 focus:ring-[#af9f66]/20 shadow-sm transition-all"
+                className="w-full bg-white border border-gray-300 rounded-full py-4 pl-12 pr-6 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-[#B49661] focus:ring-2 focus:ring-[#B49661]/20 shadow-sm transition-all"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               {searchQuery && (
@@ -364,7 +364,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
             <div className="mb-16">
               <div className="flex items-center justify-between mb-8 pb-3 border-b border-gray-300">
                 <h3 className="text-black font-serif text-xl font-bold uppercase tracking-wider flex items-center gap-2">
-                  <Building2 className="w-5 h-5 text-[#af9f66]" />
+                  <Building2 className="w-5 h-5 text-[#B49661]" />
                   {t('uznemumi')}
                 </h3>
                 <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">
@@ -375,7 +375,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
                 {filteredCompanies.map((company, i) => (
                   <div 
                     key={i} 
-                    className="bg-white p-4 border border-gray-200 rounded-lg text-center text-sm font-semibold text-gray-800 shadow-sm hover:border-[#af9f66] hover:shadow transition-all"
+                    className="bg-white p-4 border border-gray-200 rounded-lg text-center text-sm font-semibold text-gray-800 shadow-sm hover:border-[#B49661] hover:shadow transition-all"
                   >
                     {company}
                   </div>
@@ -389,7 +389,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
             <div>
               <div className="flex items-center justify-between mb-8 pb-3 border-b border-gray-300">
                 <h3 className="text-black font-serif text-xl font-bold uppercase tracking-wider flex items-center gap-2">
-                  <HeartHandshake className="w-5 h-5 text-[#af9f66]" />
+                  <HeartHandshake className="w-5 h-5 text-[#B49661]" />
                   {t('privatpersonas')}
                 </h3>
                 <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">

@@ -204,8 +204,8 @@ export default function Footer({
         </div>
       </section>
 
-      {/* Main dark footer */}
-      <div className="bg-[#1b1c20] py-16 text-white">
+      {/* Main dark blue footer */}
+      <div className="bg-[#002142] py-16 text-white">
         <div className="vag-container flex flex-wrap gap-y-10">
           {/* Contacts Column */}
           <div className="w-full md:w-[40%] pr-8">
@@ -316,7 +316,7 @@ export default function Footer({
               href="https://webwoork.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-black hover:text-[#af9f66] underline transition-colors"
+              className="font-medium text-black hover:text-[#B49661] underline transition-colors"
             >
               webwoork.com
             </a>

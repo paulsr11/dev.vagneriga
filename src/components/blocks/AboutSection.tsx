@@ -30,7 +30,7 @@ export default function AboutSection({ data, lang = 'lv' }: AboutSectionProps) {
         fill
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-[#002142]/70" />
       
       <div className="vag-container relative z-10 text-center text-white">
         <h2 className="mb-12 tracking-[0.1em]">{data.title}</h2>
@@ -38,7 +38,7 @@ export default function AboutSection({ data, lang = 'lv' }: AboutSectionProps) {
         <div className="mb-16 flex justify-center">
           <div className="relative h-32 w-64">
             <Image
-              src={data.logo}
+              src="/images/VR_logo_blue.png"
               alt="Vagneriga Logo"
               fill
               className="object-contain"
@@ -52,10 +52,10 @@ export default function AboutSection({ data, lang = 'lv' }: AboutSectionProps) {
               <h3 className="mb-6 tracking-wider">{item.label}</h3>
               <Link 
                 href={item.link}
-                className="font-bold uppercase text-[#af9f66] tracking-widest transition-all hover:text-white" 
+                className="font-bold uppercase text-[#B49661] tracking-widest transition-all hover:text-white" 
                 style={{ fontSize: 'var(--ui-label)' }}
               >
-                <span className="border-b-2 border-[#af9f66] pb-1">{labels.skatit[lang]}</span>
+                <span className="border-b-2 border-[#B49661] pb-1">{labels.skatit[lang]}</span>
               </Link>
             </div>
           ))}

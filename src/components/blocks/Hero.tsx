@@ -74,7 +74,7 @@ export default function Hero({ slides, lang = 'lv' }: HeroProps) {
                       {slide.subtitle}
                     </div>
                     <button 
-                      className="btn-flood inline-flex items-center justify-center bg-[#af9f66] px-8 font-bold uppercase tracking-wider text-black transition-all"
+                      className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-8 font-bold uppercase tracking-wider text-white transition-all"
                       style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                     >
                       {slide.button_text}

@@ -117,7 +117,7 @@ export default function Header({ lang }: { lang: string }) {
         <div className="flex w-[20%] items-center justify-start">
           <Link href={getHref('')} className={`relative w-32 lg:w-40 transition-all duration-200 ${condensed ? 'h-10 lg:h-12' : 'h-12 lg:h-16'}`}>
             <Image
-              src={`${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/VR_logo_grey.png`}
+              src="/images/VR_logo_blue.png"
               alt="Vagneriga"
               fill
               className="object-contain object-left"
@@ -136,8 +136,8 @@ export default function Header({ lang }: { lang: string }) {
                 href={getHref(item.href)}
                 className={`font-bold tracking-widest transition-colors ${
                   item.isHighlighted
-                    ? 'text-[#af9f66] hover:text-black'
-                    : 'text-[#212121] hover:text-[#af9f66]'
+                    ? 'text-[#B49661] hover:text-[#002142]'
+                    : 'text-[#212121] hover:text-[#B49661]'
                 }`}
                 style={{ fontSize: 'var(--ui-label)' }}
               >
@@ -204,7 +204,7 @@ export default function Header({ lang }: { lang: string }) {
               key={item.key}
               href={getHref(item.href)}
               className={`block py-4 font-bold uppercase tracking-widest border-b border-gray-100 ${
-                item.isHighlighted ? 'text-[#af9f66]' : 'text-[#212121]'
+                item.isHighlighted ? 'text-[#B49661]' : 'text-[#212121]'
               }`}
               style={{ fontSize: 'var(--ui-label)' }}
               onClick={() => setMobileOpen(false)}
