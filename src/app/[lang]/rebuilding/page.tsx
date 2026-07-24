@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPosts } from '@/lib/wp';
+import { getPosts, NEWS_CATEGORY_MAP, isGalleryPost, isPostInLanguage } from '@/lib/wp';
 import NewsSection from '@/components/blocks/NewsSection';
 
 interface Milestone {
@@ -483,12 +483,14 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
   const currentLang = (translations[lang] ? lang : 'lv') as 'lv' | 'en' | 'de';
   const t = translations[currentLang];
 
-  // Fetch WordPress news posts for the news section
+  // Fetch WordPress news posts for the news section (filtered strictly by current language)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let newsPosts: any[] = [];
   try {
-    const result = await getPosts({ per_page: 3 });
-    newsPosts = result?.posts || [];
+    const newsCat = NEWS_CATEGORY_MAP[currentLang]?.id;
+    const result = await getPosts({ per_page: 10, categories: newsCat, lang: currentLang });
+    const allPosts = result?.posts || [];
+    newsPosts = allPosts.filter((p: any) => !isGalleryPost(p) && isPostInLanguage(p, currentLang)).slice(0, 3);
   } catch (error) {
     console.error("Failed to fetch news posts for rebuilding page:", error);
   }
@@ -784,39 +786,6 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               <cite className="not-italic text-sm font-semibold text-gray-400 font-sans block">
                 — {t.proof.evaQuoteAuthor}
               </cite>
-            </div>
-          </div>
-
-          {/* Endorsements & Foundation Partners Grid */}
-          <div className="grid gap-6 md:grid-cols-2 mb-8">
-            {t.proof.endorsements.map((end, i) => (
-              <div
-                key={i}
-                className="bg-white p-6 border border-gray-200 flex flex-col justify-between"
-                style={{ borderRadius: 'var(--card-radius-sm)', minHeight: '120px' }}
-              >
-                <div>
-                  <h4 className="font-sans text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">{end.category}</h4>
-                  <p className="text-black font-bold text-base md:text-lg mb-1 leading-tight">{end.name}</p>
-                </div>
-                <p className="text-gray-500 text-xs mt-2 font-sans">{end.detail}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Additional Acoustics Note at the bottom */}
-          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <span className="text-[#B49661] font-serif font-bold text-3xl shrink-0">
-                ♪
-              </span>
-              <p className="text-gray-800 font-sans font-medium text-sm md:text-base leading-relaxed">
-                {t.proof.acousticsNote}
-              </p>
-            </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Akustika:</span>
-              <span className="bg-gray-100 text-[#002142] px-3 py-1 rounded text-xs font-bold">Dr. Yasuhisa Toyota</span>
             </div>
           </div>
         </div>

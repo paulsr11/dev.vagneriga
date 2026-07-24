@@ -556,6 +556,27 @@
   - `npx tsc --noEmit` clean with 0 errors.
   - Local dev server routes `/en/ziedojumi2` and `/lv/ziedojumi2` returning HTTP 200 OK.
 
+### Task: Make Ziedojumi2 default Ziedojumi page, archive old one, translate patron roles, and deploy to live
+- Summary:
+  - **Archived Old Page**: Moved old ziedojumi page to `src/app/[lang]/ziedojumi-archive/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/ziedojumi-archive/page.tsx)).
+  - **Promoted New Page to Default**: Copied new ziedojumi page to `src/app/[lang]/ziedojumi/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/ziedojumi/page.tsx)).
+  - **Patron Role Translations**: Added complete `steinmeierRole`, `levitsRole`, and `evaRole` translations across all 3 languages (`LV`, `EN`, `DE`) on both `Ziedojumi` and `Rebuilding` pages.
+  - **Live Site Deployment**:
+    - Committed & pushed changes to GitHub repository (`paulsr11/dev.vagneriga` on `fundraising` and `dev` branches).
+    - Executed clean `pnpm run build` on live host (`dev2.vagneriga.lv`) and restarted `dev2-vagneriga` systemd service.
+
+- Files changed:
+  - `src/app/[lang]/ziedojumi/page.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `src/app/[lang]/ziedojumi-archive/page.tsx` [NEW]
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Live server routes `https://dev2.vagneriga.lv/en/ziedojumi`, `https://dev2.vagneriga.lv/lv/ziedojumi`, `https://dev2.vagneriga.lv/de/ziedojumi`, and `https://dev2.vagneriga.lv/en/rebuilding` returning `HTTP 200 OK`.
+
+
 
 
 

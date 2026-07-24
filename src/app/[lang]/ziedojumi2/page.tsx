@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import FriendDonationWidget from '@/components/blocks/FriendDonationWidget';
+import TransferAccountModal from '@/components/blocks/TransferAccountModal';
 
 interface PartnerLogo {
   title: string;
@@ -686,12 +687,7 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
           <p className="font-sans text-gray-600" style={{ fontSize: 'var(--body)' }}>
             {t.transfer.text}
           </p>
-          <button
-            className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] hover:bg-[#002142] hover:text-white transition-all flex-shrink-0"
-            style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
-          >
-            {t.transfer.button}
-          </button>
+          <TransferAccountModal lang={currentLang} buttonText={t.transfer.button} />
         </div>
       </section>
 
