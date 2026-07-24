@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import FriendDonationWidget from '@/components/blocks/FriendDonationWidget';
 
 interface PartnerLogo {
   title: string;
@@ -38,7 +39,19 @@ interface TranslationContent {
   };
   hero: {
     tagline: string;
+    title: string;
     text: string;
+  };
+  proof: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    steinmeierRole: string;
+    steinmeierComment: string;
+    levitsRole: string;
+    levitsComment: string;
+    evaRole: string;
+    evaComment: string;
   };
   partners: {
     logos: PartnerLogo[];
@@ -72,7 +85,13 @@ interface TranslationContent {
     title: string;
     text: string;
     tiers: FriendTier[];
-    button: string;
+    buttonText: string;
+    step1Title: string;
+    step2Title: string;
+    monthlyLabel: string;
+    oneTimeLabel: string;
+    monthSuffix: string;
+    oneTimeSuffix: string;
     benefits: string[];
   };
   transfer: {
@@ -89,7 +108,19 @@ const translations: Record<string, TranslationContent> = {
     },
     hero: {
       tagline: 'ATBALSTĪT RESTAURĀCIJU',
+      title: 'Ierakstiet savu vārdu ēkā, kas jūs pārdzīvos',
       text: 'Rīgas Vāgnera teātris ir to ideju dzimtene, kas veidoja Baireitu. €30 miljonu restaurācija to atgriezīs aktīvā dzīvē kā Eiropas mūzikas un mākslas rezidences centru. Mēs aicinām tos, kas tic šai nākotnei, palīdzēt to uzbūvēt.'
+    },
+    proof: {
+      eyebrow: 'ATBALSTS VISAUGSTĀKAJĀ LĪMENĪ',
+      title: 'ATBALSTS VISAUGSTĀKAJĀ LĪMENĪ',
+      text: 'Rīgas Vāgnera nama rekonstrukcijas projektu un atdzimšanu personīgi atbalsta Vācijas un Latvijas valsts vadītāji un Vāgneru dzimta.',
+      steinmeierRole: 'VĀCIJAS FEDERĀLAIS PREZIDENTS',
+      steinmeierComment: 'Vācijas Federālais prezidents oficiāli kļuva par projekta patronu, uzsverot Vācijas un Latvijas kopīgo kultūras mantojumu.',
+      levitsRole: 'LATVIJAS VALSTS PREZIDENTS (2019–2023)',
+      levitsComment: 'Latvijas Valsts prezidents kopā ar Vācijas prezidentu pārņēma patronāžu pār Rīgas Vāgnera nama atdzimšanu.',
+      evaRole: 'VĀGNERA MAZMAZMEITA · PATRONE',
+      evaComment: 'Riharda Vāgnera mazmazmeita un Baireitas festivāla bijusī līdzdirektore aktīvi atbalsta teātra un muzeja izveidi Rīgā.'
     },
     partners: {
       logos: [
@@ -101,7 +132,7 @@ const translations: Record<string, TranslationContent> = {
       ]
     },
     twoWays: {
-      title: 'DIVI VEIDI, KĀ ATBALSTĪT',
+      title: 'VEIDI, KĀ ATBALSTĪT',
       majorDonors: {
         heading: 'LIELIE ZIEDOTĀJI',
         tiers: [
@@ -143,9 +174,15 @@ const translations: Record<string, TranslationContent> = {
     friend: {
       subheading: 'PIEEJAMS VISIEM',
       title: 'Kļūsti par Teātra Draugu',
-      text: 'Atbalstiet restaurāciju no €10 gadā. Jūs tiksiet iekļauti atbalstītāju reģistrā un saņemsiet privātus atjauninājumus, kamēr ēka atgriežas dzīvē.',
+      text: 'Atbalstiet restaurāciju no €10 mēnesī. Jūs tiksiet iekļauti atbalstītāju reģistrā un saņemsiet privātus atjauninājumus, kamēr ēka atgriežas dzīvē.',
+      buttonText: 'Ziedot tagad',
+      step1Title: '1. Izvēlieties summu un biežumu',
+      step2Title: '2. Apstiprināt ziedojumu',
+      monthlyLabel: 'Ikmēneša',
+      oneTimeLabel: 'Vienreizējs ziedojums',
+      monthSuffix: '/ mēnesī',
+      oneTimeSuffix: 'vienreizējs',
       tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
-      button: 'Kļūt par Draugu →',
       benefits: [
         'Ierakstīts gada atbalstītāju reģistrā',
         'Privāts informatīvais biļetens ar restaurācijas atjauninājumiem',
@@ -164,7 +201,19 @@ const translations: Record<string, TranslationContent> = {
     },
     hero: {
       tagline: 'SUPPORT THE RESTORATION',
+      title: 'Put your name in the building that outlasts you',
       text: 'Wagner Theatre Riga is the birthplace of the ideas that shaped Bayreuth. A €30 million restoration will return it to active life as a European centre for music and artistic residency. We are inviting those who believe in that future to help build it.'
+    },
+    proof: {
+      eyebrow: 'ENDORSED AT THE HIGHEST LEVEL',
+      title: 'ENDORSED AT THE HIGHEST LEVEL',
+      text: "The restoration and revival of Riga's Wagner House is personally endorsed by the heads of state of Germany and Latvia and the Wagner family.",
+      steinmeierRole: 'FEDERAL PRESIDENT OF GERMANY',
+      steinmeierComment: 'The Federal President of Germany officially assumed patronage, highlighting the shared German-Latvian cultural legacy.',
+      levitsRole: 'PRESIDENT OF LATVIA (2019–2023)',
+      levitsComment: "The President of Latvia jointly undertook the patronage for the resurrection of Riga's Wagner House.",
+      evaRole: "WAGNER'S GREAT-GRANDDAUGHTER · PATRON",
+      evaComment: 'Great-granddaughter of Richard Wagner and former co-director of the Bayreuth Festival actively supports the project.'
     },
     partners: {
       logos: [
@@ -176,7 +225,7 @@ const translations: Record<string, TranslationContent> = {
       ]
     },
     twoWays: {
-      title: 'TWO WAYS TO SUPPORT',
+      title: 'WAYS TO SUPPORT',
       majorDonors: {
         heading: 'MAJOR DONORS',
         tiers: [
@@ -218,9 +267,15 @@ const translations: Record<string, TranslationContent> = {
     friend: {
       subheading: 'ALSO OPEN TO ALL',
       title: 'Become a Friend of the Theatre',
-      text: "Support the restoration from €10 a year. You'll be listed in the annual supporters register and receive private updates as the building returns to life.",
+      text: "Support the restoration from €10 a month. You'll be listed in the annual supporters register and receive private updates as the building returns to life.",
+      buttonText: 'Donate now',
+      step1Title: '1. Choose amount & frequency',
+      step2Title: '2. Confirm donation',
+      monthlyLabel: 'Monthly',
+      oneTimeLabel: 'One-time donation',
+      monthSuffix: '/ month',
+      oneTimeSuffix: 'one-time',
       tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
-      button: 'Become a Friend →',
       benefits: [
         'Listed in the annual supporters register',
         'Private newsletter with restoration updates',
@@ -239,7 +294,19 @@ const translations: Record<string, TranslationContent> = {
     },
     hero: {
       tagline: 'DIE RESTAURIERUNG UNTERSTÜTZEN',
+      title: 'Verewigen Sie Ihren Namen in einem Gebäude, das Sie überdauert',
       text: 'Das Wagner-Theater Riga ist der Geburtsort der Ideen, die Bayreuth geprägt haben. Eine Restaurierung für 30 Millionen Euro wird es als europäisches Zentrum für Musik und künstlerische Residenz wieder zum Leben erwecken. Wir laden diejenigen ein, die an diese Zukunft glauben, beim Aufbau zu helfen.'
+    },
+    proof: {
+      eyebrow: 'AUF HÖCHSTER EBENE UNTERSTÜTZT',
+      title: 'AUF HÖCHSTER EBENE UNTERSTÜTZT',
+      text: 'Die Restaurierung und Wiederbelebung des Wagner-Hauses Riga wird von den Staatsoberhäuptern Deutschlands und Lettlands sowie der Familie Wagner persönlich unterstützt.',
+      steinmeierRole: 'DEUTSCHER BUNDESPRÄSIDENT',
+      steinmeierComment: 'Der Bundespräsident der Bundesrepublik Deutschland hat offiziell die Schirmherrschaft übernommen und das gemeinsame deutsch-lettische Kulturerbe hervorgehoben.',
+      levitsRole: 'PRÄSIDENT VON LETTLAND (2019–2023)',
+      levitsComment: 'Der Präsident von Lettland übernahm gemeinsam die Schirmherrschaft für die Wiederauferstehung des Wagner-Hauses Riga.',
+      evaRole: 'WAGNERS URENKELIN · SCHIRMHERRIN',
+      evaComment: 'Die Urenkelin von Richard Wagner und ehemalige Co-Direktorin der Bayreuther Festspiele unterstützt das Projekt aktiv.'
     },
     partners: {
       logos: [
@@ -251,7 +318,7 @@ const translations: Record<string, TranslationContent> = {
       ]
     },
     twoWays: {
-      title: 'ZWEI WEGE ZU UNTERSTÜTZEN',
+      title: 'WEGE ZU UNTERSTÜTZEN',
       majorDonors: {
         heading: 'GROSSSPENDER',
         tiers: [
@@ -293,9 +360,15 @@ const translations: Record<string, TranslationContent> = {
     friend: {
       subheading: 'AUCH FÜR ALLE OFFEN',
       title: 'Werden Sie Freund des Theaters',
-      text: 'Unterstützen Sie die Restaurierung ab €10 pro Jahr. Sie werden im jährlichen Unterstützerregister aufgeführt und erhalten private Updates, während das Gebäude zum Leben erwacht.',
+      text: 'Unterstützen Sie die Restaurierung ab €10 pro Monat. Sie werden im jährlichen Unterstützerregister aufgeführt und erhalten private Updates, während das Gebäude zum Leben erwacht.',
+      buttonText: 'Jetzt spenden',
+      step1Title: '1. Betrag & Häufigkeit wählen',
+      step2Title: '2. Spende bestätigen',
+      monthlyLabel: 'Monatlich',
+      oneTimeLabel: 'Einmalige Spende',
+      monthSuffix: '/ Monat',
+      oneTimeSuffix: 'einmalig',
       tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
-      button: 'Freund werden →',
       benefits: [
         'Im jährlichen Unterstützerregister aufgeführt',
         'Privater Newsletter mit Restaurierungsupdates',
@@ -335,7 +408,10 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
         >
           {t.hero.tagline}
         </p>
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
+          <h1 className="text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase mb-6 leading-tight">
+            {t.hero.title}
+          </h1>
           <p className="text-black leading-relaxed font-sans" style={{ fontSize: 'var(--h5)' }}>
             {t.hero.text}
           </p>
@@ -343,8 +419,69 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
         <div className="h-px bg-gray-200 mt-12" />
       </section>
 
-      {/* SECTION 2: Partner Logos */}
-      <section className="vag-container pb-12">
+      {/* SECTION 2: Endorsed at the Highest Level & Partner Logos */}
+      <section className="vag-container pb-16">
+        <div className="mb-12 max-w-3xl">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#B49661] mb-3">
+            {t.proof.eyebrow}
+          </p>
+          <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase">
+            {t.proof.title}
+          </h2>
+          <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
+            {t.proof.text}
+          </p>
+        </div>
+
+        {/* Patron People Cards Grid (3 patrons matching Rebuilding page) */}
+        <div className="grid gap-8 md:grid-cols-3 mb-12">
+          {/* Frank-Walter Steinmeier */}
+          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
+              </div>
+              <h3 className="font-serif font-bold text-black text-lg leading-snug">Frank-Walter Steinmeier</h3>
+              <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.steinmeierRole}</p>
+              <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                {t.proof.steinmeierComment}
+              </p>
+            </div>
+          </div>
+
+          {/* Egils Levits */}
+          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/patrons/levits.jpg" alt="Egils Levits" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', display: 'block' }} />
+              </div>
+              <h3 className="font-serif font-bold text-black text-lg leading-snug">Egils Levits</h3>
+              <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.levitsRole}</p>
+              <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                {t.proof.levitsComment}
+              </p>
+            </div>
+          </div>
+
+          {/* Eva Wagner-Pasquier */}
+          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
+              </div>
+              <h3 className="font-serif font-bold text-black text-lg leading-snug">Eva Wagner-Pasquier</h3>
+              <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.evaRole}</p>
+              <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                {t.proof.evaComment}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Partner Logos Grid */}
         <div
           className="grid grid-cols-2 md:grid-cols-5 border border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 bg-white"
           style={{ borderRadius: 'var(--card-radius-sm)' }}
@@ -395,12 +532,13 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
               </div>
 
               <div className="mt-10">
-                <button
-                  className="btn-flood inline-flex items-center justify-center border border-black px-8 font-bold uppercase tracking-wider text-black transition-all w-full"
+                <a
+                  href="mailto:ziedojumi@vagneriga.lv?subject=Major%20Donor%20Inquiry"
+                  className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] hover:bg-[#002142] hover:text-white transition-all w-full"
                   style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                 >
                   {t.twoWays.majorDonors.button}
-                </button>
+                </a>
               </div>
             </div>
 
@@ -413,29 +551,46 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
                 {t.twoWays.chairSponsorship.heading}
               </h3>
 
-              <div className="space-y-8">
-                {t.twoWays.chairSponsorship.tiers.map((tier, i) => (
-                  <div key={i} className="border-b border-gray-100 pb-6 last:border-b-0 last:pb-0">
-                    <div className="flex items-baseline justify-between mb-1">
-                      <h4 className="font-sans font-bold text-black" style={{ fontSize: 'var(--body)' }}>
-                        {tier.title}
-                      </h4>
-                      <span className="font-sans font-bold text-black text-sm">{tier.amount}</span>
-                    </div>
-                    <p className="text-gray-500 font-sans" style={{ fontSize: 'var(--ui-nav)' }}>
-                      {tier.detail}
-                    </p>
-                  </div>
-                ))}
+              <div className="space-y-4">
+                {t.twoWays.chairSponsorship.tiers.map((tier, i) => {
+                  const chairLinks = [
+                    'https://donate.stripe.com/7sY14pfqz43I37s6lC5ZC03',
+                    'https://donate.stripe.com/cNi5kF3HR6bQdM611i5ZC04',
+                    'https://donate.stripe.com/cNi3cx7Y70Rw5fA9xO5ZC05',
+                  ];
+                  return (
+                    <a
+                      key={i}
+                      href={chairLinks[i] || chairLinks[0]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block p-4 border border-gray-100 hover:border-[#B49661] rounded-[var(--card-radius-sm)] transition-all hover:shadow-sm group bg-gray-50/50 hover:bg-white"
+                    >
+                      <div className="flex items-baseline justify-between mb-1">
+                        <h4 className="font-sans font-bold text-[#002142] group-hover:text-[#B49661] transition-colors" style={{ fontSize: 'var(--body)' }}>
+                          {tier.title}
+                        </h4>
+                        <span className="font-sans font-bold text-[#B49661] text-base">{tier.amount}</span>
+                      </div>
+                      <p className="text-gray-500 font-sans text-xs flex items-center justify-between mt-1">
+                        <span>{tier.detail}</span>
+                        <span className="text-[#002142] font-bold opacity-0 group-hover:opacity-100 transition-opacity">Sponsorēt →</span>
+                      </p>
+                    </a>
+                  );
+                })}
               </div>
 
-              <div className="mt-10">
-                <button
-                  className="btn-flood inline-flex items-center justify-center bg-black px-8 font-bold uppercase tracking-wider text-white transition-all w-full"
+              <div className="mt-8">
+                <a
+                  href="https://donate.stripe.com/7sY14pfqz43I37s6lC5ZC03"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-flood inline-flex items-center justify-center bg-[#002142] hover:bg-[#001730] border border-[#002142] px-8 font-bold uppercase tracking-wider text-white transition-all w-full shadow-md"
                   style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                 >
                   {t.twoWays.chairSponsorship.button}
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -515,72 +670,10 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 5: Become a Friend */}
+      {/* SECTION 5: Become a Friend / Monthly Donations (Full-width Brand Blue #002142 Card) */}
       <section className="py-16 bg-[#F9F9F9]">
-        <div className="vag-container">
-          <p
-            className="font-sans text-gray-400 uppercase tracking-widest mb-8"
-            style={{ fontSize: 'var(--ui-nav)' }}
-          >
-            {t.friend.subheading}
-          </p>
-
-          <div
-            className="border border-gray-200 bg-white overflow-hidden"
-            style={{ borderRadius: 'var(--card-radius)' }}
-          >
-            <div className="p-8 md:p-10">
-              <div className="grid md:grid-cols-2 gap-10 items-start">
-                {/* Left */}
-                <div>
-                  <h2 className="mb-4 text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">
-                    {t.friend.title}
-                  </h2>
-                  <p className="text-gray-600 font-sans leading-relaxed mb-8" style={{ fontSize: 'var(--body)' }}>
-                    {t.friend.text}
-                  </p>
-
-                  <div className="flex items-center gap-3 mb-8 flex-wrap">
-                    {t.friend.tiers.map((tier, i) => (
-                      <button
-                        key={i}
-                        className={`border font-sans font-bold text-sm px-5 transition-all ${
-                          i === 1
-                            ? 'border-[#002142] bg-[#002142] text-white'
-                            : 'border-gray-300 bg-white text-black hover:border-[#002142]'
-                        }`}
-                        style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)' }}
-                      >
-                        {tier.amount}
-                      </button>
-                    ))}
-                    <span className="text-gray-400 font-sans text-sm">/ year</span>
-                  </div>
-
-                  <button
-                    className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] transition-all"
-                    style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
-                  >
-                    {t.friend.button}
-                  </button>
-                </div>
-
-                {/* Right: Benefits */}
-                <div className="md:pt-2">
-                  <ul className="space-y-4">
-                    {t.friend.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-3 font-sans text-gray-600" style={{ fontSize: 'var(--body)' }}>
-                        <svg className="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M3 8L6.5 11.5L13 5" stroke="#B49661" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="vag-container max-w-5xl">
+          <FriendDonationWidget lang={currentLang} translations={t.friend} />
         </div>
       </section>
 
@@ -594,7 +687,7 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
             {t.transfer.text}
           </p>
           <button
-            className="btn-flood inline-flex items-center justify-center border border-black px-8 font-bold uppercase tracking-wider text-black transition-all flex-shrink-0"
+            className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] hover:bg-[#002142] hover:text-white transition-all flex-shrink-0"
             style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
           >
             {t.transfer.button}

@@ -470,6 +470,97 @@
   - GitHub branch `fundraising` up to date (`849f69d`).
   - Live server routes `https://dev2.vagneriga.lv/en/rebuilding`, `VR_logo_blue.png`, `steinmeier.jpg`, `levits.jpg`, and `wagner.jpg` returning HTTP 200 OK.
 
+### Task: Update Ziedojumi2 page with hero heading, endorsed patrons section, and WAYS TO SUPPORT heading
+- Summary:
+  - Added hero `<h1>` heading `"Put your name in the building that outlasts you"` above the first paragraph on `Ziedojumi2` (`src/app/[lang]/ziedojumi2/page.tsx`).
+  - Updated section title from `"TWO WAYS TO SUPPORT"` to `"WAYS TO SUPPORT"` across all languages (`lv`, `en`, `de`).
+  - Added `"ENDORSED AT THE HIGHEST LEVEL"` patron section above the partner logos box with exact same formatting, 3 patron cards, photos, role titles, and descriptions as the `rebuilding` page.
+
+- Files changed:
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server routes `/en/ziedojumi2` and `/lv/ziedojumi2` returning HTTP 200 OK.
+
+### Task: Implement 2-step choice donation widget in Section 5 on Ziedojumi2
+- Summary:
+  - Created interactive `FriendDonationWidget` ([FriendDonationWidget.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/components/blocks/FriendDonationWidget.tsx)) with a clean 2-step structure:
+    - **Step 1**: Choose frequency (`Monthly` vs `One-time donation`) and amount (`€10`, `€25`, `€50`), with **`€50`** selected by default per user requirement. Updated `/ year` label to `/ month`.
+    - **Step 2**: Clear CTA button **`Donate now`** displaying current selection (e.g. `Donate now (€50 / month)`).
+  - Integrated `FriendDonationWidget` into Section 5 on `Ziedojumi2Page` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/ziedojumi2/page.tsx)).
+
+- Files changed:
+  - `src/components/blocks/FriendDonationWidget.tsx` [NEW]
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server routes `/en/ziedojumi2` and `/lv/ziedojumi2` returning HTTP 200 OK.
+
+### Task: Integrate Stripe checkout links & align design system colors on Ziedojumi2
+- Summary:
+  - **Stripe Checkout Links Mapped**:
+    - Monthly €50: `https://buy.stripe.com/14A4gB1zJ2ZEfUeeS85ZC00`
+    - Monthly €25: `https://donate.stripe.com/5kQbJ30vF8jY23o9xO5ZC01`
+    - Monthly €10: `https://donate.stripe.com/aFacN73HR43IgYi25m5ZC02`
+    - One-time donation: `https://buy.stripe.com/4gM7sN2DNcAe4bwcK05ZC06`
+    - Chair €5,000: `https://donate.stripe.com/7sY14pfqz43I37s6lC5ZC03`
+    - Chair €3,000: `https://donate.stripe.com/cNi5kF3HR6bQdM611i5ZC04`
+    - Chair €1,000: `https://donate.stripe.com/cNi3cx7Y70Rw5fA9xO5ZC05`
+  - **Widget Behavior Updates**:
+    - Changed default monthly selection to **`€25`** in `FriendDonationWidget`.
+    - Hidden preset amount buttons when `One-time donation` option is selected, linking directly to the one-time Stripe checkout URL.
+  - **Global Design Language Color Alignment**:
+    - Updated Sponsor a Chair button to Brand Blue (`#002142`).
+    - Made each Chair Sponsorship tier a clickable interactive card with hover states in Brand Blue and Gold Accent (`#B49661`).
+    - Replaced all remaining plain black buttons/accents with Brand Blue (`#002142`).
+
+- Files changed:
+  - `src/components/blocks/FriendDonationWidget.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server routes `/en/ziedojumi2` and `/lv/ziedojumi2` returning HTTP 200 OK.
+
+### Task: Redesign donation card in Section 5 to full-width Brand Blue (#002142) with Gold (#B49661) border
+- Summary:
+  - Redesigned Section 5 on `Ziedojumi2Page` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/ziedojumi2/page.tsx)) into a full-width container (`max-w-5xl`).
+  - Updated `FriendDonationWidget` ([FriendDonationWidget.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/components/blocks/FriendDonationWidget.tsx)) into a full-width Brand Blue (`#002142`) card with 2px Gold (`#B49661`) border matching the Rebuilding page CTA style.
+  - Integrated 2-step donation controls (Frequency switcher & Amount buttons) and supporter benefits list in unified grid columns inside the Brand Blue card.
+
+- Files changed:
+  - `src/components/blocks/FriendDonationWidget.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server routes `/en/ziedojumi2` and `/lv/ziedojumi2` returning HTTP 200 OK.
+
+### Task: Fix FriendDonationWidget layout squishing and typography overlaps
+- Summary:
+  - Replaced `<h4 ...>` heading tag in `FriendDonationWidget` ([FriendDonationWidget.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/components/blocks/FriendDonationWidget.tsx)) with a `<p ...>` tag to eliminate global Playfair serif heading CSS overrides that caused huge text overlaps.
+  - Replaced `btn-flood` class with explicit Tailwind flex/grid styling to remove button height constraints that squeezed text vertically.
+  - Refactored grid system to `grid-cols-1 lg:grid-cols-12` (`lg:col-span-7` and `lg:col-span-5`), ensuring generous spacing and clean responsive stacking across all screen sizes.
+
+- Files changed:
+  - `src/components/blocks/FriendDonationWidget.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local dev server routes `/en/ziedojumi2` and `/lv/ziedojumi2` returning HTTP 200 OK.
+
+
+
+
+
+
 
 
 

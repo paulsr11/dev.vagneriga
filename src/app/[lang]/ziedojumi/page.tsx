@@ -1,142 +1,700 @@
 import { Metadata } from 'next';
-import { getPageBySlug } from '@/lib/wp';
-import { CMS_MEDIA_BASE } from '@/lib/constants';
-import ZiedojumiClient from './ZiedojumiClient';
+import FriendDonationWidget from '@/components/blocks/FriendDonationWidget';
 
-export const metadata: Metadata = {
-  title: 'Ziedojumi - Vagneriga',
-  description: 'Ziedo Vāgnera nama atjaunošanai',
-};
+interface PartnerLogo {
+  title: string;
+  subtitle: string;
+}
 
-const FALLBACK_DATA = {
-  heroData: {
-    title: 'Ziedo Vāgnera nama atjaunošanai',
-    subtitle: 'Palīdzi atjaunot vienu no nozīmīgākajiem kultūras namiem Latvijā. Tava iesaiste palīdz saglabāt Vāgnera nama vērtību nākamajām paaudzēm.',
-    cta: 'ZIEDOT TAGAD',
-    note: 'Katrs ziedojums ir solis tuvāk Vāgnera nama atdzimšanai.',
-    image: `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagnera_nams.png`,
-  },
-  doneContent: {
-    title: 'Ceļš uz Vāgnera nama atjaunošanu',
-    paragraphs: [
-      'Vāgnera nams ir unikāls kultūras piemineklis ar bagātu vēsturi, kas šobrīd atrodas atjaunošanas procesā. Pēdējos gados ir sperti nozīmīgi soļi, lai nodrošinātu nama saglabāšanu, juridisko un kultūras pamatu tā atdzimšanai.',
-      'Ziedojumi ļauj mums strādāt sistemātiski un atbildīgi – sagatavojot projektus, piesaistot speciālistus, veidojot sadarbības un uzturot biedrības darbību.',
-    ],
-    listTitle: 'Tavs ziedojums palīdz:',
-    listItems: [
-      'sagatavot atjaunošanas un attīstības projektus',
-      'piesaistīt ekspertus un partnerus',
-      'uzturēt biedrības ikdienas darbību',
-      'nodrošināt komunikāciju ar sabiedrību un atbalstītājiem',
-    ],
-  },
-  donationOptions: [
-    {
-      name: 'Mazais atbalsts',
-      description: 'Iespēja ikvienam iesaistīties Vāgnera nama atjaunošanā un kļūt par daļu no šī nozīmīgā kultūras procesa.',
-      amount: 'no 10 EUR',
-      cta: 'ZIEDOT'
+interface MajorDonorTier {
+  title: string;
+  range: string;
+  detail: string;
+}
+
+interface ChairTier {
+  title: string;
+  amount: string;
+  detail: string;
+}
+
+interface RestoreItem {
+  title: string;
+  text: string;
+}
+
+interface ProgressBar {
+  label: string;
+  value: string;
+}
+
+interface FriendTier {
+  amount: string;
+}
+
+interface TranslationContent {
+  meta: {
+    title: string;
+    description: string;
+  };
+  hero: {
+    tagline: string;
+    title: string;
+    text: string;
+  };
+  proof: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    steinmeierRole: string;
+    steinmeierComment: string;
+    levitsRole: string;
+    levitsComment: string;
+    evaRole: string;
+    evaComment: string;
+  };
+  partners: {
+    logos: PartnerLogo[];
+  };
+  twoWays: {
+    title: string;
+    majorDonors: {
+      heading: string;
+      tiers: MajorDonorTier[];
+      button: string;
+    };
+    chairSponsorship: {
+      heading: string;
+      tiers: ChairTier[];
+      button: string;
+    };
+  };
+  restores: {
+    title: string;
+    items: RestoreItem[];
+  };
+  fundraising: {
+    title: string;
+    raised: string;
+    bars: ProgressBar[];
+    status: string;
+    timestamp: string;
+  };
+  friend: {
+    subheading: string;
+    title: string;
+    text: string;
+    tiers: FriendTier[];
+    buttonText: string;
+    step1Title: string;
+    step2Title: string;
+    monthlyLabel: string;
+    oneTimeLabel: string;
+    monthSuffix: string;
+    oneTimeSuffix: string;
+    benefits: string[];
+  };
+  transfer: {
+    text: string;
+    button: string;
+  };
+}
+
+const translations: Record<string, TranslationContent> = {
+  lv: {
+    meta: {
+      title: 'Atbalstīt restaurāciju – Rīgas Vāgnera nams',
+      description: 'Atbalstiet Rīgas Vāgnera teātra restaurāciju. Ziedojiet vai kļūstiet par draugu.'
     },
-    {
-      name: 'Partnera atbalsts',
-      description: 'Atbalsts, kas būtiski palīdz projektu attīstībai un biedrības darbības nodrošināšanai.',
-      amount: 'no 100 EUR',
-      cta: 'ZIEDOT'
+    hero: {
+      tagline: 'ATBALSTĪT RESTAURĀCIJU',
+      title: 'Ierakstiet savu vārdu ēkā, kas jūs pārdzīvos',
+      text: 'Rīgas Vāgnera teātris ir to ideju dzimtene, kas veidoja Baireitu. €30 miljonu restaurācija to atgriezīs aktīvā dzīvē kā Eiropas mūzikas un mākslas rezidences centru. Mēs aicinām tos, kas tic šai nākotnei, palīdzēt to uzbūvēt.'
     },
-    {
-      name: 'Ģenerālpartnera atbalsts',
-      description: 'Nozīmīgs ieguldījums Vāgnera nama nākotnē. Piemērots uzņēmumiem un privātpersonām, kas vēlas ilgtermiņa ietekmi.',
-      amount: 'no 1000 EUR',
-      cta: 'ZIEDOT'
-    }
-  ],
-  transparency: {
-    title: 'Atklātība un atbildība',
-    intro: 'Mums ir svarīgi, lai katrs ziedotājs skaidri zinātu, kā tiek izmantoti ziedotie līdzekļi.',
-    usedFor: [
-      'projektu vadībai un biedrības ikdienas darbības nodrošināšanai;',
-      'komunikācijas un sabiedrības informēšanas aktivitātēm;',
-      'biedrības reprezentācijai starptautiskā vidē, lai popularizētu projektu un paplašinātu atbalstītāju loku;',
-      'ekspertu un speciālistu piesaistei;',
-      'topošā Vāgnera muzeja ierīkošanai;',
-      'autentisku interjera priekšmetu un mēbeļu iegādei;',
-      'Vāgnera nama atjaunošanas darbu sadaļām, kas nevar tikt finansētas no jau piesaistīto fondu līdzekļiem, piemēram, ekspertīze, Nagata Acoustics akustiķu pakalpojumi u. c.'
-    ],
-    notUsedFor: [
-      'komerciālām vai ar biedrības mērķiem nesaistītām aktivitāēm'
-    ],
-    trustNote: 'Ar biedrības mērķiem var iepazīties biedrības statūtos.',
-    trustNoteLink: { text: 'statūtos', href: '/documents/RRVB_statuti.pdf', openInNewTab: true }
-  },
-  rekviziti: [
-    {
-      title: 'Rīgas Riharda Vāgnera biedrība',
-      details: [
-        { label: 'Reģ. Nr.', value: '40008232307' },
-        { label: 'Banka', value: 'Swedbank Latvia' },
-        { label: 'Swift', value: 'HABALV22' },
-        { label: 'Konts', value: 'LV85HABA0551039565078' },
+    proof: {
+      eyebrow: 'ATBALSTS VISAUGSTĀKAJĀ LĪMENĪ',
+      title: 'ATBALSTS VISAUGSTĀKAJĀ LĪMENĪ',
+      text: 'Rīgas Vāgnera nama rekonstrukcijas projektu un atdzimšanu personīgi atbalsta Vācijas un Latvijas valsts vadītāji un Vāgneru dzimta.',
+      steinmeierRole: 'VĀCIJAS FEDERĀLAIS PREZIDENTS',
+      steinmeierComment: 'Vācijas Federālais prezidents oficiāli kļuva par projekta patronu, uzsverot Vācijas un Latvijas kopīgo kultūras mantojumu.',
+      levitsRole: 'LATVIJAS VALSTS PREZIDENTS (2019–2023)',
+      levitsComment: 'Latvijas Valsts prezidents kopā ar Vācijas prezidentu pārņēma patronāžu pār Rīgas Vāgnera nama atdzimšanu.',
+      evaRole: 'VĀGNERA MAZMAZMEITA · PATRONE',
+      evaComment: 'Riharda Vāgnera mazmazmeita un Baireitas festivāla bijusī līdzdirektore aktīvi atbalsta teātra un muzeja izveidi Rīgā.'
+    },
+    partners: {
+      logos: [
+        { title: 'Deutscher Bundestag', subtitle: 'Finansējuma partneris' },
+        { title: 'Auswärtiges Amt', subtitle: 'Vācijas Federālā ārlietu ministrija' },
+        { title: 'Eva Wagner-Pasquier', subtitle: 'Patrone · Vāgnera mazmazmeita' },
+        { title: 'Messerschmitt Stiftung', subtitle: 'Dibināšanas fonda partneris' },
+        { title: 'Yasuhisa Toyota', subtitle: 'Akustika · Elbphilharmonie' }
+      ]
+    },
+    twoWays: {
+      title: 'VEIDI, KĀ ATBALSTĪT',
+      majorDonors: {
+        heading: 'LIELIE ZIEDOTĀJI',
+        tiers: [
+          { title: 'Stratēģiskais partneris', range: '€300 000+', detail: 'Zāles nosaukšana · Uzraudzības padomes vieta' },
+          { title: 'Labvēlis', range: '€50 000–300 000', detail: 'Telpas nosaukšana · Pasākumu telpu izmantošana · Biļešu kvota' },
+          { title: 'Ziedotājs', range: '€10 000–50 000', detail: 'Ikgadēja atzinība · Piekļuve labdarības koncertiem' }
+        ],
+        button: 'Apspriest savu iesaisti →'
+      },
+      chairSponsorship: {
+        heading: 'KRĒSLA SPONSORĒŠANA',
+        tiers: [
+          { title: 'Parters', amount: '€5 000', detail: 'Zāles priekšējā daļa' },
+          { title: '1. balkons', amount: '€3 000', detail: 'Balkons' },
+          { title: '2. balkons', amount: '€1 000', detail: 'Augšējais balkons' }
+        ],
+        button: 'Sponsorēt krēslu →'
+      }
+    },
+    restores: {
+      title: 'KO JŪSU ATBALSTS RESTAURĒ',
+      items: [
+        { title: 'Orķestra bedre', text: 'Pirmā segta bedre operas vēsturē – Vāgnera inovācija, iecerēta un pirmoreiz realizēta šeit, Rīgā, 1837. gadā' },
+        { title: 'Teātra zāle', text: 'Stāvs grieķu stila izkārtojums, aptumšota auditorija – telpiskās koncepcijas, ko Vāgners aizveda uz Baireitu, atjaunotas sākotnējā veidā' },
+        { title: 'Mājas Eiropas māksliniekiem', text: 'Rezidences studijas un mēģinājumu telpas topošajiem komponistiem un izpildītājiem – ēkas otrā dzīve ārpus muzeja' }
+      ]
+    },
+    fundraising: {
+      title: 'Kur tas atrodas šodien',
+      raised: 'Piesaistīts līdz šim — €21M no €51M · Atklāšana 2028',
+      bars: [
+        { label: 'Bundestāga €5M grants', value: '€5M' },
+        { label: '~Messerschmitt fonds', value: '~€1M' },
+        { label: 'Atlicis piesaistīt', value: '€30M' }
       ],
+      status: 'Rekonstrukcija sākās 2023. gadā. Pamatu darbi ir pabeigti. Nākamā ir zāles izbūve. Atklājam 2028. gadā.',
+      timestamp: 'Pēdējoreiz atjaunināts: 2026. gada jūlijā'
     },
-  ],
-  finalCta: {
-    title: 'Atbalsti Vāgnera nama nākotni jau šodien',
-    text: 'Tavs ziedojums palīdz saglabāt kultūras mantojumu un veidot telpu, kurā mūzika un māksla atgriežas pilsētas sirdī.',
-    button: 'ZIEDOT TAGAD',
+    friend: {
+      subheading: 'PIEEJAMS VISIEM',
+      title: 'Kļūsti par Teātra Draugu',
+      text: 'Atbalstiet restaurāciju no €10 mēnesī. Jūs tiksiet iekļauti atbalstītāju reģistrā un saņemsiet privātus atjauninājumus, kamēr ēka atgriežas dzīvē.',
+      buttonText: 'Ziedot tagad',
+      step1Title: '1. Izvēlieties summu un biežumu',
+      step2Title: '2. Apstiprināt ziedojumu',
+      monthlyLabel: 'Ikmēneša',
+      oneTimeLabel: 'Vienreizējs ziedojums',
+      monthSuffix: '/ mēnesī',
+      oneTimeSuffix: 'vienreizējs',
+      tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
+      benefits: [
+        'Ierakstīts gada atbalstītāju reģistrā',
+        'Privāts informatīvais biļetens ar restaurācijas atjauninājumiem',
+        'Agrīns paziņojums par atklāšanas pasākumiem'
+      ]
+    },
+    transfer: {
+      text: 'Vēlaties pārskaitīt tieši?',
+      button: 'Rādīt konta datus'
+    }
   },
+  en: {
+    meta: {
+      title: 'Support the Restoration – Riga Wagner Theatre',
+      description: 'Support the restoration of Wagner Theatre Riga. Donate or become a Friend — help bring this historic building back to life.'
+    },
+    hero: {
+      tagline: 'SUPPORT THE RESTORATION',
+      title: 'Put your name in the building that outlasts you',
+      text: 'Wagner Theatre Riga is the birthplace of the ideas that shaped Bayreuth. A €30 million restoration will return it to active life as a European centre for music and artistic residency. We are inviting those who believe in that future to help build it.'
+    },
+    proof: {
+      eyebrow: 'ENDORSED AT THE HIGHEST LEVEL',
+      title: 'ENDORSED AT THE HIGHEST LEVEL',
+      text: "The restoration and revival of Riga's Wagner House is personally endorsed by the heads of state of Germany and Latvia and the Wagner family.",
+      steinmeierRole: 'FEDERAL PRESIDENT OF GERMANY',
+      steinmeierComment: 'The Federal President of Germany officially assumed patronage, highlighting the shared German-Latvian cultural legacy.',
+      levitsRole: 'PRESIDENT OF LATVIA (2019–2023)',
+      levitsComment: "The President of Latvia jointly undertook the patronage for the resurrection of Riga's Wagner House.",
+      evaRole: "WAGNER'S GREAT-GRANDDAUGHTER · PATRON",
+      evaComment: 'Great-granddaughter of Richard Wagner and former co-director of the Bayreuth Festival actively supports the project.'
+    },
+    partners: {
+      logos: [
+        { title: 'Deutscher Bundestag', subtitle: 'Funding partner' },
+        { title: 'Auswärtiges Amt', subtitle: 'German Federal Foreign Office' },
+        { title: 'Eva Wagner-Pasquier', subtitle: "Patron · Wagner's great-granddaughter" },
+        { title: 'Messerschmitt Stiftung', subtitle: 'Founding foundation partner' },
+        { title: 'Yasuhisa Toyota', subtitle: 'Acoustics · Elbphilharmonie' }
+      ]
+    },
+    twoWays: {
+      title: 'WAYS TO SUPPORT',
+      majorDonors: {
+        heading: 'MAJOR DONORS',
+        tiers: [
+          { title: 'Strategic Partner', range: '€300,000+', detail: 'Hall naming · Board of Trustees seat' },
+          { title: 'Benefactor', range: '€50,000–300,000', detail: 'Room naming · Use of event spaces · Ticket allotment' },
+          { title: 'Donor', range: '€10,000–50,000', detail: 'Annual recognition · Benefit concert access' }
+        ],
+        button: 'Discuss your involvement →'
+      },
+      chairSponsorship: {
+        heading: 'CHAIR SPONSORSHIP',
+        tiers: [
+          { title: 'Parquet', amount: '€5,000', detail: 'Front section of the hall' },
+          { title: '1st tier', amount: '€3,000', detail: 'Balcony' },
+          { title: '2nd tier', amount: '€1,000', detail: 'Upper balcony' }
+        ],
+        button: 'Sponsor a chair →'
+      }
+    },
+    restores: {
+      title: 'WHAT YOUR SUPPORT RESTORES',
+      items: [
+        { title: 'The orchestra pit', text: 'The first covered pit in opera history — Wagner\'s innovation, conceived and first realised here in Riga in 1837' },
+        { title: 'The theatre hall', text: 'Steep Greek-style seating, darkened auditorium — the spatial principles Wagner took to Bayreuth, restored to their original form' },
+        { title: 'A home for European artists', text: "Residency studios and rehearsal space for emerging composers and performers — the building's second life beyond the museum" }
+      ]
+    },
+    fundraising: {
+      title: 'Where it stands today',
+      raised: 'Raised to date — €21M of €51M · Opening 2028',
+      bars: [
+        { label: 'Bundestag €5M grant', value: '€5M' },
+        { label: '~€1M Messerschmitt Foundation', value: '~€1M' },
+        { label: 'Still to raise', value: '€30M' }
+      ],
+      status: 'Reconstruction began in 2023. Foundation works are complete. The hall structure is next. We open in 2028.',
+      timestamp: 'Last updated July 2026'
+    },
+    friend: {
+      subheading: 'ALSO OPEN TO ALL',
+      title: 'Become a Friend of the Theatre',
+      text: "Support the restoration from €10 a month. You'll be listed in the annual supporters register and receive private updates as the building returns to life.",
+      buttonText: 'Donate now',
+      step1Title: '1. Choose amount & frequency',
+      step2Title: '2. Confirm donation',
+      monthlyLabel: 'Monthly',
+      oneTimeLabel: 'One-time donation',
+      monthSuffix: '/ month',
+      oneTimeSuffix: 'one-time',
+      tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
+      benefits: [
+        'Listed in the annual supporters register',
+        'Private newsletter with restoration updates',
+        'Early notification of opening events'
+      ]
+    },
+    transfer: {
+      text: 'Prefer to transfer directly?',
+      button: 'Show account details'
+    }
+  },
+  de: {
+    meta: {
+      title: 'Restaurierung unterstützen – Rigaer Wagner-Theater',
+      description: 'Unterstützen Sie die Restaurierung des Wagner-Theaters in Riga. Spenden Sie oder werden Sie Freund.'
+    },
+    hero: {
+      tagline: 'DIE RESTAURIERUNG UNTERSTÜTZEN',
+      title: 'Verewigen Sie Ihren Namen in einem Gebäude, das Sie überdauert',
+      text: 'Das Wagner-Theater Riga ist der Geburtsort der Ideen, die Bayreuth geprägt haben. Eine Restaurierung für 30 Millionen Euro wird es als europäisches Zentrum für Musik und künstlerische Residenz wieder zum Leben erwecken. Wir laden diejenigen ein, die an diese Zukunft glauben, beim Aufbau zu helfen.'
+    },
+    proof: {
+      eyebrow: 'AUF HÖCHSTER EBENE UNTERSTÜTZT',
+      title: 'AUF HÖCHSTER EBENE UNTERSTÜTZT',
+      text: 'Die Restaurierung und Wiederbelebung des Wagner-Hauses Riga wird von den Staatsoberhäuptern Deutschlands und Lettlands sowie der Familie Wagner persönlich unterstützt.',
+      steinmeierRole: 'DEUTSCHER BUNDESPRÄSIDENT',
+      steinmeierComment: 'Der Bundespräsident der Bundesrepublik Deutschland hat offiziell die Schirmherrschaft übernommen und das gemeinsame deutsch-lettische Kulturerbe hervorgehoben.',
+      levitsRole: 'PRÄSIDENT VON LETTLAND (2019–2023)',
+      levitsComment: 'Der Präsident von Lettland übernahm gemeinsam die Schirmherrschaft für die Wiederauferstehung des Wagner-Hauses Riga.',
+      evaRole: 'WAGNERS URENKELIN · SCHIRMHERRIN',
+      evaComment: 'Die Urenkelin von Richard Wagner und ehemalige Co-Direktorin der Bayreuther Festspiele unterstützt das Projekt aktiv.'
+    },
+    partners: {
+      logos: [
+        { title: 'Deutscher Bundestag', subtitle: 'Fördermittelgeber' },
+        { title: 'Auswärtiges Amt', subtitle: 'Deutsches Auswärtiges Amt' },
+        { title: 'Eva Wagner-Pasquier', subtitle: 'Schirmherrin · Wagners Urenkelin' },
+        { title: 'Messerschmitt Stiftung', subtitle: 'Gründungsstiftungspartner' },
+        { title: 'Yasuhisa Toyota', subtitle: 'Akustik · Elbphilharmonie' }
+      ]
+    },
+    twoWays: {
+      title: 'WEGE ZU UNTERSTÜTZEN',
+      majorDonors: {
+        heading: 'GROSSSPENDER',
+        tiers: [
+          { title: 'Strategischer Partner', range: '€300.000+', detail: 'Saalbenennung · Sitz im Kuratorium' },
+          { title: 'Wohltäter', range: '€50.000–300.000', detail: 'Raumbenennung · Nutzung von Veranstaltungsräumen · Kartenkontingent' },
+          { title: 'Spender', range: '€10.000–50.000', detail: 'Jährliche Anerkennung · Zugang zu Benefizkonzerten' }
+        ],
+        button: 'Ihr Engagement besprechen →'
+      },
+      chairSponsorship: {
+        heading: 'STUHLPATENSCHAFT',
+        tiers: [
+          { title: 'Parkett', amount: '€5.000', detail: 'Vorderer Bereich des Saals' },
+          { title: '1. Rang', amount: '€3.000', detail: 'Balkon' },
+          { title: '2. Rang', amount: '€1.000', detail: 'Oberer Balkon' }
+        ],
+        button: 'Stuhl sponsern →'
+      }
+    },
+    restores: {
+      title: 'WAS IHR BEITRAG RESTAURIERT',
+      items: [
+        { title: 'Der Orchestergraben', text: 'Der erste überdachte Graben in der Operngeschichte – Wagners Innovation, erdacht und erstmals hier in Riga 1837 realisiert' },
+        { title: 'Der Theatersaal', text: 'Steile Bestuhlung im griechischen Stil, abgedunkeltes Auditorium – die räumlichen Prinzipien, die Wagner nach Bayreuth brachte, in ihrer ursprünglichen Form wiederhergestellt' },
+        { title: 'Ein Zuhause für europäische Künstler', text: 'Residenzstudios und Probenräume für aufstrebende Komponisten und Interpreten – das zweite Leben des Gebäudes jenseits des Museums' }
+      ]
+    },
+    fundraising: {
+      title: 'Wo es heute steht',
+      raised: 'Bisher gesammelt — €21 Mio. von €51 Mio. · Eröffnung 2028',
+      bars: [
+        { label: 'Bundestag €5M Förderung', value: '€5M' },
+        { label: '~€1M Messerschmitt Stiftung', value: '~€1M' },
+        { label: 'Verbleibender Spendenbedarf', value: '€30M' }
+      ],
+      status: 'Der Wiederaufbau begann 2023. Die Fundamentarbeiten sind abgeschlossen. Als nächstes folgt das Tragwerk. Wir eröffnen 2028.',
+      timestamp: 'Zuletzt aktualisiert im Juli 2026'
+    },
+    friend: {
+      subheading: 'AUCH FÜR ALLE OFFEN',
+      title: 'Werden Sie Freund des Theaters',
+      text: 'Unterstützen Sie die Restaurierung ab €10 pro Monat. Sie werden im jährlichen Unterstützerregister aufgeführt und erhalten private Updates, während das Gebäude zum Leben erwacht.',
+      buttonText: 'Jetzt spenden',
+      step1Title: '1. Betrag & Häufigkeit wählen',
+      step2Title: '2. Spende bestätigen',
+      monthlyLabel: 'Monatlich',
+      oneTimeLabel: 'Einmalige Spende',
+      monthSuffix: '/ Monat',
+      oneTimeSuffix: 'einmalig',
+      tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
+      benefits: [
+        'Im jährlichen Unterstützerregister aufgeführt',
+        'Privater Newsletter mit Restaurierungsupdates',
+        'Frühzeitige Benachrichtigung über Eröffnungsveranstaltungen'
+      ]
+    },
+    transfer: {
+      text: 'Möchten Sie lieber direkt überweisen?',
+      button: 'Kontodaten anzeigen'
+    }
+  }
 };
 
-export default async function ZiedojumiPage({ params }: { params: Promise<{ lang: string }> }) {
-  await params;
-  const page = await getPageBySlug('ziedojumi');
-  const acf = (page?.acf as Record<string, any>) || {};
-
-  const asStringArray = (val: unknown): string[] => {
-    if (!Array.isArray(val)) return [];
-    return val
-      .map((p: unknown) =>
-        typeof p === 'object' && p
-          ? String((p as { item?: unknown; paragraph?: unknown }).item ?? (p as { paragraph?: unknown }).paragraph ?? '')
-          : String(p ?? '')
-      )
-      .filter(Boolean);
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const currentLang = (translations[lang] ? lang : 'lv') as 'lv' | 'en' | 'de';
+  const t = translations[currentLang];
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
   };
+}
 
-  const normalizedParagraphs = asStringArray(acf.done_paragraphs);
-  const normalizedListItems = asStringArray(acf.done_list_items);
-  const normalizedUsedFor = asStringArray(acf.transparency_used_for);
-  const normalizedNotUsedFor = asStringArray(acf.transparency_not_used_for);
+export default async function Ziedojumi2Page({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const currentLang = (translations[lang] ? lang : 'lv') as 'lv' | 'en' | 'de';
+  const t = translations[currentLang];
 
-  const data = {
-    heroData: {
-      title: acf.hero_title || FALLBACK_DATA.heroData.title,
-      subtitle: acf.hero_subtitle || FALLBACK_DATA.heroData.subtitle,
-      cta: acf.hero_cta || FALLBACK_DATA.heroData.cta,
-      note: acf.hero_note || FALLBACK_DATA.heroData.note,
-      image: acf.hero_image || FALLBACK_DATA.heroData.image
-    },
-    doneContent: {
-      title: acf.done_title || FALLBACK_DATA.doneContent.title,
-      paragraphs: normalizedParagraphs.length > 0 ? normalizedParagraphs : FALLBACK_DATA.doneContent.paragraphs,
-      listTitle: acf.done_list_title || FALLBACK_DATA.doneContent.listTitle,
-      listItems: normalizedListItems.length > 0 ? normalizedListItems : FALLBACK_DATA.doneContent.listItems
-    },
-    donationOptions: acf.donation_options || FALLBACK_DATA.donationOptions,
-    transparency: {
-      title: acf.transparency_title || FALLBACK_DATA.transparency.title,
-      intro: acf.transparency_intro || FALLBACK_DATA.transparency.intro,
-      usedFor: normalizedUsedFor.length > 0 ? normalizedUsedFor : FALLBACK_DATA.transparency.usedFor,
-      notUsedFor: normalizedNotUsedFor.length > 0 ? normalizedNotUsedFor : FALLBACK_DATA.transparency.notUsedFor,
-      trustNote: acf.transparency_trust_note || FALLBACK_DATA.transparency.trustNote,
-      trustNoteLink: FALLBACK_DATA.transparency.trustNoteLink
-    },
-    rekviziti: acf.rekviziti || FALLBACK_DATA.rekviziti,
-    finalCta: {
-      title: acf.final_cta_title || FALLBACK_DATA.finalCta.title,
-      text: acf.final_cta_text || FALLBACK_DATA.finalCta.text,
-      button: acf.final_cta_button || FALLBACK_DATA.finalCta.button
-    }
-  };
+  return (
+    <main className="min-h-screen bg-white text-black">
 
-  return <ZiedojumiClient data={data} />;
+      {/* SECTION 1: Hero / Introduction */}
+      <section className="vag-container pt-16 pb-12">
+        <p
+          className="font-sans text-gray-400 uppercase tracking-widest mb-8"
+          style={{ fontSize: 'var(--ui-nav)' }}
+        >
+          {t.hero.tagline}
+        </p>
+        <div className="max-w-3xl">
+          <h1 className="text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase mb-6 leading-tight">
+            {t.hero.title}
+          </h1>
+          <p className="text-black leading-relaxed font-sans" style={{ fontSize: 'var(--h5)' }}>
+            {t.hero.text}
+          </p>
+        </div>
+        <div className="h-px bg-gray-200 mt-12" />
+      </section>
+
+      {/* SECTION 2: Endorsed at the Highest Level & Partner Logos */}
+      <section className="vag-container pb-16">
+        <div className="mb-12 max-w-3xl">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#B49661] mb-3">
+            {t.proof.eyebrow}
+          </p>
+          <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase">
+            {t.proof.title}
+          </h2>
+          <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
+            {t.proof.text}
+          </p>
+        </div>
+
+        {/* Patron People Cards Grid (3 patrons matching Rebuilding page) */}
+        <div className="grid gap-8 md:grid-cols-3 mb-12">
+          {/* Frank-Walter Steinmeier */}
+          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
+              </div>
+              <h3 className="font-serif font-bold text-black text-lg leading-snug">Frank-Walter Steinmeier</h3>
+              <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.steinmeierRole}</p>
+              <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                {t.proof.steinmeierComment}
+              </p>
+            </div>
+          </div>
+
+          {/* Egils Levits */}
+          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/patrons/levits.jpg" alt="Egils Levits" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', display: 'block' }} />
+              </div>
+              <h3 className="font-serif font-bold text-black text-lg leading-snug">Egils Levits</h3>
+              <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.levitsRole}</p>
+              <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                {t.proof.levitsComment}
+              </p>
+            </div>
+          </div>
+
+          {/* Eva Wagner-Pasquier */}
+          <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
+              </div>
+              <h3 className="font-serif font-bold text-black text-lg leading-snug">Eva Wagner-Pasquier</h3>
+              <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.evaRole}</p>
+              <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                {t.proof.evaComment}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Partner Logos Grid */}
+        <div
+          className="grid grid-cols-2 md:grid-cols-5 border border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 bg-white"
+          style={{ borderRadius: 'var(--card-radius-sm)' }}
+        >
+          {t.partners.logos.map((logo, i) => (
+            <div key={i} className="px-6 py-5 text-left font-sans flex flex-col justify-center">
+              <div className="text-black font-semibold text-sm leading-snug">{logo.title}</div>
+              <div className="text-gray-500 text-xs mt-1 leading-normal">{logo.subtitle}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 3: Two Ways to Support */}
+      <section className="py-16 bg-[#F9F9F9]">
+        <div className="vag-container">
+          <h2 className="mb-8 text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">
+            {t.twoWays.title}
+          </h2>
+
+          <div
+            className="grid md:grid-cols-2 border border-gray-200 overflow-hidden bg-white"
+            style={{ borderRadius: 'var(--card-radius)' }}
+          >
+            {/* Left: Major Donors */}
+            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-200">
+              <h3
+                className="font-sans font-semibold uppercase tracking-widest text-gray-400 mb-8"
+                style={{ fontSize: 'var(--ui-nav)' }}
+              >
+                {t.twoWays.majorDonors.heading}
+              </h3>
+
+              <div className="space-y-8">
+                {t.twoWays.majorDonors.tiers.map((tier, i) => (
+                  <div key={i} className="border-b border-gray-100 pb-6 last:border-b-0 last:pb-0">
+                    <div className="flex items-baseline justify-between mb-1">
+                      <h4 className="font-sans font-bold text-black" style={{ fontSize: 'var(--body)' }}>
+                        {tier.title}
+                      </h4>
+                      <span className="font-sans font-bold text-black text-sm">{tier.range}</span>
+                    </div>
+                    <p className="text-gray-500 font-sans" style={{ fontSize: 'var(--ui-nav)' }}>
+                      {tier.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10">
+                <a
+                  href="mailto:ziedojumi@vagneriga.lv?subject=Major%20Donor%20Inquiry"
+                  className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] hover:bg-[#002142] hover:text-white transition-all w-full"
+                  style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
+                >
+                  {t.twoWays.majorDonors.button}
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Chair Sponsorship */}
+            <div className="p-8 md:p-10">
+              <h3
+                className="font-sans font-semibold uppercase tracking-widest text-gray-400 mb-8"
+                style={{ fontSize: 'var(--ui-nav)' }}
+              >
+                {t.twoWays.chairSponsorship.heading}
+              </h3>
+
+              <div className="space-y-4">
+                {t.twoWays.chairSponsorship.tiers.map((tier, i) => {
+                  const chairLinks = [
+                    'https://donate.stripe.com/7sY14pfqz43I37s6lC5ZC03',
+                    'https://donate.stripe.com/cNi5kF3HR6bQdM611i5ZC04',
+                    'https://donate.stripe.com/cNi3cx7Y70Rw5fA9xO5ZC05',
+                  ];
+                  return (
+                    <a
+                      key={i}
+                      href={chairLinks[i] || chairLinks[0]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block p-4 border border-gray-100 hover:border-[#B49661] rounded-[var(--card-radius-sm)] transition-all hover:shadow-sm group bg-gray-50/50 hover:bg-white"
+                    >
+                      <div className="flex items-baseline justify-between mb-1">
+                        <h4 className="font-sans font-bold text-[#002142] group-hover:text-[#B49661] transition-colors" style={{ fontSize: 'var(--body)' }}>
+                          {tier.title}
+                        </h4>
+                        <span className="font-sans font-bold text-[#B49661] text-base">{tier.amount}</span>
+                      </div>
+                      <p className="text-gray-500 font-sans text-xs flex items-center justify-between mt-1">
+                        <span>{tier.detail}</span>
+                        <span className="text-[#002142] font-bold opacity-0 group-hover:opacity-100 transition-opacity">Sponsorēt →</span>
+                      </p>
+                    </a>
+                  );
+                })}
+              </div>
+
+              <div className="mt-8">
+                <a
+                  href="https://donate.stripe.com/7sY14pfqz43I37s6lC5ZC03"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-flood inline-flex items-center justify-center bg-[#002142] hover:bg-[#001730] border border-[#002142] px-8 font-bold uppercase tracking-wider text-white transition-all w-full shadow-md"
+                  style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
+                >
+                  {t.twoWays.chairSponsorship.button}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: What Your Support Restores */}
+      <section className="py-16 bg-white">
+        <div className="vag-container">
+          <div
+            className="border border-gray-200 overflow-hidden"
+            style={{ borderRadius: 'var(--card-radius)' }}
+          >
+            {/* Header */}
+            <div className="px-8 md:px-10 pt-8 pb-2">
+              <h2 className="text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">
+                {t.restores.title}
+              </h2>
+            </div>
+
+            {/* Items */}
+            <div className="px-8 md:px-10 pb-8 pt-6 space-y-8">
+              {t.restores.items.map((item, i) => (
+                <div key={i} className="flex gap-6 items-start">
+                  <div className="flex-shrink-0 w-6 h-px bg-gray-300 mt-[10px]" />
+                  <div>
+                    <h4 className="font-sans font-bold text-black mb-1" style={{ fontSize: 'var(--body)' }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-gray-600 font-sans leading-relaxed" style={{ fontSize: 'var(--body)' }}>
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4b: Where it stands today — 1:1 from Rebuilding page */}
+      <section className="py-16 bg-[#F9F9F9]">
+        <div className="vag-container max-w-3xl">
+          <div className="border-2 border-[#B49661] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
+            <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-xl">
+              {t.fundraising.title}
+            </h2>
+            <div className="text-3xl md:text-5xl font-serif font-bold text-[#B49661] mb-8">
+              {t.fundraising.raised}
+            </div>
+
+            {/* Progress bar */}
+            <div className="w-full bg-gray-100 h-5 rounded-full overflow-hidden mb-8 border border-gray-200 p-0.5">
+              <div
+                className="bg-[#B49661] h-full rounded-full transition-all duration-1000 ease-out"
+                style={{ width: `${(21 / 51) * 100}%` }}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm font-sans font-semibold text-gray-600 mb-8 border-b border-gray-100 pb-6">
+              {t.fundraising.bars.map((bar, i) => (
+                <div key={i} className="bg-gray-50 p-3 rounded">
+                  <span className="block text-xs text-gray-400 uppercase mb-1">{bar.label}</span>
+                  <span className="text-[#B49661] font-bold text-base">{bar.value}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-gray-700 font-sans max-w-xl mx-auto text-lg leading-relaxed">
+              {t.fundraising.status}
+            </p>
+          </div>
+
+          <p className="text-right text-xs text-gray-400 font-sans italic mt-4">
+            {t.fundraising.timestamp}
+          </p>
+        </div>
+      </section>
+
+      {/* SECTION 5: Become a Friend / Monthly Donations (Full-width Brand Blue #002142 Card) */}
+      <section className="py-16 bg-[#F9F9F9]">
+        <div className="vag-container max-w-5xl">
+          <FriendDonationWidget lang={currentLang} translations={t.friend} />
+        </div>
+      </section>
+
+      {/* SECTION 6: Transfer Footer Box */}
+      <section className="vag-container py-8 pb-16">
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 border border-gray-200 px-8 py-5 bg-white"
+          style={{ borderRadius: 'var(--card-radius-sm)' }}
+        >
+          <p className="font-sans text-gray-600" style={{ fontSize: 'var(--body)' }}>
+            {t.transfer.text}
+          </p>
+          <button
+            className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] hover:bg-[#002142] hover:text-white transition-all flex-shrink-0"
+            style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
+          >
+            {t.transfer.button}
+          </button>
+        </div>
+      </section>
+
+    </main>
+  );
 }

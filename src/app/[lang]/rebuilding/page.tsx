@@ -77,10 +77,15 @@ interface TranslationContent {
     eyebrow: string;
     title: string;
     text: string;
+    steinmeierRole: string;
     steinmeierComment: string;
+    levitsRole: string;
     levitsComment: string;
+    evaRole: string;
     evaComment: string;
     evaQuote: string;
+    quoteEyebrow: string;
+    evaQuoteAuthor: string;
     endorsements: Endorsement[];
     logos: PartnerLogo[];
     acousticsNote: string;
@@ -161,10 +166,15 @@ const translations: Record<string, TranslationContent> = {
       eyebrow: "ATBALSTS VISAUGSTĀKAJĀ LĪMENĪ",
       title: "Atbalsts visaugstākajā līmenī",
       text: "Rīgas Vāgnera nama rekonstrukcijas projektu un atdzimšanu personīgi atbalsta Vācijas un Latvijas valsts vadītāji un Vāgneru dzimta.",
+      steinmeierRole: "VĀCIJAS FEDERĀLAIS PREZIDENTS",
       steinmeierComment: "Vācijas Federālais prezidents oficiāli kļuva par projekta patronu, uzsverot Vācijas un Latvijas kopīgo kultūras mantojumu.",
+      levitsRole: "LATVIJAS VALSTS PREZIDENTS (2019–2023)",
       levitsComment: "Latvijas Valsts prezidents kopā ar Vācijas prezidentu pārņēma patronāžu pār Rīgas Vāgnera nama atdzimšanu.",
+      evaRole: "VĀGNERA MAZMAZMEITA · PATRONE",
       evaComment: "Riharda Vāgnera mazmazmeita un Baireitas festivāla bijusī līdzdirektore aktīvi atbalsta teātra un muzeja izveidi Rīgā.",
       evaQuote: "“Kad esat pabijis ēkā un iztēlojies, kā to varētu iedzīvināt un piepildīt ar mūziku, tā vairs nekad neatlaiž. Unikāla ēka ar muzikāli vēsturisku nozīmi kļūs par satikšanās vietu jaunajiem mūziķiem no visas pasaules.”",
+      quoteEyebrow: "VĀGNERU DZIMTAS MANTOJUMS",
+      evaQuoteAuthor: "Eva Wagner-Pasquier, Vāgnera mazmazmeita un projekta patrone",
       endorsements: [
         { category: "Patroni", name: "Franks Valters Šteinmeiers, Egils Levits", detail: "Vācijas un Latvijas prezidenti" },
         { category: "Vāgneru ģimene", name: "Eva Vāgnere-Paskjē", detail: "Mazmazmeita · patrone kopš 2019. gada" },
@@ -270,10 +280,15 @@ const translations: Record<string, TranslationContent> = {
       eyebrow: "ENDORSED AT THE HIGHEST LEVEL",
       title: "Endorsed at the highest level",
       text: "The restoration and revival of Riga's Wagner House is personally endorsed by the heads of state of Germany and Latvia and the Wagner family.",
+      steinmeierRole: "FEDERAL PRESIDENT OF GERMANY",
       steinmeierComment: "The Federal President of Germany officially assumed patronage, highlighting the shared German-Latvian cultural legacy.",
+      levitsRole: "PRESIDENT OF LATVIA (2019–2023)",
       levitsComment: "The President of Latvia jointly undertook the patronage for the resurrection of Riga's Wagner House.",
+      evaRole: "WAGNER'S GREAT-GRANDDAUGHTER · PATRON",
       evaComment: "Great-granddaughter of Richard Wagner and former co-director of the Bayreuth Festival actively supports the project.",
       evaQuote: "\"Once you've been in the building and imagined how it could be enlivened and filled with music, it never lets you go. A unique building with music-historical significance will become a meeting place for young musicians from all over the world.\"",
+      quoteEyebrow: "WAGNER FAMILY LEGACY",
+      evaQuoteAuthor: "Eva Wagner-Pasquier, Wagner's great-granddaughter and patron",
       endorsements: [
         { category: "Patrons", name: "Frank-Walter Steinmeier, Egils Levits", detail: "Presidents of Germany and Latvia" },
         { category: "Wagner Family", name: "Eva Wagner-Pasquier", detail: "Great-granddaughter · Patron since 2019" },
@@ -379,10 +394,15 @@ const translations: Record<string, TranslationContent> = {
       eyebrow: "UNTERSTÜTZT AUF HÖCHSTER EBENE",
       title: "Unterstützt auf höchster Ebene",
       text: "Der Wiederaufbau des Rigaer Wagner-Hauses wird von den Staatsoberhäuptern Deutschlands und Lettlands sowie der Familie Wagner persönlich unterstützt.",
+      steinmeierRole: "DEUTSCHER BUNDESPRÄSIDENT",
       steinmeierComment: "Der Bundespräsident übernahm offiziell die Schirmherrschaft und betonte das gemeinsame kulturelle Erbe.",
+      levitsRole: "PRÄSIDENT VON LETTLAND (2019–2023)",
       levitsComment: "Der lettische Staatspräsident übernahm gemeinsam die Schirmherrschaft für die Wiederbelebung des Wagner-Hauses.",
+      evaRole: "WAGNERS URENKELIN · SCHIRMHERRIN",
       evaComment: "Urenkelin von Richard Wagner und ehemalige Co-Leiterin der Bayreuther Festspiele unterstützt das Projekt aktiv.",
       evaQuote: "„Wenn man erst einmal im Gebäude war und sich vorgestellt hat, wie es belebt und mit Musik erfüllt werden könnte, lässt es einen nie wieder los. Ein einzigartiges Gebäude wird zu einem Treffpunkt für junge Musiker aus aller Welt.“",
+      quoteEyebrow: "DAS ERBE DER FAMILIE WAGNER",
+      evaQuoteAuthor: "Eva Wagner-Pasquier, Wagners Urenkelin und Schirmherrin",
       endorsements: [
         { category: "Schirmherren", name: "Frank-Walter Steinmeier, Egils Levits", detail: "Präsidenten von Deutschland und Lettland" },
         { category: "Familie Wagner", name: "Eva Wagner-Pasquier", detail: "Urenkelin · Schirmherrin seit 2019" },
@@ -396,7 +416,7 @@ const translations: Record<string, TranslationContent> = {
         { title: "Messerschmitt Stiftung", subtitle: "Stiftung" },
         { title: "Yasuhisa Toyota", subtitle: "Akustik" }
       ],
-      acousticsNote: "Die Akustik wird von Dr. Yasuhisa Toyota geleitet, dem Akustiker hinter der Hamburger Elbphilharmonie und anderen Veranstaltungsorten."
+      acousticsNote: "Die Akustik wird von Dr. Yasuhisa Toyota geleitet, dem Akustiker hinter der Elbphilharmonie in Hamburg."
     },
     history: {
       title: "Wie wir hierher gekommen sind",
@@ -716,7 +736,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                   <img src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
                 </div>
                 <h3 className="font-serif font-bold text-black text-lg leading-snug">Frank-Walter Steinmeier</h3>
-                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">Vācijas Federālais Prezidents</p>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.steinmeierRole}</p>
                 <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.steinmeierComment}
                 </p>
@@ -731,7 +751,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                   <img src="/images/patrons/levits.jpg" alt="Egils Levits" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', display: 'block' }} />
                 </div>
                 <h3 className="font-serif font-bold text-black text-lg leading-snug">Egils Levits</h3>
-                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">Latvijas Valsts Prezidents (2019–2023)</p>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.levitsRole}</p>
                 <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.levitsComment}
                 </p>
@@ -746,7 +766,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                   <img src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
                 </div>
                 <h3 className="font-serif font-bold text-black text-lg leading-snug">Eva Wagner-Pasquier</h3>
-                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">Vāgnera mazmazmeita · Patrone</p>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.evaRole}</p>
                 <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.evaComment}
                 </p>
@@ -757,12 +777,12 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           {/* Highlighted Quote from Eva Wagner-Pasquier */}
           <div className="bg-[#002142] text-white p-8 md:p-10 rounded-[var(--card-radius)] mb-12 shadow-xl border-l-4 border-l-[#B49661] relative overflow-hidden">
             <div className="relative z-10">
-              <span className="text-[#B49661] text-xs font-bold uppercase tracking-[0.2em] block mb-3">Vāgneru Dzimtas Mantojums</span>
+              <span className="text-[#B49661] text-xs font-bold uppercase tracking-[0.2em] block mb-3">{t.proof.quoteEyebrow}</span>
               <blockquote className="font-serif italic text-lg md:text-2xl leading-relaxed text-gray-100 mb-4">
                 {t.proof.evaQuote}
               </blockquote>
               <cite className="not-italic text-sm font-semibold text-gray-400 font-sans block">
-                — Eva Wagner-Pasquier, Vāgnera mazmazmeita un projekta patrone
+                — {t.proof.evaQuoteAuthor}
               </cite>
             </div>
           </div>
