@@ -732,6 +732,25 @@
   - `npx tsc --noEmit` clean with 0 errors.
   - Local routes `http://localhost:3001/en/rebuilding`, `http://localhost:3001/en/ziedojumi`, `http://localhost:3001/en/ziedojumi2` returning `HTTP 1.1 200 OK`.
 
+### Task: Homepage CTAs navigation, hidden language switcher, & English-only redirects
+- Summary:
+  - **Homepage CTAs to Donations**: Updated both **"SEE HOW TO SUPPORT"** CTAs on the homepage (`rebuilding/page.tsx`) to link directly to `/[lang]/ziedojumi`.
+  - **Hidden Language Switcher**: Hidden the language switcher element in `Header.tsx` ([Header.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/components/Header.tsx)) on both desktop and mobile header views.
+  - **English-Only Redirects**: Updated `middleware.ts` ([middleware.ts](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/middleware.ts)) to redirect `/`, `/de`, `/de/*`, `/lv`, and `/lv/*` directly to `/en` / `/en/*`.
+  - **Pushed to Remote**: Committed and pushed all changes to `origin/fundraising`.
+
+- Files changed:
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `src/components/Header.tsx`
+  - `src/middleware.ts`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/`, `http://localhost:3001/de`, `http://localhost:3001/lv` returning `HTTP 307 Temporary Redirect` -> `/en`.
+  - `http://localhost:3001/en` returning `HTTP 200 OK`.
+
+
 
 
 
