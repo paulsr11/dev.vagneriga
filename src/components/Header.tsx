@@ -149,7 +149,8 @@ export default function Header({ lang }: { lang: string }) {
 
         {/* Right: Lang + social - desktop */}
         <div className="hidden lg:flex flex-col items-end justify-center gap-3 w-[20%]">
-          <div className="flex items-center gap-2 font-bold" style={{ fontSize: 'var(--ui-label)' }}>
+          {/* Language switch temporarily hidden per requirements */}
+          <div className="hidden items-center gap-2 font-bold" style={{ fontSize: 'var(--ui-label)' }}>
             <Link className={currentLang === 'lv' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href={getLanguageHref('lv')} onClick={(e) => handleLangSwitch(e, 'lv')}>LV</Link>
             <span className="text-gray-300">/</span>
             <Link className={currentLang === 'en' ? 'cursor-pointer text-black' : 'cursor-pointer text-gray-400 hover:text-black transition-colors'} href={getLanguageHref('en')} onClick={(e) => handleLangSwitch(e, 'en')}>EN</Link>
@@ -168,7 +169,7 @@ export default function Header({ lang }: { lang: string }) {
 
         {/* Mobile: hamburger + lang */}
         <div className="flex flex-1 lg:hidden items-center justify-end gap-4">
-          <div className="flex items-center gap-2 font-bold" style={{ fontSize: 'var(--ui-label)' }}>
+          <div className="hidden items-center gap-2 font-bold" style={{ fontSize: 'var(--ui-label)' }}>
             <Link className={currentLang === 'lv' ? 'text-black' : 'text-gray-400 hover:text-black'} href={getLanguageHref('lv')} onClick={(e) => handleLangSwitch(e, 'lv')}>LV</Link>
             <span className="text-gray-300">/</span>
             <Link className={currentLang === 'en' ? 'text-black' : 'text-gray-400 hover:text-black'} href={getLanguageHref('en')} onClick={(e) => handleLangSwitch(e, 'en')}>EN</Link>

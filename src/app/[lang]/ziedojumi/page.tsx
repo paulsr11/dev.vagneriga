@@ -77,7 +77,7 @@ interface TranslationContent {
   fundraising: {
     title: string;
     raised: string;
-    bars: ProgressBar[];
+    bars?: ProgressBar[];
     status: string;
     timestamp: string;
   };
@@ -154,22 +154,18 @@ const translations: Record<string, TranslationContent> = {
       }
     },
     restores: {
-      title: 'KO JŪSU ATBALSTS RESTAURĒ',
+      title: 'KO ATJAUNO JŪSU IEGULDĪJUMS',
       items: [
-        { title: 'Orķestra bedre', text: 'Pirmā segta bedre operas vēsturē – Vāgnera inovācija, iecerēta un pirmoreiz realizēta šeit, Rīgā, 1837. gadā' },
-        { title: 'Teātra zāle', text: 'Stāvs grieķu stila izkārtojums, aptumšota auditorija – telpiskās koncepcijas, ko Vāgners aizveda uz Baireitu, atjaunotas sākotnējā veidā' },
-        { title: 'Mājas Eiropas māksliniekiem', text: 'Rezidences studijas un mēģinājumu telpas topošajiem komponistiem un izpildītājiem – ēkas otrā dzīve ārpus muzeja' }
+        { title: 'Vāgnera teātris', text: 'Vēsturiskais teātris, kurā Rihards Vāgners strādāja par galveno diriģentu un guva iedvesmu idejām, ko vēlāk īstenoja Baireitā. Tā amfiteātra tipa zāle, segtā orķestra bedre un unikālā akustika tiek rūpīgi atjaunota jaunajai paaudzei.' },
+        { title: 'Muzejs', text: 'Interaktīvs muzejs, kas pēta Riharda Vāgnera Rīgas gadus, Rīgas Pilsētas teātra vēsturi un vienas no Eiropas nozīmīgākajām vēsturiskajām teātra ēkām ievērojamo restaurāciju.' },
+        { title: 'Mājvieta Eiropas māksliniekiem', text: 'Rezidences, mēģinājumu telpas un uzstāšanās iespējas jaunajiem komponistiem, mūziķiem un izpildītājiem — nodrošinot, ka Vāgnera teātris ir ne tikai pagātnes piemineklis, bet arī dzīva skatuve nākotnei.' }
       ]
     },
     fundraising: {
       title: 'Kur tas atrodas šodien',
       raised: 'Piesaistīts līdz šim — €21M no €51M · Atklāšana 2028',
-      bars: [
-        { label: 'Bundestāga €5M grants', value: '€5M' },
-        { label: '~Messerschmitt fonds', value: '~€1M' },
-        { label: 'Atlicis piesaistīt', value: '€30M' }
-      ],
-      status: 'Rekonstrukcija sākās 2023. gadā. Pamatu darbi ir pabeigti. Nākamā ir zāles izbūve. Atklājam 2028. gadā.',
+      bars: [],
+      status: 'Būvdarbi sākās 2023. gadā. Pamatu izbūves darbi ir pabeigti, un rekonstrukcija turpinās. Kad atlikušais finansējums ir nodrošināts, Vāgnera teātri plānots atkal atvērt 2028. gadā.',
       timestamp: 'Pēdējoreiz atjaunināts: 2026. gada jūlijā'
     },
     friend: {
@@ -249,20 +245,16 @@ const translations: Record<string, TranslationContent> = {
     restores: {
       title: 'WHAT YOUR SUPPORT RESTORES',
       items: [
-        { title: 'The orchestra pit', text: 'The first covered pit in opera history — Wagner\'s innovation, conceived and first realised here in Riga in 1837' },
-        { title: 'The theatre hall', text: 'Steep Greek-style seating, darkened auditorium — the spatial principles Wagner took to Bayreuth, restored to their original form' },
-        { title: 'A home for European artists', text: "Residency studios and rehearsal space for emerging composers and performers — the building's second life beyond the museum" }
+        { title: 'The Wagner Theatre', text: 'The historic theatre where Richard Wagner served as chief conductor and found inspiration for the ideas he later realised in Bayreuth. Its amphitheatre-style auditorium, concealed orchestra pit and unique acoustics are being carefully restored for a new generation.' },
+        { title: 'The museum', text: 'An interactive museum exploring Richard Wagner\'s years in Riga, the history of the Riga City Theatre, and the remarkable restoration of one of Europe\'s most significant historic theatre buildings.' },
+        { title: 'A home for European artists', text: 'Residencies, rehearsal spaces and performance opportunities for emerging composers, musicians and performers – ensuring that the Wagner Theatre is not only a monument to the past, but a living stage for the future.' }
       ]
     },
     fundraising: {
       title: 'Where it stands today',
       raised: 'Raised to date — €21M of €51M · Opening 2028',
-      bars: [
-        { label: 'Bundestag €5M grant', value: '€5M' },
-        { label: '~€1M Messerschmitt Foundation', value: '~€1M' },
-        { label: 'Still to raise', value: '€30M' }
-      ],
-      status: 'Reconstruction began in 2023. Foundation works are complete. The hall structure is next. We open in 2028.',
+      bars: [],
+      status: 'Construction began in 2023. Foundation works are complete, and reconstruction continues. With the remaining funding secured, the Wagner Theatre is planned to reopen in 2028.',
       timestamp: 'Last updated July 2026'
     },
     friend: {
@@ -342,19 +334,14 @@ const translations: Record<string, TranslationContent> = {
     restores: {
       title: 'WAS IHR BEITRAG RESTAURIERT',
       items: [
-        { title: 'Der Orchestergraben', text: 'Der erste überdachte Graben in der Operngeschichte – Wagners Innovation, erdacht und erstmals hier in Riga 1837 realisiert' },
-        { title: 'Der Theatersaal', text: 'Steile Bestuhlung im griechischen Stil, abgedunkeltes Auditorium – die räumlichen Prinzipien, die Wagner nach Bayreuth brachte, in ihrer ursprünglichen Form wiederhergestellt' },
-        { title: 'Ein Zuhause für europäische Künstler', text: 'Residenzstudios und Probenräume für aufstrebende Komponisten und Interpreten – das zweite Leben des Gebäudes jenseits des Museums' }
+        { title: 'Das Wagner-Theater', text: 'Das historische Theater, in dem Richard Wagner als Chefdirigent wirkte und Inspiration für die Ideen fand, die er später in Bayreuth verwirklichte. Sein amphi-theatralischer Zuschauerraum, der verdeckte Orchestergraben und die einzigartige Akustik werden sorgfältig restauriert.' },
+        { title: 'Das Museum', text: 'Ein interaktives Museum, das Richard Wagners Jahre in Riga, die Geschichte des Rigaer Stadttheaters und die bemerkenswerte Restaurierung eines der bedeutendsten historischen Theatergebäude Europas beleuchtet.' },
+        { title: 'Ein Zuhause für europäische Künstler', text: 'Residenzen, Probenräume und Auftrittsmöglichkeiten für angehende Komponisten, Musiker und Darsteller – um sicherzustellen, dass das Wagner-Theater nicht nur ein Denkmal der Vergangenheit ist, sondern eine lebendige Bühne für die Zukunft.' }
       ]
     },
     fundraising: {
       title: 'Wo es heute steht',
       raised: 'Bisher gesammelt — €21 Mio. von €51 Mio. · Eröffnung 2028',
-      bars: [
-        { label: 'Bundestag €5M Förderung', value: '€5M' },
-        { label: '~€1M Messerschmitt Stiftung', value: '~€1M' },
-        { label: 'Verbleibender Spendenbedarf', value: '€30M' }
-      ],
       status: 'Der Wiederaufbau begann 2023. Die Fundamentarbeiten sind abgeschlossen. Als nächstes folgt das Tragwerk. Wir eröffnen 2028.',
       timestamp: 'Zuletzt aktualisiert im Juli 2026'
     },
@@ -534,7 +521,7 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
 
               <div className="mt-10">
                 <a
-                  href="mailto:ziedojumi@vagneriga.lv?subject=Major%20Donor%20Inquiry"
+                  href="mailto:info@vagneriga.lv?subject=Major%20Donor%20Inquiry"
                   className="btn-flood inline-flex items-center justify-center border border-[#002142] px-8 font-bold uppercase tracking-wider text-[#002142] hover:bg-[#002142] hover:text-white transition-all w-full"
                   style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                 >
@@ -649,15 +636,6 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
                 className="bg-[#B49661] h-full rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${(21 / 51) * 100}%` }}
               />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm font-sans font-semibold text-gray-600 mb-8 border-b border-gray-100 pb-6">
-              {t.fundraising.bars.map((bar, i) => (
-                <div key={i} className="bg-gray-50 p-3 rounded">
-                  <span className="block text-xs text-gray-400 uppercase mb-1">{bar.label}</span>
-                  <span className="text-[#B49661] font-bold text-base">{bar.value}</span>
-                </div>
-              ))}
             </div>
 
             <p className="text-gray-700 font-sans max-w-xl mx-auto text-lg leading-relaxed">

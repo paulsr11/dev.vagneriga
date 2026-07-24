@@ -1,38 +1,55 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const locales = ['lv', 'en', 'de'];
-const defaultLocale = 'lv';
-
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Check if there is any supported locale in the pathname
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-
-  if (pathnameHasLocale) return;
-
-  // Redirect if there is no locale
+  // Ignore internal Next.js assets, API, admin, and static files
   if (
     pathname.startsWith('/api') ||
     pathname.startsWith('/admin') ||
     pathname.startsWith('/_next') ||
-    pathname.includes('.') // for files like favicon.ico
+    pathname.includes('.')
   ) {
     return;
   }
 
-  request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
-  return NextResponse.redirect(request.nextUrl);
+  // Redirect /de or /de/* -> /en or /en/*
+  if (pathname === '/de' || pathname.startsWith('/de/')) {
+    const targetPath = pathname === '/de' ? '/en' : pathname.replace(/^\/de\//, '/en/');
+    const url = request.nextUrl.clone();
+    url.pathname = targetPath;
+    return NextResponse.redirect(url);
+  }
+
+  // Redirect /lv or /lv/* -> /en or /en/*
+  if (pathname === '/lv' || pathname.startsWith('/lv/')) {
+    const targetPath = pathname === '/lv' ? '/en' : pathname.replace(/^\/lv\//, '/en/');
+    const url = request.nextUrl.clone();
+    url.pathname = targetPath;
+    return NextResponse.redirect(url);
+  }
+
+  // Redirect root / -> /en
+  if (pathname === '/') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/en';
+    return NextResponse.redirect(url);
+  }
+
+  // Ensure any other path without /en is prefixed with /en
+  if (!pathname.startsWith('/en/') && pathname !== '/en') {
+    const url = request.nextUrl.clone();
+    url.pathname = `/en${pathname}`;
+    return NextResponse.redirect(url);
+  }
+
+  return;
 }
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
     '/((?!_next|api|admin|favicon.ico).*)',
-    // Optional: only run on root (/) URL
     '/',
   ],
 };

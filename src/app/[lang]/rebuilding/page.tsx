@@ -21,11 +21,6 @@ interface TimelineEvent {
   text: string;
 }
 
-interface ProgressBar {
-  label: string;
-  value: string;
-}
-
 interface SupportItem {
   title: string;
   text: string;
@@ -61,6 +56,8 @@ interface TranslationContent {
     feature1Text: string;
     feature2Title: string;
     feature2Text: string;
+    feature3Title: string;
+    feature3Text: string;
     imageCaption: string;
     imageSrc: string;
   };
@@ -98,7 +95,6 @@ interface TranslationContent {
   today: {
     title: string;
     raised: string;
-    bars: ProgressBar[];
     status: string;
     timestamp: string;
   };
@@ -130,7 +126,7 @@ const translations: Record<string, TranslationContent> = {
       overlayTitle: "Ieraksti savu vārdu ēkā, kas tevi pārdzīvos.",
       overlayCta: "Skatīt, kā atbalstīt",
       title: "Vāgnera pirmais teātris. Pasaules nākamais.",
-      text: "1837. gadā Rihards Vāgners ieradās Rīgā. Šeit atrastais veidoja Baireitu un uz visiem laikiem mainīja operu. Mēs atjaunojam šo teātri — un veidojam vietu, kas iedvesmo nākamo mūziķu paaudzi, tāpat kā tā iedvesmoja viņu."
+      text: "Katrai nozīmīgai Eiropas koncertzālei jau ir kāda vārds. Šai vēl nav – dibinātāju slānis joprojām ir atvērts. Vārds, ko nes pati zāle, dibinātāja statuss tiem, kas ziedo pirms atklāšanas, piekļuve atklāšanas pasākumiem un labdarības koncertiem, kā arī līdzdalība lēmumu pieņemšanā par to, par ko Vāgnera mantojums kļūs tālāk."
     },
     rebuilding: {
       title: "Kā Rīga veidoja Vāgneru",
@@ -143,13 +139,15 @@ const translations: Record<string, TranslationContent> = {
       imageCaption: "Šeit Rihards Vāgners atklāja savu aicinājumu."
     },
     renovation: {
-      eyebrow: "NEVIS RESTAURĀCIJA. BET AUGŠĀMCELŠANĀS.",
-      title: "Vieta, kas iedvesmoja Vāgneru, iedvesmos nākamo mūziķu paaudzi.",
-      text: "Mēs ne tikai atjaunojam ēku. Mēs atjaunojam to, ko tā pārstāvēja – vietu, kur tiek radīta nopietna mūzika un kur jaunie mākslinieki atrod to, ko Vāgners šeit atrada pirmais. Mājas jaunajiem māksliniekiem jaunu darbu radīšanai bija paša Vāgnera ideja kopš 1882. gada. Tā atdzimst vietā, kur tā sākās. Kad nepieciešamais finansējums ir nodrošināts, durvis vērsies 2028. gadā – un zāle, kurā tapa Baireitas idejas, skanēs atkal.",
-      feature1Title: "Operas teātris",
-      feature1Text: "Darba skatuve izrādēm, rezidencēm un jauniem iestudējumiem.",
-      feature2Title: "Vāgnera muzejs",
-      feature2Text: "Stāsts par viņa Rīgas gadiem, izstāstīts ēkā, kurā tie risinājās.",
+      eyebrow: "KO ATJAUNO JŪSU IEGULDĪJUMS",
+      title: "KO ATJAUNO JŪSU IEGULDĪJUMS",
+      text: "Mēs ne tikai atjaunojam ēku. Mēs atjaunojam to, ko tā pārstāvēja – vietu, kur tiek radīta nopietna mūzika un kur jaunie mākslinieki atrod to, ko Vāgners šeit atrada pirmais.",
+      feature1Title: "Vāgnera teātris",
+      feature1Text: "Vēsturiskais teātris, kurā Rihards Vāgners strādāja par galveno diriģentu un guva iedvesmu idejām, ko vēlāk īstenoja Baireitā. Tā amfiteātra tipa zāle, segtā orķestra bedre un unikālā akustika tiek rūpīgi atjaunota jaunajai paaudzei.",
+      feature2Title: "Muzejs",
+      feature2Text: "Interaktīvs muzejs, kas pēta Riharda Vāgnera Rīgas gadus, Rīgas Pilsētas teātra vēsturi un vienas no Eiropas nozīmīgākajām vēsturiskajām teātra ēkām ievērojamo restaurāciju.",
+      feature3Title: "Mājvieta Eiropas māksliniekiem",
+      feature3Text: "Rezidences, mēģinājumu telpas un uzstāšanās iespējas jaunajiem komponistiem, mūziķiem un izpildītājiem — nodrošinot, ka Vāgnera teātris ir ne tikai pagātnes piemineklis, bet arī dzīva skatuve nākotnei.",
       imageCaption: "Teātris šodien, aktīvas rekonstrukcijas procesā.",
       imageSrc: "/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
     },
@@ -212,17 +210,12 @@ const translations: Record<string, TranslationContent> = {
     today: {
       title: "Kur tas atrodas šodien",
       raised: "Piesaistīts līdz šim — €21M no €51M · Atklāšana 2028",
-      bars: [
-        { label: "Bundestāga €5M grants", value: "€5M" },
-        { label: "Messerschmitt fonda atbalsts", value: "~€1M" },
-        { label: "Atlicis piesaistīt", value: "€30M" }
-      ],
-      status: "Rekonstrukcija sākās 2023. gadā. Pamatu darbi ir pabeigti. Nākamā ir zāles izbūve. Atklājam 2028. gadā.",
+      status: "Būvdarbi sākās 2023. gadā. Pamatu izbūves darbi ir pabeigti, un rekonstrukcija turpinās. Kad atlikušais finansējums ir nodrošināts, Vāgnera teātri plānots atkal atvērt 2028. gadā.",
       timestamp: "Pēdējoreiz atjaunināts: 2026. gada jūnijā"
     },
     support: {
       title: "Ieraksti savu vārdu ēkā, kas tevi pārdzīvos.",
-      text: "Rīgas Vāgnera teātris būs pirmā aktīvā koncertzāle Eiropā, kas uzbūvēta uz idejām, kas mums deva Baireitu. Nauda, kas uzbūvēja lielas kultūras iestādes, vienmēr nāca no cilvēkiem, kuri ticēja pirms tā tika pabeigta. Šis ir tas brīdis.",
+      text: "Every major European concert hall already has someone's name on it. This one doesn't yet – the founding layer is still open. A name carried by the hall itself, founding status for those who give before opening, access to opening events and benefit concerts, and a hand in deciding what Wagner's legacy becomes next.",
       items: [
         { title: "Tavs vārds zālē:", text: "Nosauktas sēdvietas, nosauktas telpas — pastāvīgs ieraksts par tiem, kas to padarīja iespējamu" },
         { title: "Dibinātāja statuss:", text: "Ziedotāji, kuri atbalsta pirms atklāšanas, nes citu nozīmi nekā tie, kas ziedo pēc" },
@@ -244,7 +237,7 @@ const translations: Record<string, TranslationContent> = {
       overlayTitle: "Put your name in the building that outlasts you.",
       overlayCta: "See how to support",
       title: "Wagner's first theatre. The world's next one.",
-      text: "In 1837, Richard Wagner arrived in Riga. What he found here shaped Bayreuth and changed opera forever. We are resurrecting that theatre — and building a place that inspires the next generation of musicians, just as it inspired him."
+      text: "Every major European concert hall already has someone's name on it. This one doesn't yet – the founding layer is still open. A name carried by the hall itself, founding status for those who give before opening, access to opening events and benefit concerts, and a hand in deciding what Wagner's legacy becomes next."
     },
     rebuilding: {
       title: "How Riga made Wagner",
@@ -257,13 +250,15 @@ const translations: Record<string, TranslationContent> = {
       imageCaption: "This is where Richard Wagner discovered his calling."
     },
     renovation: {
-      eyebrow: "NOT A RESTORATION. A RESURRECTION.",
-      title: "The place that inspired Wagner will inspire the next generation of musicians.",
-      text: "We are not only restoring a building. We are restoring what it stood for – a place where serious music is made, and where young artists find what Wagner found here first. A home for young artists making new work was Wagner’s own idea, from 1882. It is being reborn in the place where it started. With the necessary funding secured, the doors open in 2028 – and the hall where the ideas behind Bayreuth took shape will sound again.",
-      feature1Title: "An opera theatre",
-      feature1Text: "A working stage for performances, residencies and new productions.",
-      feature2Title: "A Wagner museum",
-      feature2Text: "The story of his Riga years, told in the building where they happened.",
+      eyebrow: "WHAT YOUR SUPPORT RESTORES",
+      title: "WHAT YOUR SUPPORT RESTORES",
+      text: "We are not only restoring a building. We are restoring what it stood for – a place where serious music is made, and where young artists find what Wagner found here first.",
+      feature1Title: "The Wagner Theatre",
+      feature1Text: "The historic theatre where Richard Wagner served as chief conductor and found inspiration for the ideas he later realised in Bayreuth. Its amphitheatre-style auditorium, concealed orchestra pit and unique acoustics are being carefully restored for a new generation.",
+      feature2Title: "The museum",
+      feature2Text: "An interactive museum exploring Richard Wagner's years in Riga, the history of the Riga City Theatre, and the remarkable restoration of one of Europe's most significant historic theatre buildings.",
+      feature3Title: "A home for European artists",
+      feature3Text: "Residencies, rehearsal spaces and performance opportunities for emerging composers, musicians and performers – ensuring that the Wagner Theatre is not only a monument to the past, but a living stage for the future.",
       imageCaption: "The theatre today, under active reconstruction.",
       imageSrc: "/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
     },
@@ -326,17 +321,12 @@ const translations: Record<string, TranslationContent> = {
     today: {
       title: "Where it stands today",
       raised: "Raised to date — €21M of €51M · Opening 2028",
-      bars: [
-        { label: "Bundestag €5M grant", value: "€5M" },
-        { label: "Messerschmitt Foundation support", value: "~€1M" },
-        { label: "Still to raise", value: "€30M" }
-      ],
-      status: "Reconstruction began in 2023. Foundation works are complete. The hall structure is next. We open in 2028.",
+      status: "Construction began in 2023. Foundation works are complete, and reconstruction continues. With the remaining funding secured, the Wagner Theatre is planned to reopen in 2028.",
       timestamp: "Last updated June 2026"
     },
     support: {
       title: "Put your name in the building that outlasts you.",
-      text: "Wagner Theatre Riga will be the first active concert hall in Europe built on the ideas that gave us Bayreuth. The money that built great cultural institutions always came from people who believed before it was finished. This is that moment.",
+      text: "Every major European concert hall already has someone's name on it. This one doesn't yet – the founding layer is still open. A name carried by the hall itself, founding status for those who give before opening, access to opening events and benefit concerts, and a hand in deciding what Wagner's legacy becomes next.",
       items: [
         { title: "Your name in the hall:", text: "Named seats, named rooms, named spaces — a permanent record of who made this possible" },
         { title: "Founding status:", text: "Donors who give before opening carry a different weight than those who give after" },
@@ -358,7 +348,7 @@ const translations: Record<string, TranslationContent> = {
       overlayTitle: "Verewigen Sie Ihren Namen in einem Gebäude, das Sie überdauert.",
       overlayCta: "Erfahren Sie, wie Sie unterstützen können",
       title: "Wagners erstes Theater. Das nächste der Welt.",
-      text: "1837 kam Richard Wagner nach Riga. Was er hier fand, prägte Bayreuth und verände die Oper für immer. Wir erwecken dieses Theater wieder zum Leben – und bauen einen Ort, der die nächste Generation von Musikern inspiriert, so wie er ihn inspiriert hat."
+      text: "Jedes große europäische Konzerthaus trägt bereits einen Namen. Dieses noch nicht – die Gründersebene ist noch offen. Ein Name, den der Saal selbst trägt, Gründerstatus für diejenigen, die vor der Eröffnung spenden, Zugang zu Eröffnungsveranstaltungen und Benefizkonzerten sowie eine Stimme bei der Gestaltung des nächsten Kapitels von Wagners Erbe."
     },
     rebuilding: {
       title: "Wie Riga Wagner prägte",
@@ -371,13 +361,15 @@ const translations: Record<string, TranslationContent> = {
       imageCaption: "Hier entdeckte Richard Wagner seine Berufung."
     },
     renovation: {
-      eyebrow: "KEINE RESTAURIERUNG. EINE AUFERSTEHUNG.",
-      title: "Der Ort, der Wagner inspirierte, wird die nächste Generation von Musikern inspirieren.",
-      text: "Wir restaurieren nicht nur ein Gebäude. Wir restaurieren das, wofür es stand – einen Ort, an dem ernsthafte Musik gemacht wird und junge Künstler das finden, was Wagner hier zuerst fand. Ein Zuhause für junge Künstler war Wagners eigene Idee von 1882. Es wird an dem Ort wiedergeboren, an dem es begann. Die Türen öffnen sich 2028 – und der Saal, in dem die Ideen hinter Bayreuth Gestalt annahmen, wird wieder erklingen.",
-      feature1Title: "Ein Operntheater",
-      feature1Text: "Eine Bühne für Aufführungen, Residenzen und Neuproduktionen.",
-      feature2Title: "Ein Wagner-Museum",
-      feature2Text: "Die Geschichte seiner Rigaer Jahre, erzählt in dem Gebäude, in dem sie stattfanden.",
+      eyebrow: "WAS IHR BEITRAG RESTAURIERT",
+      title: "WAS IHR BEITRAG RESTAURIERT",
+      text: "Wir restaurieren nicht nur ein Gebäude. Wir restaurieren das, wofür es stand – einen Ort, an dem ernsthafte Musik gemacht wird und junge Künstler das finden, was Wagner hier zuerst fand.",
+      feature1Title: "Das Wagner-Theater",
+      feature1Text: "Das historische Theater, in dem Richard Wagner als Chefdirigent wirkte und Inspiration für die Ideen fand, die er später in Bayreuth verwirklichte. Sein amphi-theatralischer Zuschauerraum, der verdeckte Orchestergraben und die einzigartige Akustik werden sorgfältig restauriert.",
+      feature2Title: "Das Museum",
+      feature2Text: "Ein interaktives Museum, das Richard Wagners Jahre in Riga, die Geschichte des Rigaer Stadttheaters und die bemerkenswerte Restaurierung eines der bedeutendsten historischen Theatergebäude Europas beleuchtet.",
+      feature3Title: "Ein Zuhause für europäische Künstler",
+      feature3Text: "Residenzen, Probenräume und Auftrittsmöglichkeiten für angehende Komponisten, Musiker und Darsteller – um sicherzustellen, dass das Wagner-Theater nicht nur ein Denkmal der Vergangenheit ist, sondern eine lebendige Bühne für die Zukunft.",
       imageCaption: "Das Theater heute, im aktiven Wiederaufbau.",
       imageSrc: "/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
     },
@@ -440,22 +432,17 @@ const translations: Record<string, TranslationContent> = {
     today: {
       title: "Wo es heute steht",
       raised: "Bisher gesammelt — €21 Mio. von €51 Mio. · Eröffnung 2028",
-      bars: [
-        { label: "Bundestag €5M Förderung", value: "€5M" },
-        { label: "Unterstützung der Messerschmitt Stiftung", value: "€1M" },
-        { label: "Verbleibender Spendenbedarf", value: "€30M" }
-      ],
-      status: "Der Wiederaufbau begann 2023. Die Fundamentarbeiten sind abgeschlossen. Als nächstes folgt das Tragwerk. Wir eröffnen 2028.",
+      status: "Die Bauarbeiten begannen 2023. Die Gründungsarbeiten sind abgeschlossen, und der Wiederaufbau wird fortgesetzt. Wenn die verbleibende Finanzierung gesichert ist, soll das Wagner-Theater 2028 wiedereröffnet werden.",
       timestamp: "Zuletzt aktualisiert im Juni 2026"
     },
     support: {
       title: "Verewigen Sie Ihren Namen in einem Gebäude, das Sie überdauert.",
-      text: "Das Wagner-Theater Riga wird das erste aktive Konzerthaus in Europa sein, das auf den Ideen basiert, die uns Bayreuth beschert haben. Das Geld, mit dem große Kulturinstitutionen gebaut wurden, stammte immer von Menschen, die daran glaubten, bevor es fertiggestellt war. Dies ist dieser Moment.",
+      text: "Every major European concert hall already has someone's name on it. This one doesn't yet – the founding layer is still open. A name carried by the hall itself, founding status for those who give before opening, access to opening events and benefit concerts, and a hand in deciding what Wagner's legacy becomes next.",
       items: [
-        { title: "Ihr Name im Saal:", text: "Namenssitze, Namensräume, Namensflächen — ein dauerhafter Nachweis darüber, wer dies ermöglicht hat" },
-        { title: "Gründungsstatus:", text: "Spender, die vor der Eröffnung unterstützen, tragen eine andere Bedeutung als jene, die danach spenden" },
-        { title: "Zugang und Anerkennung:", text: "Eröffnungsveranstaltungen, Benefizkonzerte, Jahresberichte — Sie sind Teil der Geschichte, keine Fußnote" },
-        { title: "Wagners Erbe vorantreiben:", text: "Hier begann er. Helfen Sie mit, das Kommende zu gestalten" }
+        { title: "Ihr Name im Saal:", text: "Benannte Sitzplätze, benannte Räume — ein dauerhafter Eintrag derjenigen, die dies möglich gemacht haben" },
+        { title: "Gründerstatus:", text: "Spender, die vor der Eröffnung geben, haben ein anderes Gewicht als diejenigen, die danach spenden" },
+        { title: "Zugang und Anerkennung:", text: "Eröffnungsveranstaltungen, Benefizkonzerte, Jahresberichte — Sie sind Teil der Geschichte" },
+        { title: "Wagners Erbe gestalten:", text: "Hier hat er begonnen. Helfen Sie zu entscheiden, was als Nächstes kommt" }
       ],
       button: "Erfahren Sie, wie Sie unterstützen können →"
     },
@@ -465,11 +452,10 @@ const translations: Record<string, TranslationContent> = {
   }
 };
 
-// 2. Generate SEO Metadata
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const currentLang = (translations[lang] ? lang : 'lv') as 'lv' | 'en' | 'de';
-  const t = translations[currentLang];
+  const currentLang = (['lv', 'en', 'de'].includes(lang) ? lang : 'lv') as 'lv' | 'en' | 'de';
+  const t = translations[currentLang] || translations.lv;
 
   return {
     title: t.meta.title,
@@ -477,34 +463,30 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-// 3. Main Landing Page Component
 export default async function RebuildingPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const currentLang = (translations[lang] ? lang : 'lv') as 'lv' | 'en' | 'de';
-  const t = translations[currentLang];
+  const currentLang = (['lv', 'en', 'de'].includes(lang) ? lang : 'lv') as 'lv' | 'en' | 'de';
+  const t = translations[currentLang] || translations.lv;
 
-  // Fetch WordPress news posts for the news section (filtered strictly by current language)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let newsPosts: any[] = [];
-  try {
-    const newsCat = NEWS_CATEGORY_MAP[currentLang]?.id;
-    const result = await getPosts({ per_page: 10, categories: newsCat, lang: currentLang });
-    const allPosts = result?.posts || [];
-    newsPosts = allPosts.filter((p: any) => !isGalleryPost(p) && isPostInLanguage(p, currentLang)).slice(0, 3);
-  } catch (error) {
-    console.error("Failed to fetch news posts for rebuilding page:", error);
-  }
+  const result = await getPosts({
+    per_page: 10,
+    categories: NEWS_CATEGORY_MAP[currentLang]?.id,
+    lang: currentLang,
+  });
+
+  const newsPosts = (result?.posts || [])
+    .filter((p: any) => !isGalleryPost(p) && isPostInLanguage(p, currentLang))
+    .slice(0, 3);
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-white">
       {/* SECTION 1: Hero Block */}
       <section className="vag-container bg-white pb-6 pt-6">
-        {/* Hero Image with overlay text and CTA button */}
         <div
           className="relative h-[60vh] min-h-[460px] w-full overflow-hidden"
           style={{ borderRadius: 'var(--card-radius)' }}
         >
-          {/* Layer 1 (bottom): Photo */}
+          {/* Layer 1: Photo */}
           <Image
             src="/wp-content/uploads/2025/09/IMGC4880_AuroraHDR2019-edit.jpg"
             alt="Vāgnera Nams"
@@ -514,7 +496,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             priority
           />
 
-          {/* Layer 2: Dark gradient overlay — above image, below text */}
+          {/* Layer 2: Dark gradient overlay */}
           <div
             style={{
               position: 'absolute',
@@ -525,7 +507,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             }}
           />
 
-          {/* Layer 3 (top): Text and CTA */}
+          {/* Layer 3: Text and CTA */}
           <div
             style={{ position: 'absolute', inset: 0, zIndex: 2 }}
             className="flex flex-col justify-end pb-20 md:pb-28 px-8 md:px-[68px]"
@@ -547,7 +529,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           </div>
         </div>
 
-        {/* Text and subtext below the hero image - aligned horizontally with hero heading */}
+        {/* First body text below hero image */}
         <div className="pt-6 pb-6 px-8 md:px-[68px]">
           <h3
             className="text-black font-serif font-bold uppercase tracking-tight m-0 mb-3 text-xl md:text-2xl leading-tight"
@@ -581,21 +563,21 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                   </div>
                 ))}
               </div>
-              <div className="mt-8">
+              <div className="mt-10">
                 <Link
-                  href={`/${currentLang}/jaunumi/${thetisSlug[currentLang] || thetisSlug.lv}`}
-                  className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-8 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
-                  style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
+                  href={`/${currentLang}/vesture`}
+                  className="inline-flex items-center text-[#B49661] font-bold tracking-wider uppercase hover:underline text-sm font-sans"
                 >
                   {t.rebuilding.button}
                 </Link>
               </div>
             </div>
+
             <div className="w-full md:w-1/2">
-              <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md border border-gray-100" style={{ borderRadius: 'var(--card-radius)' }}>
+              <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md rounded-[var(--card-radius)] border border-gray-100">
                 <Image
-                  src="/images/projekts/wagner_side_profile.jpg"
-                  alt={t.rebuilding.title}
+                  src="/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg"
+                  alt="Māris Gailis"
                   fill
                   className="object-cover"
                 />
@@ -608,7 +590,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 3: Not a restoration. A resurrection. */}
+      {/* SECTION 3: WHAT YOUR SUPPORT RESTORES */}
       <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-100">
         <div className="vag-container">
           <div className="mb-10 max-w-4xl">
@@ -624,8 +606,8 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           </div>
 
           <div className="grid gap-12 md:grid-cols-2 items-center pt-6">
-            {/* Left side: Feature 1 & Feature 2 */}
-            <div className="space-y-10">
+            {/* Left side: Features */}
+            <div className="space-y-8">
               <div>
                 <h3 className="font-serif text-2xl md:text-3xl text-black font-normal mb-2 uppercase">
                   {t.renovation.feature1Title}
@@ -643,9 +625,18 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                   {t.renovation.feature2Text}
                 </p>
               </div>
+
+              <div>
+                <h3 className="font-serif text-2xl md:text-3xl text-black font-normal mb-2 uppercase">
+                  {t.renovation.feature3Title}
+                </h3>
+                <p className="text-gray-600 text-base md:text-lg font-sans leading-relaxed">
+                  {t.renovation.feature3Text}
+                </p>
+              </div>
             </div>
 
-            {/* Right side: Image with standard caption line UNDER the picture */}
+            {/* Right side: Image */}
             <div className="w-full">
               <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md rounded-[var(--card-radius)] border border-gray-100">
                 <Image
@@ -663,50 +654,74 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 4: The people behind it */}
-      <section className="py-16 bg-white">
+      {/* SECTION 4: The People Behind It */}
+      <section className="py-20 bg-white">
         <div className="vag-container">
-          <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
-            {/* Left Column - Texts */}
-            <div className="w-full md:w-1/2 text-left">
-              <h2 className="mb-8 text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">
-                {t.team.title}
-              </h2>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-black uppercase tracking-[0.2em] font-serif text-3xl font-normal">{t.team.title}</h2>
+          </div>
 
-              <div className="space-y-8 mb-8 font-sans">
-                <p className="text-gray-700 leading-relaxed text-base">
+          <div className="grid gap-12 md:grid-cols-2 items-stretch">
+            {/* Maris Gailis Card */}
+            <div className="bg-[#FBFBFB] border border-gray-100 p-8 md:p-10 flex flex-col justify-between rounded-[var(--card-radius)]">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
+                    <Image
+                      src="/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg"
+                      alt="Māris Gailis"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-serif font-bold text-black text-xl m-0">Māris Gailis</h3>
+                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
+                      {currentLang === 'lv' ? 'Biedrības vadītājs' : currentLang === 'en' ? 'Head of the Association' : 'Vereinsvorsitzender'}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-gray-700 text-base leading-relaxed font-sans">
                   {t.team.profile1}
                 </p>
-
-                <div className="border-l-2 border-[#B49661] pl-6 py-1">
-                  <blockquote className="text-gray-700 italic leading-relaxed text-lg mb-2">
-                    {t.team.profile2.text}
-                  </blockquote>
-                  <cite className="text-sm font-semibold text-gray-500 not-italic">
-                    — {t.team.profile2.author}
-                  </cite>
-                </div>
               </div>
-
-              <div>
+              <div className="mt-8 pt-6 border-t border-gray-200/60">
                 <Link
                   href={`/${currentLang}/biedriba`}
-                  className="text-[#B49661] font-bold hover:underline inline-flex items-center gap-1 uppercase tracking-wider text-sm"
+                  className="inline-flex items-center text-[#B49661] font-bold text-sm uppercase tracking-wider hover:underline"
                 >
                   {t.team.button}
                 </Link>
               </div>
             </div>
 
-            {/* Right Column - Large Image of Maris & Zaiga */}
-            <div className="w-full md:w-1/2">
-              <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md" style={{ borderRadius: 'var(--card-radius)' }}>
-                <Image
-                  src="/images/projekts/maris_zaiga.jpg"
-                  alt="Māris Gailis & Zaiga Gaile"
-                  fill
-                  className="object-cover"
-                />
+            {/* Eva Wagner Card */}
+            <div className="bg-[#002142] text-white p-8 md:p-10 flex flex-col justify-between rounded-[var(--card-radius)]">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
+                    <Image
+                      src="/images/patrons/eva_wagner_pasquier.png"
+                      alt="Eva Wagner-Pasquier"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-serif font-bold text-white text-xl m-0">Eva Wagner-Pasquier</h3>
+                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
+                      {currentLang === 'lv' ? 'Vāgnera mazmazmeita · Patrone' : currentLang === 'en' ? "Wagner's Great-granddaughter · Patron" : 'Wagners Urenkelin · Schirmherrin'}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-gray-200 text-base leading-relaxed font-serif italic">
+                  {t.team.profile2.text}
+                </p>
+              </div>
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <span className="text-xs uppercase tracking-widest text-[#B49661] font-sans font-semibold">
+                  {t.team.profile2.author}
+                </span>
               </div>
             </div>
           </div>
@@ -714,113 +729,115 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       </section>
 
       {/* SECTION 5: Endorsed at the Highest Level */}
-      <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-200">
+      <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-100">
         <div className="vag-container">
-          <div className="mb-16 max-w-3xl">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#B49661] mb-3">
-              {t.proof.eyebrow}
-            </p>
-            <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">{t.proof.eyebrow}</p>
+            <h2 className="text-black uppercase tracking-[0.2em] font-serif text-3xl font-normal">
               {t.proof.title}
             </h2>
-            <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
+            <p className="text-gray-600 mt-4 text-base font-sans">
               {t.proof.text}
             </p>
           </div>
 
-          {/* Patron People Cards Grid (3 patrons) */}
-          <div className="grid gap-8 md:grid-cols-3 mb-12">
-            {/* Frank-Walter Steinmeier */}
-            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+          <div className="grid gap-8 md:grid-cols-3">
+            {/* Frank-Walter Steinmeier Card */}
+            <div className="bg-white p-8 border border-gray-200 flex flex-col justify-between rounded-[var(--card-radius)]">
               <div>
-                <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
+                    <Image
+                      src="/images/patrons/frank_walter_steinmeier.jpg"
+                      alt="Frank-Walter Steinmeier"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-serif font-bold text-black text-lg m-0">Frank-Walter Steinmeier</h3>
+                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
+                      {t.proof.steinmeierRole}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-serif font-bold text-black text-lg leading-snug">Frank-Walter Steinmeier</h3>
-                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.steinmeierRole}</p>
-                <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed font-sans">
                   {t.proof.steinmeierComment}
                 </p>
               </div>
             </div>
 
-            {/* Egils Levits */}
-            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            {/* Egils Levits Card */}
+            <div className="bg-white p-8 border border-gray-200 flex flex-col justify-between rounded-[var(--card-radius)]">
               <div>
-                <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/patrons/levits.jpg" alt="Egils Levits" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', display: 'block' }} />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
+                    <Image
+                      src="/images/patrons/egils_levits.jpg"
+                      alt="Egils Levits"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-serif font-bold text-black text-lg m-0">Egils Levits</h3>
+                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
+                      {t.proof.levitsRole}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-serif font-bold text-black text-lg leading-snug">Egils Levits</h3>
-                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.levitsRole}</p>
-                <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed font-sans">
                   {t.proof.levitsComment}
                 </p>
               </div>
             </div>
 
-            {/* Eva Wagner-Pasquier */}
-            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+            {/* Eva Wagner-Pasquier Card */}
+            <div className="bg-white p-8 border border-gray-200 flex flex-col justify-between rounded-[var(--card-radius)]">
               <div>
-                <div style={{ width: '100%', height: '280px', overflow: 'hidden', borderRadius: 'var(--card-radius-sm)', marginBottom: '1rem' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 0%', display: 'block' }} />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
+                    <Image
+                      src="/images/patrons/eva_wagner_pasquier.png"
+                      alt="Eva Wagner-Pasquier"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-serif font-bold text-black text-lg m-0">Eva Wagner-Pasquier</h3>
+                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
+                      {t.proof.evaRole}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-serif font-bold text-black text-lg leading-snug">Eva Wagner-Pasquier</h3>
-                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.evaRole}</p>
-                <p className="text-gray-600 text-xs font-sans leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed font-sans">
                   {t.proof.evaComment}
                 </p>
               </div>
             </div>
           </div>
-
-          {/* Highlighted Quote from Eva Wagner-Pasquier */}
-          <div className="bg-[#002142] text-white p-8 md:p-10 rounded-[var(--card-radius)] mb-12 shadow-xl border-l-4 border-l-[#B49661] relative overflow-hidden">
-            <div className="relative z-10">
-              <span className="text-[#B49661] text-xs font-bold uppercase tracking-[0.2em] block mb-3">{t.proof.quoteEyebrow}</span>
-              <blockquote className="font-serif italic text-lg md:text-2xl leading-relaxed text-gray-100 mb-4">
-                {t.proof.evaQuote}
-              </blockquote>
-              <cite className="not-italic text-sm font-semibold text-gray-400 font-sans block">
-                — {t.proof.evaQuoteAuthor}
-              </cite>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* SECTION 6: How we got here (Timeline) */}
-      <section className="py-16 bg-white">
-        <div className="vag-container max-w-4xl">
-          <div className="text-left mb-16">
-            <h2 className="text-black uppercase tracking-widest mb-4 font-serif text-2xl md:text-3xl font-normal">{t.history.title}</h2>
-            <p className="text-gray-600 max-w-2xl font-sans text-sm md:text-base">{t.history.text}</p>
+      {/* SECTION 6: History Timeline */}
+      <section className="py-20 bg-white">
+        <div className="vag-container">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-black uppercase tracking-[0.2em] font-serif text-3xl font-normal">{t.history.title}</h2>
+            <p className="text-gray-600 mt-3 text-base font-sans">{t.history.text}</p>
           </div>
 
-          <div className="space-y-6 max-w-3xl">
+          <div className="relative border-l-2 border-gray-200 ml-4 md:ml-32 space-y-12 pl-6 md:pl-10">
             {t.history.events.map((ev, i) => (
-              <div key={i} className="flex gap-4 md:gap-6 items-start">
-                {/* Column 1: Fixed-width Date column (e.g. 128px on mobile, 160px on desktop) */}
-                <div className="w-32 md:w-40 shrink-0 text-right font-serif font-bold text-sm md:text-base text-[#B49661] pt-0.5">
+              <div key={i} className="relative group">
+                <div className="absolute -left-[31px] md:-left-[47px] top-1 w-4 h-4 rounded-full bg-[#B49661] border-4 border-white shadow" />
+                <div className="md:absolute md:-left-36 md:top-0 text-sm font-bold text-[#B49661] font-sans">
                   {ev.date}
                 </div>
-
-                {/* Column 2: Bullet dot + vertical line */}
-                <div className="relative flex flex-col items-center self-stretch shrink-0 w-4">
-                  <div className="w-3 h-3 rounded-full bg-[#B49661] border-2 border-white shrink-0 z-10 mt-1" />
-                  <div className="w-px bg-gray-200 flex-1 -mt-1" />
-                </div>
-
-                {/* Column 3: Heading + Subtext (ALL start at exact same horizontal position!) */}
-                <div className="pb-6 flex-1 min-w-0">
-                  <h4 style={{ fontSize: '12px', fontFamily: 'Inter, sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', lineHeight: 1.3, color: '#002142' }}>
-                    {ev.label}
-                  </h4>
-                  <p className="text-gray-600 leading-relaxed font-sans text-xs md:text-sm m-0">
-                    {ev.text}
-                  </p>
+                <div>
+                  <h4 className="font-bold text-black text-base font-sans mb-1">{ev.label}</h4>
+                  <p className="text-gray-600 text-sm font-sans leading-relaxed m-0">{ev.text}</p>
                 </div>
               </div>
             ))}
@@ -828,17 +845,18 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 7: Where it stands today */}
-      <section className="py-16 bg-[#F9F9F9]">
+      {/* SECTION 7: Where It Stands Today (Metric Pills Removed Per User Request) */}
+      <section className="py-16 bg-white">
         <div className="vag-container max-w-3xl">
           <div className="border-2 border-[#B49661] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
-            <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-xl font-normal">
+            <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-xl">
               {t.today.title}
             </h2>
             <div className="text-3xl md:text-5xl font-serif font-bold text-[#B49661] mb-8">
               {t.today.raised}
             </div>
 
+            {/* Progress bar */}
             <div className="w-full bg-gray-100 h-5 rounded-full overflow-hidden mb-8 border border-gray-200 p-0.5">
               <div
                 className="bg-[#B49661] h-full rounded-full transition-all duration-1000 ease-out"
@@ -846,15 +864,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm font-sans font-semibold text-gray-600 mb-8 border-b border-gray-100 pb-6">
-              {t.today.bars.map((bar, i) => (
-                <div key={i} className="bg-gray-50 p-3 rounded">
-                  <span className="block text-xs text-gray-400 uppercase mb-1">{bar.label}</span>
-                  <span className="text-[#B49661] font-bold text-base">{bar.value}</span>
-                </div>
-              ))}
-            </div>
-
+            {/* Updated status text */}
             <p className="text-gray-700 font-sans max-w-xl mx-auto text-lg leading-relaxed">
               {t.today.status}
             </p>
@@ -866,49 +876,43 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 8: Put your name in the building that outlasts you (Brand Blue Framed CTA Card matching Section 7 design) */}
+      {/* SECTION 8: Put your name in the building that outlasts you */}
       <section id="support" className="py-16 bg-[#F9F9F9]">
         <div className="vag-container max-w-3xl">
           <div
             className="border-2 border-[#B49661] p-8 md:p-12 bg-[#002142] text-white text-center shadow-xl"
             style={{ borderRadius: 'var(--card-radius)' }}
           >
-            <h2 className="text-[#B49661] uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal leading-tight">
+            <h2 className="text-white uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal">
               {t.support.title}
             </h2>
-            <p className="text-gray-300 font-sans max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-8">
+            <p className="text-gray-200 font-sans text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
               {t.support.text}
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-sans text-sm mb-8 border-t border-b border-white/10 py-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-10">
               {t.support.items.map((item, i) => (
-                <div key={i} className="bg-white/10 p-4 rounded border border-white/10">
-                  <span className="block text-[#B49661] font-bold mb-1">{item.title}</span>
-                  <span className="text-gray-200 text-xs leading-relaxed block">{item.text}</span>
+                <div key={i} className="bg-white/10 p-4 rounded-lg border border-white/10">
+                  <h4 className="font-bold text-[#B49661] text-sm mb-1">{item.title}</h4>
+                  <p className="text-xs text-gray-300 leading-relaxed font-sans">{item.text}</p>
                 </div>
               ))}
             </div>
 
-            <div className="text-center">
-              <a
-                href={`/${currentLang}/ziedojumi`}
-                className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-10 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
-                style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
-              >
-                {t.support.button}
-              </a>
-            </div>
+            <Link
+              href={`/${currentLang}/ziedojumi`}
+              className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-10 py-4 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F] text-sm"
+              style={{ borderRadius: 'var(--card-radius-sm)' }}
+            >
+              {t.support.button}
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* SECTION 9: WordPress News Grid */}
+      {/* SECTION 9: News & Updates (Strictly language filtered) */}
       {newsPosts.length > 0 && (
-        <NewsSection
-          posts={newsPosts}
-          title={t.news.title}
-          lang={currentLang}
-        />
+        <NewsSection posts={newsPosts} title={t.news.title} lang={currentLang} />
       )}
     </main>
   );

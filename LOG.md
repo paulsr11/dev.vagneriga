@@ -576,6 +576,170 @@
   - `npx tsc --noEmit` clean with 0 errors.
   - Live server routes `https://dev2.vagneriga.lv/en/ziedojumi`, `https://dev2.vagneriga.lv/lv/ziedojumi`, `https://dev2.vagneriga.lv/de/ziedojumi`, and `https://dev2.vagneriga.lv/en/rebuilding` returning `HTTP 200 OK`.
 
+### Task: Bank transfer modal, Contacts page overhaul, Homepage cleanup, and Global FAQ/Events hiding
+- Summary:
+  - **Bank Transfer Modal**:
+    - Created interactive `TransferAccountModal` ([TransferAccountModal.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/components/blocks/TransferAccountModal.tsx)) with copy IBAN buttons and complete bank details for:
+      1. `Rigas Riharda Vagnera biedriba` (Registration No.: `40008232307`, Swedbank Latvia, SWIFT: `HABALV22`, IBAN: `LV85HABA0551039565078`).
+      2. German Taxpayers via `Richard-Wagner-Verband International e.V.` (Sparkasse Bayreuth, IBAN: `DE71 7735 0110 0009 0946 81`, BIC: `BYLADEM1SBT`).
+    - Connected modal to the `"SHOW ACCOUNT DETAILS"` button on `Ziedojumi` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/ziedojumi/page.tsx)) and `Ziedojumi2`.
+  - **Rebuilding News Section**: Filtered posts strictly by current language (`currentLang`) so `DE`, `EN`, and `LV` only show news in their matching language.
+  - **Homepage Cleanup**: Removed the 4-card patron grid (PATRONS, WAGNER FAMILY, ACOUSTICS, FOUNDING FOUNDATION) and the "AKUSTIKA: Dr. Yasuhisa Toyota" note from `rebuilding/page.tsx`.
+  - **Global Section Hiding**: Hidden the "Tuvākie pasākumi" (Upcoming Events) and "FAQ" sections globally across all pages.
+  - **Contacts Page Overhaul**:
+    - Translated title/subtitle into `LV`, `EN`, and `DE` (`SAZINĀTIES AR MUMS` / `CONTACT US` / `KONTAKTIEREN SIE UNS`).
+    - Added 2 location tags (Theatre location: `Riharda Vāgnera iela 4, Rīga, LV-1050` & Postal address: `Balasta dambis 66A, Rīga, LV-1048`).
+    - Added team member contact cards for Māris Gailis, Signe Viška, and Dr. Konrad Winckler.
+    - Removed SIA section and working hours section.
+    - Renamed Requisites to **`Organisation Details`** and formatted exact organization name `Rigas Riharda Vagnera biedriba` with translated labels (`Registration No.`, `Bank`, `IBAN`).
+  - **Live Site Deployment**:
+    - Committed & pushed changes to GitHub (`paulsr11/dev.vagneriga` on `fundraising` and `dev`).
+    - Executed clean `pnpm run build` on live server `dev2.vagneriga.lv` and restarted service.
+
+- Files changed:
+  - `src/components/blocks/TransferAccountModal.tsx` [NEW]
+  - `src/app/[lang]/kontakti/page.tsx`
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `src/app/[lang]/ziedojumi/page.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `src/components/blocks/FAQSection.tsx`
+  - `src/components/blocks/EventsList.tsx`
+  - `src/components/blocks/ConcertsSection.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Live server routes `https://dev2.vagneriga.lv/en`, `https://dev2.vagneriga.lv/en/kontakti`, `https://dev2.vagneriga.lv/lv/kontakti`, and `https://dev2.vagneriga.lv/en/ziedojumi` returning `HTTP 200 OK`.
+
+### Task: Restore original Contacts page design layout & Toyota Acoustics note text box
+- Summary:
+  - **Restored Contacts Page Design**: Reverted `kontakti/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/kontakti/page.tsx)) to its exact original design system structure, keeping the original font sizing, 50/50 hero split, divider lines, and card containers. Added only the requested additions (2 location tags, team members block, translated titles) and subtractions (working hours section hidden, SIA removed, 1 Biedrība card retained under "Organisation Details").
+  - **Restored Toyota Acoustics Note & Endorsements**:
+    - Restored the 4-card Endorsements grid (Patrons, Wagner Family, Acoustics, Founding Foundation) on `rebuilding/page.tsx`.
+    - Restored the main Acoustics note text box (`t.proof.acousticsNote` regarding Dr. Yasuhisa Toyota and Hamburg's Elbphilharmonie), removing ONLY the small right-hand pill tag (`Akustika: Dr. Yasuhisa Toyota`).
+
+- Files changed:
+  - `src/app/[lang]/kontakti/page.tsx`
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/en`, `http://localhost:3001/lv/kontakti`, `http://localhost:3001/en/kontakti`, and `http://localhost:3001/en/rebuilding` returning `HTTP 1.1 200 OK`.
+
+### Task: Major Donors CTA mailto update & Sponsors section localization overhaul
+- Summary:
+  - **Major Donors CTA**: Updated Major Donors CTA link in `ziedojumi/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/ziedojumi/page.tsx)) and `ziedojumi2/page.tsx` to point directly to **`mailto:info@vagneriga.lv`**.
+  - **Sponsori Page Localization & Structure Overhaul**:
+    - **EKII First Co-Funder**: Re-ordered `MAIN_SUPPORTERS` to place **EKII** first and **Auswärtiges Amt** second.
+    - **Removed Grant Badges**: Removed grant amount badges (`15 000 000 € Piešķīrums` & `5 000 000 € Līdzfinansējums`) from both main co-funders.
+    - **Hero Image Overlay Removed**: Removed text/badge overlay (`KULTŪRAS MANTOJUMA GLĀBŠANA` & address text) from the hero image card.
+    - **Search Bar Removed & Heading Updated**: Removed search bar from donors section; changed section heading to **`DONORS`** (`ZIEDOTĀJI` in LV, `DONORS` in EN, `SPENDER` in DE).
+    - **Complete Translations**: Fully translated all subheadings, titles, partner categories, metrics labels, and count badges across `LV`, `EN`, and `DE` in `SponsorsView.tsx` and `sponsori/page.tsx`.
+
+- Files changed:
+  - `src/app/[lang]/ziedojumi/page.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `src/components/blocks/SponsorsView.tsx`
+  - `src/app/[lang]/sponsori/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/en/sponsori`, `http://localhost:3001/lv/sponsori`, `http://localhost:3001/de/sponsori`, and `http://localhost:3001/en/ziedojumi` returning `HTTP 1.1 200 OK`.
+
+### Task: Sponsors page text updates, headings re-naming & 5th Wagner Society addition
+- Summary:
+  - **Updated Hero Description**: Changed hero text under Sponsors & Donors in `sponsori/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/sponsori/page.tsx)) and `SponsorsView.tsx` to the exact specified text: *"The restoration of the Wagner Theatre Riga is made possible through the generous support of public institutions..."*.
+  - **Updated Headings**:
+    - Renamed Section 2 to **`PUBLIC AND INTERNATIONAL SUPPORT`** / **`MAIN SUPPORTERS`**.
+    - Renamed Section 4 to **`INTERNATIONAL NETWORK`** / **`WAGNER SOCIETIES`**.
+  - **EKII Text & Title Removal**:
+    - Updated EKII description text to the exact requested carbon reduction string (`78 982.24 kgCO2 per year`, `87.59 kWh/m2 per year`).
+    - Removed the `<h3>` title headings for both EKII and Auswärtiges Amt.
+  - **5th Wagner Society Addition**: Added **Richard Wagner Association Magdeburg** to `WAGNER_SOCIETIES` and adjusted grid layout to `lg:grid-cols-5` so all 5 fit in 1 line on desktop.
+
+- Files changed:
+  - `src/components/blocks/SponsorsView.tsx`
+  - `src/app/[lang]/sponsori/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/en/sponsori`, `http://localhost:3001/lv/sponsori`, `http://localhost:3001/de/sponsori` returning `HTTP 1.1 200 OK`.
+
+### Task: Association page (Biedrība) quote, logo, about copy, team roster, & news filtering
+- Summary:
+  - **New Quote for Māris**: Updated quote in `biedriba/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/biedriba/page.tsx)) to the exact new English string: *"My goal has always been to bring back to life Riga's historic opera theatre..."*.
+  - **Society Logo Integration**: Saved attached Riga Richard Wagner Society logo to `public/images/riga_wagner_society_logo.png` and rendered it prominently above the **ABOUT THE SOCIETY** section.
+  - **About the Society Copy**: Replaced about section text with all 3 provided paragraphs (*"Founded in 2015, the Riga Richard Wagner Society was established..."*).
+  - **The Team Behind the Project**: Added a dedicated structured team section for Initiator, Developer, Board members, Management, Lead Architect, Architects, Technical Project Design, FIDIC Engineer, and Builder.
+  - **English News Filtering**: Filtered news posts strictly by `currentLang` so `/en/biedriba` shows only English news posts.
+
+- Files changed:
+  - `src/app/[lang]/biedriba/page.tsx`
+  - `public/images/riga_wagner_society_logo.png` [NEW]
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/en/biedriba`, `http://localhost:3001/lv/biedriba`, `http://localhost:3001/de/biedriba` returning `HTTP 1.1 200 OK`.
+
+### Task: Revert About the Society section design to plain unboxed text
+- Summary:
+  - Reverted the **ABOUT THE SOCIETY** section in `biedriba/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/biedriba/page.tsx)) back to plain, unboxed text directly on the primary white background (`bg-white`), removing the gray background (`bg-[#F9F9F9]`), card borders, and shadow wrapper.
+
+- Files changed:
+  - `src/app/[lang]/biedriba/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/en/biedriba`, `http://localhost:3001/lv/biedriba`, `http://localhost:3001/de/biedriba` returning `HTTP 1.1 200 OK`.
+
+### Task: Narrow About text container, unify hero picture heights, & add team consultants
+- Summary:
+  - **Narrower About Copy**: Set container width of **ABOUT THE SOCIETY** text block on `biedriba/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/biedriba/page.tsx)) to `max-w-2xl` for comfortable, elegant readability.
+  - **Unified Hero Picture Heights**: Standardized the hero image/map containers across **Association** (`biedriba/page.tsx`), **Sponsors** (`SponsorsView.tsx`), and **Contacts** (`kontakti/page.tsx`) to use the exact same `aspect-[4/3]` aspect ratio and card styling.
+  - **Added Team Consultants**: Added **Acoustics Consultant** (*Nagata Acoustics International, Dr. Yasuhisa Toyota*) and **Technology Consultant** (*Theateradvies bv (Netherlands)*) to the project team section on `biedriba/page.tsx`.
+
+- Files changed:
+  - `src/app/[lang]/biedriba/page.tsx`
+  - `src/app/[lang]/kontakti/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/en/biedriba`, `http://localhost:3001/en/sponsori`, `http://localhost:3001/en/kontakti` returning `HTTP 1.1 200 OK`.
+
+### Task: Homepage (Rebuilding) & Donations copy overhaul and progress bar cleanup
+- Summary:
+  - **Homepage First Body Text**: Updated first body text under hero on `rebuilding/page.tsx` ([page.tsx](file:///Users/paulsromans/Documents/Webwoork/Vagneriga/dev.vagneriga/src/app/[lang]/rebuilding/page.tsx)) to: *"Every major European concert hall already has someone's name on it. This one doesn't yet..."*.
+  - **WHAT YOUR SUPPORT RESTORES**: Replaced section copy on `rebuilding/page.tsx`, `ziedojumi/page.tsx`, and `ziedojumi2/page.tsx` with 3 items:
+    1. **The Wagner Theatre** (*The historic theatre where Richard Wagner served as chief conductor...*)
+    2. **The museum** (*An interactive museum exploring Richard Wagner's years in Riga...*)
+    3. **A home for European artists** (*Residencies, rehearsal spaces and performance opportunities...*)
+  - **Removed Metric Pills**: Removed the 3 metric cards (`BUNDESTAG €5M GRANT`, `MESSERSCHMITT FOUNDATION SUPPORT`, `STILL TO RAISE`) below the progress bar on `rebuilding/page.tsx`, `ziedojumi/page.tsx`, and `ziedojumi2/page.tsx`.
+  - **Updated Status Text**: Updated status text below the progress bar on all three pages to: *"Construction began in 2023. Foundation works are complete, and reconstruction continues. With the remaining funding secured, the Wagner Theatre is planned to reopen in 2028."*
+
+- Files changed:
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `src/app/[lang]/ziedojumi/page.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Local routes `http://localhost:3001/en/rebuilding`, `http://localhost:3001/en/ziedojumi`, `http://localhost:3001/en/ziedojumi2` returning `HTTP 1.1 200 OK`.
+
+
+
+
+
+
+
+
+
 
 
 

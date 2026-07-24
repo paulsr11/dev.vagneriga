@@ -1,19 +1,17 @@
 'use client';
 
-import { useState, useMemo } from 'react';
 import Image from 'next/image';
-import { Search, Award, Building2, HeartHandshake, ShieldCheck, Users } from 'lucide-react';
+import { Award, Building2, HeartHandshake } from 'lucide-react';
 
 interface SupportItem {
-  title: string;
   image: string;
-  badge?: string;
   text: string;
+  alt: string;
 }
 
 interface PartnerLogo {
   name: string;
-  category: string;
+  category: { lv: string; en: string; de: string };
   src: string;
 }
 
@@ -28,75 +26,110 @@ interface SponsorsViewProps {
 }
 
 const labels: Record<string, Record<string, string>> = {
-  atbalsta: { lv: 'Galvenie Līdzfinansētāji', en: 'Main Co-Funders', de: 'Hauptförderer' },
-  partneri: { lv: 'Stratēģiskie Partneri', en: 'Strategic Partners', de: 'Strategische Partner' },
-  biedribas: { lv: 'Vāgnera Biedrības', en: 'Wagner Societies', de: 'Wagner-Gesellschaften' },
-  ziedotaji: { lv: 'Meceenāti un Ziedotāji', en: 'Donors & Patrons', de: 'Förderer & Spender' },
-  uznemumi: { lv: 'Atbalstītāju Uzņēmumi', en: 'Corporate Donors', de: 'Partnerunternehmen' },
-  privatpersonas: { lv: 'Privātpersonas', en: 'Private Donors', de: 'Privatpersonen' },
-  searchPlaceholder: { lv: 'Meklēt ziedotāju vai uzņēmumu...', en: 'Search donor or company...', de: 'Spender oder Unternehmen suchen...' },
-  noResults: { lv: 'Nekas netika atrasts pēc pieprasījuma', en: 'No matching donors found', de: 'Keine Spender gefunden' },
+  heroFunds: { lv: 'Piesaistīti fondi', en: 'Funds Raised', de: 'Eingeworbene Mittel' },
+  heroDonors: { lv: 'Ziedotāji un Meceenāti', en: 'Donors & Patrons', de: 'Spender & Förderer' },
+  heroOpening: { lv: 'Paredzamā atklāšana', en: 'Target Opening', de: 'Geplante Eröffnung' },
+  
+  subheadingCoFunders: { lv: 'PUBLISKAIS UN STARPTAUTISKAIS ATBALSTS', en: 'PUBLIC AND INTERNATIONAL SUPPORT', de: 'ÖFFENTLICHE UND INTERNATIONALE FÖRDERUNG' },
+  titleCoFunders: { lv: 'GALVENIE ATBALSTĪTĀJI', en: 'MAIN SUPPORTERS', de: 'HAUPTUNTERSTÜTZER' },
+
+  subheadingPartners: { lv: 'Institucionālais un Korporatīvais Atbalsts', en: 'Institutional & Corporate Support', de: 'Institutionelle & Korporative Unterstützung' },
+  titlePartners: { lv: 'Stratēģiskie Partneri', en: 'Strategic Partners', de: 'Strategische Partner' },
+
+  subheadingSocieties: { lv: 'STARPTAUTISKAIS TĪKLS', en: 'INTERNATIONAL NETWORK', de: 'INTERNATIONALES NETZWERK' },
+  titleSocieties: { lv: 'VĀGNERA BIEDRĪBAS', en: 'WAGNER SOCIETIES', de: 'WAGNER-GESELLSCHAFTEN' },
+  badgeSocieties: { lv: 'Starptautiskā Vāgnera Biedrību Apvienība', en: 'International Association of Wagner Societies', de: 'Internationaler Richard-Wagner-Verband' },
+
+  subheadingDonors: { lv: 'Paldies Par Ieguldījumu', en: 'Thank You for Your Support', de: 'Vielen Dank für Ihre Unterstützung' },
+  titleDonors: { lv: 'ZIEDOTĀJI', en: 'DONORS', de: 'SPENDER' },
+
+  uznemumiTitle: { lv: 'Atbalstītāju Uzņēmumi', en: 'Corporate Donors', de: 'Partnerunternehmen' },
+  uznemumiCount: { lv: '16 Uzņēmumi', en: '16 Companies', de: '16 Unternehmen' },
+  privatpersonasTitle: { lv: 'Privātpersonas', en: 'Private Donors', de: 'Privatpersonen' },
+  privatpersonasCount: { lv: '140+ Ziedotāji', en: '140+ Donors', de: '140+ Spender' },
+  donorBadge: { lv: 'Ziedotājs', en: 'Donor', de: 'Spender' },
 };
 
+// Main Co-Funders: EKII FIRST, Auswärtiges Amt SECOND (Headings removed per user request)
 const MAIN_SUPPORTERS: Record<string, SupportItem[]> = {
   lv: [
     {
-      title: 'Vācijas Ārlietu Ministrija',
-      image: '/images/sponsors/auswaertiges-amt.png',
-      badge: '5 000 000 € Līdzfinansējums',
-      text: 'Projektu “Siltumnīcefekta gāzu emisiju samazināšana “Rīgas Vāgnera namā”, Riharda Vāgnera ielā 4, Rīgā, LV-1050, atjaunojot un restaurējot Rīgas Vāgnera namu” 5 000 000 eiro apmērā līdzfinansē Vācijas Ārlietu ministrija.'
+      alt: 'Emisijas Kvotu Izsolīšanas Instruments (EKII)',
+      image: '/wp-content/uploads/2025/09/LOGO_EKII-pa-labi_CMYK-300x253.png',
+      text: 'Plānots, ka projekta īstenošanas rezultātā oglekļa dioksīda emisiju samazinājums būs vismaz 78 982,24 kgCO2 gadā, savukārt plānotais siltumenerģijas patēriņš apkurei nepārsniegs 87,59 kWh/m2 gadā.'
     },
     {
-      title: 'Emisijas Kvotu Izsolīšanas Instruments (EKII)',
-      image: '/wp-content/uploads/2025/09/LOGO_EKII-pa-labi_CMYK-300x253.png',
-      badge: '15 000 000 € Piešķīrums',
-      text: 'Projektu “Siltumnīcefekta gāzu emisiju samazināšana “Rīgas Vāgnera namā”, Riharda Vāgnera ielā 4, Rīgā, LV-1050” 15 000 000 eiro apmērā finansē EKII. Mērķis: samazināt CO2 emisijas vismaz par 78 982 kgCO2/gadā.'
+      alt: 'Vācijas Ārlietu Ministrija',
+      image: '/images/sponsors/auswaertiges-amt.png',
+      text: 'Projektu “Siltumnīcefekta gāzu emisiju samazināšana “Rīgas Vāgnera namā”, Riharda Vāgnera ielā 4, Rīgā, LV-1050, atjaunojot un restaurējot Rīgas Vāgnera namu” līdzfinansē Vācijas Ārlietu ministrija.'
     }
   ],
   en: [
     {
-      title: 'Federal Foreign Office of Germany',
-      image: '/images/sponsors/auswaertiges-amt.png',
-      badge: '€5,000,000 Grant',
-      text: 'The project for greenhouse gas emission reduction and restoration of the Wagner House in Riga is co-financed with €5,000,000 by the Federal Foreign Office of Germany.'
+      alt: 'Emission Allowance Auctioning Instrument (EKII)',
+      image: '/wp-content/uploads/2025/09/LOGO_EKII-pa-labi_CMYK-300x253.png',
+      text: 'The project is expected to result in a reduction of carbon dioxide emissions of at least 78 982.24 kgCO2 per year, while the planned energy consumption for heating will not exceed 87.59 kWh/m2 per year.'
     },
     {
-      title: 'Emission Allowance Auctioning Instrument (EKII)',
-      image: '/wp-content/uploads/2025/09/LOGO_EKII-pa-labi_CMYK-300x253.png',
-      badge: '€15,000,000 Allocation',
-      text: 'The environmental restoration and energy efficiency project at Riharda Vagnera Street 4 is funded with €15,000,000 through the emission allowance auctioning instrument.'
+      alt: 'Federal Foreign Office of Germany',
+      image: '/images/sponsors/auswaertiges-amt.png',
+      text: 'The project for greenhouse gas emission reduction and restoration of the Riga Wagner House, Riharda Vagnera Street 4, is co-financed by the Federal Foreign Office of Germany.'
     }
   ],
   de: [
     {
-      title: 'Auswärtiges Amt der Bundesrepublik Deutschland',
-      image: '/images/sponsors/auswaertiges-amt.png',
-      badge: '5.000.000 € Kofinanzierung',
-      text: 'Das Projekt zur Reduzierung von Treibhausgasemissionen und zur Wiederherstellung des Wagner-Hauses in Riga wird mit 5.000.000 Euro vom Auswärtigen Amt kofinanziert.'
+      alt: 'Versteigerungsinstrument für Emissionsquoten (EKII)',
+      image: '/wp-content/uploads/2025/09/LOGO_EKII-pa-labi_CMYK-300x253.png',
+      text: 'Es wird erwartet, dass das Projekt zu einer Reduzierung der Kohlendioxidemissionen von mindestens 78.982,24 kgCO2 pro Jahr führt, während der geplante Energieverbrauch für Heizung 87,59 kWh/m2 pro Jahr nicht überschreitet.'
     },
     {
-      title: 'Versteigerungsinstrument für Emissionsquoten (EKII)',
-      image: '/wp-content/uploads/2025/09/LOGO_EKII-pa-labi_CMYK-300x253.png',
-      badge: '15.000.000 € Förderung',
-      text: 'Das Energieeffizienz- und Sanierungsprojekt im Wagner-Haus Riga wird im Umfang von 15.000.000 Euro aus dem EKII gefördert.'
+      alt: 'Auswärtiges Amt der Bundesrepublik Deutschland',
+      image: '/images/sponsors/auswaertiges-amt.png',
+      text: 'Das Projekt zur Reduzierung von Treibhausgasemissionen und zur Sanierung des Wagner-Hauses in Riga wird vom Auswärtiges Amt der Bundesrepublik Deutschland kofinanziert.'
     }
   ]
 };
 
 const STRATEGIC_PARTNERS: PartnerLogo[] = [
-  { name: 'SCHWENK Latvija', category: 'Ģenerālsponsors', src: '/images/sponsors/schwenk.png' },
-  { name: 'Rīgas Valstspilsētas Pašvaldība', category: 'Pašvaldības atbalsts', src: '/images/sponsors/riga.png' },
-  { name: 'Messerschmitt Stiftung', category: 'Dibināšanas fonds', src: '/images/sponsors/messerschmitt-stiftung.png' },
-  { name: 'Vācijas Vēstniecība Rīgā', category: 'Diplomātiskais atbalsts', src: '/images/sponsors/german-embassy.png' },
-  { name: 'Richard-Wagner-Verband', category: 'Starptautiskā apvienība', src: '/images/sponsors/richard-wagner-verband.png' },
-  { name: 'Latvijas Valsts Meži', category: 'Valsts partneris', src: '/images/sponsors/latvijas-valsts-mezi.png' },
+  { 
+    name: 'SCHWENK Latvija', 
+    category: { lv: 'Ģenerālsponsors', en: 'General Sponsor', de: 'Hauptsponsor' }, 
+    src: '/images/sponsors/schwenk.png' 
+  },
+  { 
+    name: 'Rīgas Valstspilsētas Pašvaldība', 
+    category: { lv: 'Pašvaldības atbalsts', en: 'Municipal Support', de: 'Kommunale Unterstützung' }, 
+    src: '/images/sponsors/riga.png' 
+  },
+  { 
+    name: 'Messerschmitt Stiftung', 
+    category: { lv: 'Dibināšanas fonds', en: 'Founding Foundation', de: 'Gründungsstiftung' }, 
+    src: '/images/sponsors/messerschmitt-stiftung.png' 
+  },
+  { 
+    name: 'Vācijas Vēstniecība Rīgā', 
+    category: { lv: 'Diplomātiskais atbalsts', en: 'Diplomatic Support', de: 'Diplomatische Unterstützung' }, 
+    src: '/images/sponsors/german-embassy.png' 
+  },
+  { 
+    name: 'Richard-Wagner-Verband', 
+    category: { lv: 'Starptautiskā apvienība', en: 'International Association', de: 'Internationaler Verband' }, 
+    src: '/images/sponsors/richard-wagner-verband.png' 
+  },
+  { 
+    name: 'Latvijas Valsts Meži', 
+    category: { lv: 'Valsts partneris', en: 'State Partner', de: 'Staatspartner' }, 
+    src: '/images/sponsors/latvijas-valsts-mezi.png' 
+  },
 ];
 
+// 5 Wagner Societies to fit in 1 line
 const WAGNER_SOCIETIES = [
-  { name: 'Richard Wagner Association Berlin-Brandenburg', location: 'Vācija / Germany' },
-  { name: 'Richard Wagner Association Coburg', location: 'Vācija / Germany' },
-  { name: 'Richard Wagner Association Freiburg', location: 'Vācija / Germany' },
-  { name: 'Richard Wagner Association Minden', location: 'Vācija / Germany' },
+  { name: 'Richard Wagner Association Berlin-Brandenburg', location: { lv: 'Vācija', en: 'Germany', de: 'Deutschland' } },
+  { name: 'Richard Wagner Association Coburg', location: { lv: 'Vācija', en: 'Germany', de: 'Deutschland' } },
+  { name: 'Richard Wagner Association Freiburg', location: { lv: 'Vācija', en: 'Germany', de: 'Deutschland' } },
+  { name: 'Richard Wagner Association Magdeburg', location: { lv: 'Vācija', en: 'Germany', de: 'Deutschland' } },
+  { name: 'Richard Wagner Association Minden', location: { lv: 'Vācija', en: 'Germany', de: 'Deutschland' } },
 ];
 
 const CORPORATE_DONORS = [
@@ -154,30 +187,14 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
   const t = (key: string) => labels[key]?.[currentLang] || labels[key]?.lv || '';
   const mainSupporters = MAIN_SUPPORTERS[currentLang] || MAIN_SUPPORTERS.lv;
 
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // Filtered Private Donors
-  const filteredDonors = useMemo(() => {
-    if (!searchQuery.trim()) return PRIVATE_DONORS;
-    const q = searchQuery.toLowerCase().trim();
-    return PRIVATE_DONORS.filter(name => name.toLowerCase().includes(q));
-  }, [searchQuery]);
-
-  // Filtered Corporate Donors
-  const filteredCompanies = useMemo(() => {
-    if (!searchQuery.trim()) return CORPORATE_DONORS;
-    const q = searchQuery.toLowerCase().trim();
-    return CORPORATE_DONORS.filter(name => name.toLowerCase().includes(q));
-  }, [searchQuery]);
-
   // Split private donors into two balanced columns
-  const midPoint = Math.ceil(filteredDonors.length / 2);
-  const col1 = filteredDonors.slice(0, midPoint);
-  const col2 = filteredDonors.slice(midPoint);
+  const midPoint = Math.ceil(PRIVATE_DONORS.length / 2);
+  const col1 = PRIVATE_DONORS.slice(0, midPoint);
+  const col2 = PRIVATE_DONORS.slice(midPoint);
 
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      {/* 1. HERO SECTION (With subheading formatted identically to Biedrība page) */}
+      {/* 1. HERO SECTION */}
       <section className="vag-container pt-8 pb-16">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left Text Column */}
@@ -192,19 +209,19 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
               {heroData.text}
             </p>
 
-            {/* Quick Metrics Badges */}
+            {/* Metrics Badges */}
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
               <div>
                 <div className="font-serif text-2xl md:text-3xl font-bold text-[#B49661]">€21M+</div>
-                <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">Piesaistīti fondi</div>
+                <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">{t('heroFunds')}</div>
               </div>
               <div>
                 <div className="font-serif text-2xl md:text-3xl font-bold text-[#002142]">140+</div>
-                <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">Meceenāti</div>
+                <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">{t('heroDonors')}</div>
               </div>
               <div>
                 <div className="font-serif text-2xl md:text-3xl font-bold text-[#002142]">2028</div>
-                <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">Atklāšanas gads</div>
+                <div className="text-xs text-gray-500 font-sans uppercase tracking-wider mt-1">{t('heroOpening')}</div>
               </div>
             </div>
           </div>
@@ -221,26 +238,18 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white text-left z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#B49661] text-white text-xs font-bold uppercase tracking-wider rounded mb-2">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  Kultūras Mantojuma Glābšana
-                </div>
-                <p className="text-sm opacity-90 font-serif italic">Rīgas Riharda Vāgnera Teātris, Riharda Vāgnera ielā 4, Rīgā</p>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. GALVENIE LĪDZFINANSĒTĀJI */}
+      {/* 2. PUBLIC AND INTERNATIONAL SUPPORT / MAIN SUPPORTERS */}
       <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-200">
         <div className="vag-container">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">Valsts un Starptautiskais Atbalsts</p>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">{t('subheadingCoFunders')}</p>
             <h2 className="text-black uppercase tracking-[0.2em]">
-              {t('atbalsta')}
+              {t('titleCoFunders')}
             </h2>
           </div>
 
@@ -253,15 +262,9 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-6">
                     <div className="relative h-20 w-48 shrink-0">
-                      <Image src={item.image} alt={item.title} fill className="object-contain object-left" sizes="200px" />
+                      <Image src={item.image} alt={item.alt} fill className="object-contain object-left" sizes="200px" />
                     </div>
-                    {item.badge && (
-                      <span className="inline-block bg-[#B49661]/10 text-[#B49661] border border-[#B49661]/30 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full">
-                        {item.badge}
-                      </span>
-                    )}
                   </div>
-                  <h3 className="text-black font-serif text-xl font-bold mb-4 text-left leading-snug">{item.title}</h3>
                   <p className="text-gray-600 text-sm md:text-base leading-relaxed text-left font-sans whitespace-pre-line">
                     {item.text}
                   </p>
@@ -276,9 +279,9 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
       <section className="py-20 bg-white">
         <div className="vag-container">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">Institucionālais un Korporatīvais Atbalsts</p>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">{t('subheadingPartners')}</p>
             <h2 className="text-black uppercase tracking-[0.2em]">
-              {t('partneri')}
+              {t('titlePartners')}
             </h2>
           </div>
 
@@ -292,7 +295,7 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
                   <Image src={partner.src} alt={partner.name} fill className="object-contain" sizes="160px" />
                 </div>
                 <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider group-hover:text-[#B49661] transition-colors">
-                  {partner.category}
+                  {partner.category[currentLang]}
                 </span>
               </div>
             ))}
@@ -300,27 +303,27 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
         </div>
       </section>
 
-      {/* 4. STARPTAUTISKĀS VĀGNERA BIEDRĪBAS */}
+      {/* 4. INTERNATIONAL NETWORK / WAGNER SOCIETIES (5 items in 1 row) */}
       <section className="vag-container py-12">
         <div className="bg-[#002142] text-white p-8 md:p-14 rounded-[var(--card-radius)]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-white/15">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Baireitas Ideju Tīkls</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">{t('subheadingSocieties')}</span>
               <h3 className="text-white uppercase tracking-[0.2em] mt-1 font-normal">
-                {t('biedribas')}
+                {t('titleSocieties')}
               </h3>
             </div>
             <div className="flex items-center gap-2 text-xs text-gray-400 font-sans">
               <Award className="w-4 h-4 text-[#B49661]" />
-              Starptautiskā Vāgnera Biedrību Apvienība
+              {t('badgeSocieties')}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {WAGNER_SOCIETIES.map((society, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-6 rounded-lg text-left hover:border-[#B49661] transition-colors">
-                <div className="text-[#B49661] text-xs font-bold tracking-widest uppercase mb-2">{society.location}</div>
-                <div className="font-serif font-bold text-white text-base leading-snug">{society.name}</div>
+              <div key={i} className="bg-white/5 border border-white/10 p-5 rounded-lg text-left hover:border-[#B49661] transition-colors">
+                <div className="text-[#B49661] text-xs font-bold tracking-widest uppercase mb-2">{society.location[currentLang]}</div>
+                <div className="font-serif font-bold text-white text-sm leading-snug">{society.name}</div>
               </div>
             ))}
           </div>
@@ -330,100 +333,69 @@ export default function SponsorsView({ lang = 'lv', heroData }: SponsorsViewProp
       {/* 5. PILNS ZIEDOTĀJU UN ATBALSTĪTĀJU KATALOGS */}
       <section className="py-20 bg-[#F9F9F9] border-t border-gray-200">
         <div className="vag-container">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">Paldies Par Ieguldījumu</p>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">{t('subheadingDonors')}</p>
             <h2 className="text-black uppercase tracking-[0.2em]">
-              {t('ziedotaji')}
+              {t('titleDonors')}
             </h2>
           </div>
 
-          {/* Search Box */}
-          <div className="max-w-xl mx-auto mb-16">
-            <div className="relative">
-              <input 
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t('searchPlaceholder')}
-                className="w-full bg-white border border-gray-300 rounded-full py-4 pl-12 pr-6 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-[#B49661] focus:ring-2 focus:ring-[#B49661]/20 shadow-sm transition-all"
-              />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-              {searchQuery && (
-                <button 
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-400 hover:text-black uppercase"
+          {/* Corporate Donors Grid */}
+          <div className="mb-16">
+            <div className="flex items-center justify-between mb-8 pb-3 border-b border-gray-300">
+              <h3 className="text-black font-serif text-xl font-bold uppercase tracking-wider flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-[#B49661]" />
+                {t('uznemumiTitle')}
+              </h3>
+              <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">
+                {t('uznemumiCount')}
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {CORPORATE_DONORS.map((company, i) => (
+                <div 
+                  key={i} 
+                  className="bg-white p-4 border border-gray-200 rounded-lg text-center text-sm font-semibold text-gray-800 shadow-sm hover:border-[#B49661] hover:shadow transition-all"
                 >
-                  Clear
-                </button>
-              )}
+                  {company}
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Companies Grid */}
-          {filteredCompanies.length > 0 && (
-            <div className="mb-16">
-              <div className="flex items-center justify-between mb-8 pb-3 border-b border-gray-300">
-                <h3 className="text-black font-serif text-xl font-bold uppercase tracking-wider flex items-center gap-2">
-                  <Building2 className="w-5 h-5 text-[#B49661]" />
-                  {t('uznemumi')}
-                </h3>
-                <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">
-                  {filteredCompanies.length} Uzņēmumi
-                </span>
+          {/* Private Donors Roster */}
+          <div>
+            <div className="flex items-center justify-between mb-8 pb-3 border-b border-gray-300">
+              <h3 className="text-black font-serif text-xl font-bold uppercase tracking-wider flex items-center gap-2">
+                <HeartHandshake className="w-5 h-5 text-[#B49661]" />
+                {t('privatpersonasTitle')}
+              </h3>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#002142] bg-white px-3 py-1 rounded-full border border-gray-200">
+                {t('privatpersonasCount')}
+              </span>
+            </div>
+
+            <div 
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-3 bg-white p-8 md:p-12 border border-gray-200 shadow-sm rounded-[var(--card-radius)]"
+            >
+              <div className="space-y-3 text-left">
+                {col1.map((name, i) => (
+                  <div key={i} className="border-b border-gray-100 pb-2 text-sm text-gray-800 font-medium font-sans flex items-center justify-between">
+                    <span>{name}</span>
+                    <span className="text-gray-400 text-xs font-serif italic">{t('donorBadge')}</span>
+                  </div>
+                ))}
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredCompanies.map((company, i) => (
-                  <div 
-                    key={i} 
-                    className="bg-white p-4 border border-gray-200 rounded-lg text-center text-sm font-semibold text-gray-800 shadow-sm hover:border-[#B49661] hover:shadow transition-all"
-                  >
-                    {company}
+              <div className="space-y-3 text-left">
+                {col2.map((name, i) => (
+                  <div key={i} className="border-b border-gray-100 pb-2 text-sm text-gray-800 font-medium font-sans flex items-center justify-between">
+                    <span>{name}</span>
+                    <span className="text-gray-400 text-xs font-serif italic">{t('donorBadge')}</span>
                   </div>
                 ))}
               </div>
             </div>
-          )}
-
-          {/* Private Donors Roster */}
-          {filteredDonors.length > 0 ? (
-            <div>
-              <div className="flex items-center justify-between mb-8 pb-3 border-b border-gray-300">
-                <h3 className="text-black font-serif text-xl font-bold uppercase tracking-wider flex items-center gap-2">
-                  <HeartHandshake className="w-5 h-5 text-[#B49661]" />
-                  {t('privatpersonas')}
-                </h3>
-                <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">
-                  {filteredDonors.length} Meceenāti
-                </span>
-              </div>
-
-              <div 
-                className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-3 bg-white p-8 md:p-12 border border-gray-200 shadow-sm rounded-[var(--card-radius)]"
-              >
-                <div className="space-y-3 text-left">
-                  {col1.map((name, i) => (
-                    <div key={i} className="border-b border-gray-100 pb-2 text-sm text-gray-800 font-medium font-sans flex items-center justify-between">
-                      <span>{name}</span>
-                      <span className="text-gray-300 text-xs font-serif italic">Ziedotājs</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="space-y-3 text-left">
-                  {col2.map((name, i) => (
-                    <div key={i} className="border-b border-gray-100 pb-2 text-sm text-gray-800 font-medium font-sans flex items-center justify-between">
-                      <span>{name}</span>
-                      <span className="text-gray-300 text-xs font-serif italic">Ziedotājs</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : filteredCompanies.length === 0 ? (
-            <div className="py-12 text-center text-gray-400 font-sans">
-              <Users className="w-12 h-12 mx-auto mb-4 opacity-40" />
-              <p className="text-lg">{t('noResults')}</p>
-            </div>
-          ) : null}
+          </div>
         </div>
       </section>
     </div>
