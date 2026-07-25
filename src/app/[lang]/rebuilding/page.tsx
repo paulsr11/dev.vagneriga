@@ -576,8 +576,8 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             <div className="w-full md:w-1/2">
               <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md rounded-[var(--card-radius)] border border-gray-100">
                 <Image
-                  src="/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg"
-                  alt="Māris Gailis"
+                  src="/images/projekts/wagner_side_profile.jpg"
+                  alt={t.rebuilding.title}
                   fill
                   className="object-cover"
                 />
@@ -654,74 +654,50 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 4: The People Behind It */}
-      <section className="py-20 bg-white">
+      {/* SECTION 4: The people behind it */}
+      <section className="py-16 bg-white">
         <div className="vag-container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-black uppercase tracking-[0.2em] font-serif text-3xl font-normal">{t.team.title}</h2>
-          </div>
+          <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
+            {/* Left Column - Texts */}
+            <div className="w-full md:w-1/2 text-left">
+              <h2 className="mb-8 text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">
+                {t.team.title}
+              </h2>
 
-          <div className="grid gap-12 md:grid-cols-2 items-stretch">
-            {/* Maris Gailis Card */}
-            <div className="bg-[#FBFBFB] border border-gray-100 p-8 md:p-10 flex flex-col justify-between rounded-[var(--card-radius)]">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
-                    <Image
-                      src="/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg"
-                      alt="Māris Gailis"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-serif font-bold text-black text-xl m-0">Māris Gailis</h3>
-                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
-                      {currentLang === 'lv' ? 'Biedrības vadītājs' : currentLang === 'en' ? 'Head of the Association' : 'Vereinsvorsitzender'}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-gray-700 text-base leading-relaxed font-sans">
+              <div className="space-y-8 mb-8 font-sans">
+                <p className="text-gray-700 leading-relaxed text-base">
                   {t.team.profile1}
                 </p>
+
+                <div className="border-l-2 border-[#B49661] pl-6 py-1">
+                  <blockquote className="text-gray-700 italic leading-relaxed text-lg mb-2">
+                    {t.team.profile2.text}
+                  </blockquote>
+                  <cite className="text-sm font-semibold text-gray-500 not-italic">
+                    — {t.team.profile2.author}
+                  </cite>
+                </div>
               </div>
-              <div className="mt-8 pt-6 border-t border-gray-200/60">
+
+              <div>
                 <Link
                   href={`/${currentLang}/biedriba`}
-                  className="inline-flex items-center text-[#B49661] font-bold text-sm uppercase tracking-wider hover:underline"
+                  className="text-[#B49661] font-bold hover:underline inline-flex items-center gap-1 uppercase tracking-wider text-sm"
                 >
                   {t.team.button}
                 </Link>
               </div>
             </div>
 
-            {/* Eva Wagner Card */}
-            <div className="bg-[#002142] text-white p-8 md:p-10 flex flex-col justify-between rounded-[var(--card-radius)]">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
-                    <Image
-                      src="/images/patrons/eva_wagner_pasquier.png"
-                      alt="Eva Wagner-Pasquier"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-serif font-bold text-white text-xl m-0">Eva Wagner-Pasquier</h3>
-                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
-                      {currentLang === 'lv' ? 'Vāgnera mazmazmeita · Patrone' : currentLang === 'en' ? "Wagner's Great-granddaughter · Patron" : 'Wagners Urenkelin · Schirmherrin'}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-gray-200 text-base leading-relaxed font-serif italic">
-                  {t.team.profile2.text}
-                </p>
-              </div>
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <span className="text-xs uppercase tracking-widest text-[#B49661] font-sans font-semibold">
-                  {t.team.profile2.author}
-                </span>
+            {/* Right Column - Large Image of Maris & Zaiga */}
+            <div className="w-full md:w-1/2">
+              <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md" style={{ borderRadius: 'var(--card-radius)' }}>
+                <Image
+                  src="/images/projekts/maris_zaiga.jpg"
+                  alt="Māris Gailis & Zaiga Gaile"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -729,115 +705,110 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       </section>
 
       {/* SECTION 5: Endorsed at the Highest Level */}
-      <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-100">
+      <section className="py-20 bg-[#F9F9F9] border-t border-b border-gray-200">
         <div className="vag-container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-2">{t.proof.eyebrow}</p>
-            <h2 className="text-black uppercase tracking-[0.2em] font-serif text-3xl font-normal">
+          <div className="mb-16 max-w-3xl">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#B49661] mb-3">
+              {t.proof.eyebrow}
+            </p>
+            <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase">
               {t.proof.title}
             </h2>
-            <p className="text-gray-600 mt-4 text-base font-sans">
+            <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
               {t.proof.text}
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {/* Frank-Walter Steinmeier Card */}
-            <div className="bg-white p-8 border border-gray-200 flex flex-col justify-between rounded-[var(--card-radius)]">
+          {/* Patron People Cards Grid (3 patrons) */}
+          <div className="grid gap-8 md:grid-cols-3 mb-12">
+            {/* Frank-Walter Steinmeier */}
+            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
               <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
-                    <Image
-                      src="/images/patrons/frank_walter_steinmeier.jpg"
-                      alt="Frank-Walter Steinmeier"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-serif font-bold text-black text-lg m-0">Frank-Walter Steinmeier</h3>
-                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
-                      {t.proof.steinmeierRole}
-                    </p>
-                  </div>
+                <div className="relative w-full h-[280px] overflow-hidden rounded-[var(--card-radius-sm)] mb-4">
+                  <Image src="/images/patrons/steinmeier.jpg" alt="Frank-Walter Steinmeier" fill className="object-cover object-[50%_0%]" />
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed font-sans">
+                <h3 className="font-serif font-bold text-black text-lg leading-snug">Frank-Walter Steinmeier</h3>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.steinmeierRole}</p>
+                <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.steinmeierComment}
                 </p>
               </div>
             </div>
 
-            {/* Egils Levits Card */}
-            <div className="bg-white p-8 border border-gray-200 flex flex-col justify-between rounded-[var(--card-radius)]">
+            {/* Egils Levits */}
+            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
               <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
-                    <Image
-                      src="/images/patrons/egils_levits.jpg"
-                      alt="Egils Levits"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-serif font-bold text-black text-lg m-0">Egils Levits</h3>
-                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
-                      {t.proof.levitsRole}
-                    </p>
-                  </div>
+                <div className="relative w-full h-[280px] overflow-hidden rounded-[var(--card-radius-sm)] mb-4">
+                  <Image src="/images/patrons/levits.jpg" alt="Egils Levits" fill className="object-cover object-[50%_15%]" />
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed font-sans">
+                <h3 className="font-serif font-bold text-black text-lg leading-snug">Egils Levits</h3>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.levitsRole}</p>
+                <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.levitsComment}
                 </p>
               </div>
             </div>
 
-            {/* Eva Wagner-Pasquier Card */}
-            <div className="bg-white p-8 border border-gray-200 flex flex-col justify-between rounded-[var(--card-radius)]">
+            {/* Eva Wagner-Pasquier */}
+            <div className="bg-white p-6 rounded-[var(--card-radius)] border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
               <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#B49661]">
-                    <Image
-                      src="/images/patrons/eva_wagner_pasquier.png"
-                      alt="Eva Wagner-Pasquier"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-serif font-bold text-black text-lg m-0">Eva Wagner-Pasquier</h3>
-                    <p className="text-xs uppercase tracking-wider text-[#B49661] font-sans font-semibold m-0 mt-0.5">
-                      {t.proof.evaRole}
-                    </p>
-                  </div>
+                <div className="relative w-full h-[280px] overflow-hidden rounded-[var(--card-radius-sm)] mb-4">
+                  <Image src="/images/patrons/wagner.jpg" alt="Eva Wagner-Pasquier" fill className="object-cover object-[50%_0%]" />
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed font-sans">
+                <h3 className="font-serif font-bold text-black text-lg leading-snug">Eva Wagner-Pasquier</h3>
+                <p className="text-xs text-[#B49661] font-bold uppercase tracking-wider mt-1 mb-3">{t.proof.evaRole}</p>
+                <p className="text-gray-600 text-xs font-sans leading-relaxed">
                   {t.proof.evaComment}
                 </p>
               </div>
             </div>
           </div>
+
+          {/* Highlighted Quote from Eva Wagner-Pasquier */}
+          <div className="bg-[#002142] text-white p-8 md:p-10 rounded-[var(--card-radius)] shadow-xl border-l-4 border-l-[#B49661] relative overflow-hidden">
+            <div className="relative z-10">
+              <span className="text-[#B49661] text-xs font-bold uppercase tracking-[0.2em] block mb-3">{t.proof.quoteEyebrow}</span>
+              <blockquote className="font-serif italic text-lg md:text-2xl leading-relaxed text-gray-100 mb-4">
+                {t.proof.evaQuote}
+              </blockquote>
+              <cite className="not-italic text-sm font-semibold text-gray-400 font-sans block">
+                — {t.proof.evaQuoteAuthor}
+              </cite>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 6: History Timeline */}
-      <section className="py-20 bg-white">
-        <div className="vag-container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-black uppercase tracking-[0.2em] font-serif text-3xl font-normal">{t.history.title}</h2>
-            <p className="text-gray-600 mt-3 text-base font-sans">{t.history.text}</p>
+      {/* SECTION 6: How we got here (Timeline) */}
+      <section className="py-16 bg-white">
+        <div className="vag-container max-w-4xl">
+          <div className="text-left mb-16">
+            <h2 className="text-black uppercase tracking-widest mb-4 font-serif text-2xl md:text-3xl font-normal">{t.history.title}</h2>
+            <p className="text-gray-600 max-w-2xl font-sans text-sm md:text-base">{t.history.text}</p>
           </div>
 
-          <div className="relative border-l-2 border-gray-200 ml-4 md:ml-32 space-y-12 pl-6 md:pl-10">
+          <div className="space-y-6 max-w-3xl">
             {t.history.events.map((ev, i) => (
-              <div key={i} className="relative group">
-                <div className="absolute -left-[31px] md:-left-[47px] top-1 w-4 h-4 rounded-full bg-[#B49661] border-4 border-white shadow" />
-                <div className="md:absolute md:-left-36 md:top-0 text-sm font-bold text-[#B49661] font-sans">
+              <div key={i} className="flex gap-4 md:gap-6 items-start">
+                {/* Column 1: Fixed-width Date column */}
+                <div className="w-32 md:w-40 shrink-0 text-right font-serif font-bold text-sm md:text-base text-[#B49661] pt-0.5">
                   {ev.date}
                 </div>
-                <div>
-                  <h4 className="font-bold text-black text-base font-sans mb-1">{ev.label}</h4>
-                  <p className="text-gray-600 text-sm font-sans leading-relaxed m-0">{ev.text}</p>
+
+                {/* Column 2: Bullet dot + vertical line */}
+                <div className="relative flex flex-col items-center self-stretch shrink-0 w-4">
+                  <div className="w-3 h-3 rounded-full bg-[#B49661] border-2 border-white shrink-0 z-10 mt-1" />
+                  <div className="w-px bg-gray-200 flex-1 -mt-1" />
+                </div>
+
+                {/* Column 3: Event Content */}
+                <div className="pb-8 font-sans">
+                  <h3 className="font-bold text-black text-sm md:text-base mb-1">
+                    {ev.label}
+                  </h3>
+                  <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
+                    {ev.text}
+                  </p>
                 </div>
               </div>
             ))}
@@ -876,36 +847,38 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
       </section>
 
-      {/* SECTION 8: Put your name in the building that outlasts you */}
+      {/* SECTION 8: Put your name in the building that outlasts you (Brand Blue Framed CTA Card) */}
       <section id="support" className="py-16 bg-[#F9F9F9]">
         <div className="vag-container max-w-3xl">
           <div
             className="border-2 border-[#B49661] p-8 md:p-12 bg-[#002142] text-white text-center shadow-xl"
             style={{ borderRadius: 'var(--card-radius)' }}
           >
-            <h2 className="text-white uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal">
+            <h2 className="text-[#B49661] uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal leading-tight">
               {t.support.title}
             </h2>
-            <p className="text-gray-200 font-sans text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-300 font-sans max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-8">
               {t.support.text}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-sans text-sm mb-8 border-t border-b border-white/10 py-6">
               {t.support.items.map((item, i) => (
-                <div key={i} className="bg-white/10 p-4 rounded-lg border border-white/10">
-                  <h4 className="font-bold text-[#B49661] text-sm mb-1">{item.title}</h4>
-                  <p className="text-xs text-gray-300 leading-relaxed font-sans">{item.text}</p>
+                <div key={i} className="bg-white/10 p-4 rounded border border-white/10">
+                  <span className="block text-[#B49661] font-bold mb-1">{item.title}</span>
+                  <span className="text-gray-200 text-xs leading-relaxed block">{item.text}</span>
                 </div>
               ))}
             </div>
 
-            <Link
-              href={`/${currentLang}/ziedojumi`}
-              className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-10 py-4 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F] text-sm"
-              style={{ borderRadius: 'var(--card-radius-sm)' }}
-            >
-              {t.support.button}
-            </Link>
+            <div className="text-center">
+              <Link
+                href={`/${currentLang}/ziedojumi`}
+                className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-10 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
+                style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
+              >
+                {t.support.button}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
