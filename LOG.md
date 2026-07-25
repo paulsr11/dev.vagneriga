@@ -750,6 +750,24 @@
   - Local routes `http://localhost:3001/`, `http://localhost:3001/de`, `http://localhost:3001/lv` returning `HTTP 307 Temporary Redirect` -> `/en`.
   - `http://localhost:3001/en` returning `HTTP 200 OK`.
 
+### Task: Homepage sections design restoration & server deployment
+- Summary:
+  - **The People Behind It**: Restored right-side hero photograph layout of Māris Gailis & Zaiga Gaile with left-side narrative copy and quote block.
+  - **Endorsed at the Highest Level**: Restored patron cards grid (3 cards with 280px top photos of Steinmeier, Levits, and Eva Wagner-Pasquier) matching the donation page design, plus dark blue quote banner.
+  - **Section 2 Image**: Restored `/images/projekts/wagner_side_profile.jpg` above caption *"This is where Richard Wagner discovered his calling."*
+  - **Timeline Section**: Restored 3-column timeline layout with smaller section heading.
+  - **Blue CTA Card**: Restored framed dark blue card with 2-column feature items grid (`item.title` & `item.text`).
+  - **Live Server Deployment**: Rebuilt Next.js application on production server (`204.168.171.251`) and restarted daemon `dev2-vagneriga`.
+
+- Files changed:
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Live production URL `https://vagneriga.lv/en` returning `HTTP 200 OK`.
+
+
 
 
 
