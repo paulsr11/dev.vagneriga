@@ -393,22 +393,22 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
     <main className="min-h-screen bg-white text-black">
 
       {/* SECTION 1: Hero / Introduction */}
-      <section className="vag-container pt-16 pb-12">
+      <section className="vag-container pt-12 sm:pt-16 pb-8 sm:pb-12">
         <p
-          className="font-sans text-gray-400 uppercase tracking-widest mb-8"
+          className="font-sans text-gray-400 uppercase tracking-widest mb-4 sm:mb-8"
           style={{ fontSize: 'var(--ui-nav)' }}
         >
           {t.hero.tagline}
         </p>
         <div className="max-w-3xl">
-          <h1 className="text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase mb-6 leading-tight">
+          <h1 className="text-black tracking-tight font-serif text-xl sm:text-3xl md:text-4xl lg:text-5xl font-normal uppercase mb-4 sm:mb-6 leading-tight">
             {t.hero.title}
           </h1>
-          <p className="text-black leading-relaxed font-sans" style={{ fontSize: 'var(--h5)' }}>
+          <p className="text-black leading-relaxed font-sans text-base sm:text-lg md:text-xl">
             {t.hero.text}
           </p>
         </div>
-        <div className="h-px bg-gray-200 mt-12" />
+        <div className="h-px bg-gray-200 mt-8 sm:mt-12" />
       </section>
 
       {/* SECTION 2: Endorsed at the Highest Level & Partner Logos */}
@@ -417,7 +417,7 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#B49661] mb-3">
             {t.proof.eyebrow}
           </p>
-          <h2 className="mb-6 text-black tracking-tight font-serif text-3xl md:text-5xl font-normal uppercase">
+          <h2 className="mb-4 sm:mb-6 text-black tracking-tight font-serif text-xl sm:text-2xl md:text-4xl font-normal uppercase">
             {t.proof.title}
           </h2>
           <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-sans">
