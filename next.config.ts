@@ -10,6 +10,21 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'vagneriga.lv',
+        pathname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'vagneriga.lv',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.vagneriga.lv',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 'dev2.vagneriga.lv',
         pathname: '**',
       },
