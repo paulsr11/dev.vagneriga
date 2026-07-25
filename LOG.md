@@ -789,6 +789,28 @@
   - Live WP media image `https://vagneriga.lv/wp-content/uploads/2021/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433.jpg` returning `HTTP/2 200 OK` (`image/jpeg`).
   - Live page HTML `https://vagneriga.lv/en` contains `G-Y30BPR93H2` and `xrzo1xw7px` tracking tags.
 
+### Task: Hero picture loading fix (Sponsors & Association) & Donations page text translation
+- Summary:
+  - **Sponsors & Association Hero Pictures Fix**: Updated fallback image paths in `src/app/[lang]/sponsori/page.tsx` (`/wp-content/uploads/2025/09/vagnera_nams.png`) and `src/app/[lang]/biedriba/page.tsx` (`/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg`) to relative static paths. Configured Nginx `/wp-content/` with `try_files $uri @nextjs;` so static hero images resolve from Next.js if absent in WP uploads directory.
+  - **Donations Page Translation**: Replaced hardcoded Latvian text `PRIEKŠROCĪBAS ATBALSTĪTĀJIEM` in `FriendDonationWidget.tsx` with dynamic multi-language key `benefitsHeading` (`Supporter Benefits` for EN, `Vorteile für Unterstützer` for DE, `Priekšrocības atbalstītājiem` for LV).
+  - **Server Deployment**: Built Next.js application on production server (`204.168.171.251`), updated Nginx site config, and restarted `dev2-vagneriga`.
+
+- Files changed:
+  - `src/app/[lang]/sponsori/page.tsx`
+  - `src/app/[lang]/biedriba/page.tsx`
+  - `src/app/[lang]/ziedojumi/page.tsx`
+  - `src/app/[lang]/ziedojumi2/page.tsx`
+  - `src/components/blocks/FriendDonationWidget.tsx`
+  - `/etc/nginx/sites-available/vagneriga.lv`
+  - `/etc/nginx/sites-available/dev2.vagneriga.lv`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Both hero image URLs returning `HTTP/2 200 OK` (`https://vagneriga.lv/wp-content/uploads/2025/09/vagnera_nams.png` & `https://vagneriga.lv/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg`).
+  - English Donations page (`https://vagneriga.lv/en/ziedojumi`) renders `SUPPORTER BENEFITS`.
+
+
 
 
 
