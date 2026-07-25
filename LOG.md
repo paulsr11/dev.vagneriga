@@ -826,6 +826,20 @@
 - Verification:
   - `npx tsc --noEmit` clean with 0 errors.
 
+### Task: Local mobile section heading text overflow fix for Contacts page (`ORGANISATION DETAILS`)
+- Summary:
+  - **Contacts Section Headings Letter Spacing**: Updated `labels.komanda` ("MANAGEMENT & PROJECT MANAGERS") and `labels.rekviziti` ("ORGANISATION DETAILS") section headings in `src/app/[lang]/kontakti/page.tsx` to use responsive tracking (`tracking-wider sm:tracking-[0.2em]`) and font size (`text-base sm:text-xl md:text-2xl break-words`) to eliminate letter-spacing overflow on 360px wide mobile screens.
+  - **Organisation Details Card Mobile Grid**: Added `flex-col sm:flex-row` fallback and `break-all` styling to registration number and IBAN values so organization details render cleanly inside mobile card padding.
+  - **Environment Scope**: Applied and verified on **localhost** per user instructions.
+
+- Files changed:
+  - `src/app/[lang]/kontakti/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+
+
 
 
 

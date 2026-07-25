@@ -148,20 +148,22 @@ export default async function KontaktiPage({ params }: { params: Promise<{ lang:
       {/* Team Members Section */}
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="vag-container">
-          <div className="mb-12 flex items-center gap-6">
-            <div className="h-px flex-1 bg-gray-200"></div>
-            <h2 className="text-black uppercase tracking-[0.2em]">{labels.komanda[currentLang]}</h2>
-            <div className="h-px flex-1 bg-gray-200"></div>
+          <div className="mb-12 flex items-center gap-3 sm:gap-6">
+            <div className="h-px flex-1 bg-gray-200 min-w-[16px]"></div>
+            <h2 className="text-black uppercase tracking-wider sm:tracking-[0.2em] text-center text-base sm:text-xl md:text-2xl break-words">
+              {labels.komanda[currentLang]}
+            </h2>
+            <div className="h-px flex-1 bg-gray-200 min-w-[16px]"></div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
             {teamMembers.map((member, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between">
+              <div key={idx} className="bg-white p-6 sm:p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <h3 className="text-black font-serif text-xl font-bold mb-1">{member.name}</h3>
+                  <h3 className="text-black font-serif text-lg sm:text-xl font-bold mb-1">{member.name}</h3>
                   <p className="text-xs text-accent font-bold uppercase tracking-wider mb-4">{member.role}</p>
                 </div>
-                <a href={`mailto:${member.email}`} className="text-gray-700 hover:text-accent font-medium text-sm transition-colors">
+                <a href={`mailto:${member.email}`} className="text-gray-700 hover:text-accent font-medium text-sm transition-colors break-all">
                   {member.email}
                 </a>
               </div>
@@ -173,21 +175,23 @@ export default async function KontaktiPage({ params }: { params: Promise<{ lang:
       {/* Rekviziti Section (Original Design restored) */}
       <section className="py-24 bg-[#F9F9F9]">
         <div className="vag-container">
-          <div className="mb-16 flex items-center gap-6">
-            <div className="h-px flex-1 bg-gray-200"></div>
-            <h2 className="text-black uppercase tracking-[0.2em]">{labels.rekviziti[currentLang]}</h2>
-            <div className="h-px flex-1 bg-gray-200"></div>
+          <div className="mb-12 sm:mb-16 flex items-center gap-3 sm:gap-6">
+            <div className="h-px flex-1 bg-gray-200 min-w-[16px]"></div>
+            <h2 className="text-black uppercase tracking-wider sm:tracking-[0.2em] text-center text-base sm:text-xl md:text-2xl break-words">
+              {labels.rekviziti[currentLang]}
+            </h2>
+            <div className="h-px flex-1 bg-gray-200 min-w-[16px]"></div>
           </div>
 
           <div className="max-w-2xl mx-auto">
             {rekviziti.map((org: any, index: number) => (
-              <div key={index} className="bg-white p-10 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-black font-serif text-xl mb-8">{org.title}</h3>
+              <div key={index} className="bg-white p-6 sm:p-10 rounded-xl shadow-sm border border-gray-100">
+                <h3 className="text-black font-serif text-lg sm:text-xl mb-6 sm:mb-8 break-words">{org.title}</h3>
                 <div className="space-y-4">
                   {org.details.map((detail: any, i: number) => (
-                    <div key={i} className="flex justify-between border-b border-gray-50 pb-2 last:border-0">
-                      <span className="text-gray-500 text-sm uppercase tracking-wider">{detail.label}</span>
-                      <span className="text-black font-medium">{detail.value}</span>
+                    <div key={i} className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-50 pb-2 last:border-0 gap-1 sm:gap-4">
+                      <span className="text-gray-500 text-xs sm:text-sm uppercase tracking-wider">{detail.label}</span>
+                      <span className="text-black font-medium text-xs sm:text-base break-all">{detail.value}</span>
                     </div>
                   ))}
                 </div>
