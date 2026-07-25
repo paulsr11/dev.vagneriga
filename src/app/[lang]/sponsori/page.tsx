@@ -43,7 +43,7 @@ export default async function SponsoriPage({ params }: { params: Promise<{ lang:
     title: getTranslatedField(acf, 'hero_title', currentLang, defaultTitles[currentLang]),
     subtitle: getTranslatedField(acf, 'hero_subtitle', currentLang, defaultSubtitles[currentLang]),
     text: getTranslatedField(acf, 'hero_text', currentLang, defaultTexts[currentLang]),
-    image: acf.hero_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/vagnera_nams.png`
+    image: acf.hero_image || '/wp-content/uploads/2025/09/vagnera_nams.png'
   };
 
   return <SponsorsView lang={currentLang} heroData={heroData} />;

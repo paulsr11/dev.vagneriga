@@ -138,7 +138,7 @@ export default async function BiedribaPage({ params }: { params: Promise<{ lang:
     }
   };
 
-  const heroImage = acf.hero_image || `${CMS_MEDIA_BASE}/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg`;
+  const heroImage = acf.hero_image || '/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg';
 
   const goals = [
     {

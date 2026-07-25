@@ -15,6 +15,7 @@ interface FriendDonationWidgetProps {
     oneTimeLabel: string;
     monthSuffix: string;
     oneTimeSuffix: string;
+    benefitsHeading?: string;
     benefits: string[];
   };
 }
@@ -154,7 +155,7 @@ export default function FriendDonationWidget({ lang, translations: t }: FriendDo
           {/* Right Column: Supporter Benefits List (5 cols) */}
           <div className="lg:col-span-5 space-y-4 pt-2">
             <p className="text-xs font-bold font-sans uppercase tracking-wider text-[#B49661] m-0">
-              Priekšrocības atbalstītājiem
+              {t.benefitsHeading || (lang === 'en' ? 'Supporter Benefits' : lang === 'de' ? 'Vorteile für Unterstützer' : 'Priekšrocības atbalstītājiem')}
             </p>
             <ul className="space-y-4 p-0 m-0 list-none">
               {t.benefits.map((benefit, i) => (

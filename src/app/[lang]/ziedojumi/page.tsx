@@ -179,6 +179,7 @@ const translations: Record<string, TranslationContent> = {
       oneTimeLabel: 'Vienreizējs ziedojums',
       monthSuffix: '/ mēnesī',
       oneTimeSuffix: 'vienreizējs',
+      benefitsHeading: 'Priekšrocības atbalstītājiem',
       tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
       benefits: [
         'Ierakstīts gada atbalstītāju reģistrā',
@@ -268,6 +269,7 @@ const translations: Record<string, TranslationContent> = {
       oneTimeLabel: 'One-time donation',
       monthSuffix: '/ month',
       oneTimeSuffix: 'one-time',
+      benefitsHeading: 'Supporter Benefits',
       tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
       benefits: [
         'Listed in the annual supporters register',
@@ -356,6 +358,7 @@ const translations: Record<string, TranslationContent> = {
       oneTimeLabel: 'Einmalige Spende',
       monthSuffix: '/ Monat',
       oneTimeSuffix: 'einmalig',
+      benefitsHeading: 'Vorteile für Unterstützer',
       tiers: [{ amount: '€10' }, { amount: '€25' }, { amount: '€50' }],
       benefits: [
         'Im jährlichen Unterstützerregister aufgeführt',
