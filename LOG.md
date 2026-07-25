@@ -841,6 +841,23 @@
   - Production build compiled successfully on server.
   - Live routes returning `HTTP/2 200 OK` (`https://vagneriga.lv/en` & `https://vagneriga.lv/en/kontakti`).
 
+### Task: Mobile Header Menu Burger Color & Donations Page Heading Sizing
+- Summary:
+  - **Mobile Menu Burger Icon**: Added global `.hamburger-line` CSS rule in `src/app/[lang]/globals.css` with `background-color: #002142` (the global brand blue color `--brand-blue`), plus smooth transition and `is-open` rotation transforms for the close state.
+  - **Donations Page Mobile Heading Scaling**: Updated Hero heading `h1` and section titles (`h2`) in `src/app/[lang]/ziedojumi/page.tsx` to use responsive font sizing (`text-xl sm:text-3xl md:text-4xl lg:text-5xl`) and tighter margins on mobile so page titles fit cleanly without overwhelming mobile viewports.
+  - **Environment Scope**: Verified locally with TypeScript (`0 errors`), pushed to `origin/fundraising`, and deployed to live production server (`dev2-vagneriga` service on `204.168.171.251`).
+
+- Files changed:
+  - `src/app/[lang]/globals.css`
+  - `src/app/[lang]/ziedojumi/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Production build compiled successfully on server.
+  - Live route returning `HTTP/2 200 OK` (`https://vagneriga.lv/en/ziedojumi`).
+
+
 
 
 
