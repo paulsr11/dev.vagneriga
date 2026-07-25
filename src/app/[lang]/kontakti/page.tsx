@@ -73,64 +73,64 @@ export default async function KontaktiPage({ params }: { params: Promise<{ lang:
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section - 50/50 Split (Original Design) */}
-      <section className="vag-container bg-white pb-6">
-        <div className="flex flex-col md:flex-row items-stretch">
-          <div className="w-full md:w-1/2 pt-12 pb-16 md:pt-16 md:pb-24 pr-6 md:pr-12 lg:pr-20 bg-white flex flex-col justify-between">
-            <div>
-              <p className="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-gray-500">{heroData.subtitle}</p>
-              <h1 className="mb-12 text-black tracking-tight uppercase">{heroData.title}</h1>
-              
-              <div className="space-y-6">
-                {/* Theatre Location */}
-                <div className="flex items-start gap-4">
-                  <span className="text-accent text-2xl">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  </span>
-                  <div>
-                    <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.teatra_adrese[currentLang]}</p>
-                    <p className="text-lg text-gray-700">{heroData.theatreAddress}</p>
-                  </div>
+      {/* Hero Section - 50/50 Split (Same aspect ratio as Sponsors & Association) */}
+      <section className="vag-container bg-white pb-6 pt-6">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          {/* Left Details Column */}
+          <div className="w-full md:w-1/2 text-left">
+            <p className="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-gray-500">{heroData.subtitle}</p>
+            <h1 className="mb-8 text-black tracking-tight uppercase">{heroData.title}</h1>
+            
+            <div className="space-y-6">
+              {/* Theatre Location */}
+              <div className="flex items-start gap-4">
+                <span className="text-accent text-2xl">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </span>
+                <div>
+                  <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.teatra_adrese[currentLang]}</p>
+                  <p className="text-base sm:text-lg text-gray-700">{heroData.theatreAddress}</p>
                 </div>
-
-                {/* Postal Address */}
-                <div className="flex items-start gap-4">
-                  <span className="text-accent text-2xl">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                  </span>
-                  <div>
-                    <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.pasta_adrese[currentLang]}</p>
-                    <p className="text-lg text-gray-700">{heroData.postalAddress}</p>
-                  </div>
-                </div>
-
-                {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <span className="text-accent text-2xl">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.79 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                  </span>
-                  <div>
-                    <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.talrunis[currentLang]}</p>
-                    <a href={`tel:${heroData.phone.replace(/\s+/g, '')}`} className="text-lg text-gray-700 hover:text-accent transition-colors">{heroData.phone}</a>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <span className="text-accent text-2xl">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                  </span>
-                  <div>
-                    <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.epasts[currentLang]}</p>
-                    <a href={`mailto:${heroData.email}`} className="text-lg text-gray-700 hover:text-accent transition-colors">{heroData.email}</a>
-                  </div>
-                </div>
-
               </div>
+
+              {/* Postal Address */}
+              <div className="flex items-start gap-4">
+                <span className="text-accent text-2xl">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </span>
+                <div>
+                  <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.pasta_adrese[currentLang]}</p>
+                  <p className="text-base sm:text-lg text-gray-700">{heroData.postalAddress}</p>
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-start gap-4">
+                <span className="text-accent text-2xl">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.79 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </span>
+                <div>
+                  <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.talrunis[currentLang]}</p>
+                  <a href={`tel:${heroData.phone.replace(/\s+/g, '')}`} className="text-base sm:text-lg text-gray-700 hover:text-accent transition-colors">{heroData.phone}</a>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="flex items-start gap-4">
+                <span className="text-accent text-2xl">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </span>
+                <div>
+                  <p className="font-bold text-black uppercase tracking-wider text-sm mb-1">{labels.epasts[currentLang]}</p>
+                  <a href={`mailto:${heroData.email}`} className="text-base sm:text-lg text-gray-700 hover:text-accent transition-colors">{heroData.email}</a>
+                </div>
+              </div>
+
             </div>
           </div>
-          
-          <div className="w-full md:w-1/2 relative aspect-[4/3] w-full overflow-hidden rounded-[var(--card-radius)] border border-gray-100 shadow-xl">
+
+          {/* Right Map Column */}
+          <div className="w-full md:w-1/2 relative aspect-[4/3] w-full min-h-[280px] sm:min-h-[340px] md:min-h-[380px] overflow-hidden rounded-[var(--card-radius)] border border-gray-100 shadow-xl">
             <iframe 
               src={heroData.map_url} 
               width="100%" 

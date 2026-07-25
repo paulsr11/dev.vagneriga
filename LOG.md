@@ -810,6 +810,23 @@
   - Both hero image URLs returning `HTTP/2 200 OK` (`https://vagneriga.lv/wp-content/uploads/2025/09/vagnera_nams.png` & `https://vagneriga.lv/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg`).
   - English Donations page (`https://vagneriga.lv/en/ziedojumi`) renders `SUPPORTER BENEFITS`.
 
+### Task: Local mobile layout responsiveness & Contacts map flex structure fixes
+- Summary:
+  - **Rebuilding Hero Section Mobile Spacing**: Adjusted Hero overlay container padding to `pb-8 sm:pb-16 md:pb-28 px-6 sm:px-10 md:px-[68px]` and responsive font size `text-xl sm:text-2xl md:text-4xl lg:text-5xl` to prevent overlay text and CTA button overflow on mobile viewports.
+  - **Timeline Mobile Text Overflow Fix (Section 6)**: Reduced date column width on mobile (`w-24 sm:w-32 md:w-40`) and added `break-words` to event labels (`MESSERSCHMITT STIFTUNG COMMITS €700 000`) so titles wrap cleanly without overflowing screen boundaries.
+  - **Blue CTA Card Mobile Padding Fix (Section 8)**: Adjusted padding to `p-6 sm:p-10 md:p-12` and text sizing to prevent bottom text clipping on mobile.
+  - **Contacts Hero Map Layout Fix (`kontakti/page.tsx`)**: Corrected HTML `div` nesting so the Map iframe sits inside the `flex flex-col md:flex-row items-center gap-8 md:gap-12` container next to contact details on desktop and cleanly below text on mobile.
+  - **Environment Scope**: Applied and verified on **localhost** per user instructions.
+
+- Files changed:
+  - `src/app/[lang]/rebuilding/page.tsx`
+  - `src/app/[lang]/kontakti/page.tsx`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+
+
 
 
 

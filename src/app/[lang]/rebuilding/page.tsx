@@ -510,16 +510,16 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
           {/* Layer 3: Text and CTA */}
           <div
             style={{ position: 'absolute', inset: 0, zIndex: 2 }}
-            className="flex flex-col justify-end pb-20 md:pb-28 px-8 md:px-[68px]"
+            className="flex flex-col justify-end pb-8 sm:pb-16 md:pb-28 px-6 sm:px-10 md:px-[68px]"
           >
             <div className="max-w-3xl text-left">
-              <h2 className="mb-6 text-white uppercase tracking-tight font-serif text-2xl md:text-4xl lg:text-5xl leading-tight font-normal drop-shadow-md">
+              <h2 className="mb-6 text-white uppercase tracking-tight font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl leading-tight font-normal drop-shadow-md">
                 {t.hero.overlayTitle}
               </h2>
               <div>
                 <a
                   href="#support"
-                  className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-12 md:px-16 font-bold uppercase tracking-wider text-white whitespace-nowrap min-w-[280px] md:min-w-[340px] text-center transition-all hover:bg-[#9F834F]"
+                  className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-8 sm:px-12 md:px-16 font-bold uppercase tracking-wider text-white whitespace-nowrap min-w-[220px] sm:min-w-[280px] md:min-w-[340px] text-center transition-all hover:bg-[#9F834F]"
                   style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
                 >
                   {t.hero.overlayCta}
@@ -530,9 +530,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
         </div>
 
         {/* First body text below hero image */}
-        <div className="pt-6 pb-6 px-8 md:px-[68px]">
+        <div className="pt-8 pb-6 px-6 sm:px-10 md:px-[68px]">
           <h3
-            className="text-black font-serif font-bold uppercase tracking-tight m-0 mb-3 text-xl md:text-2xl leading-tight"
+            className="text-black font-serif font-bold uppercase tracking-tight m-0 mb-3 text-lg sm:text-xl md:text-2xl leading-tight"
             dangerouslySetInnerHTML={{ __html: t.hero.title }}
           />
           <div className="max-w-4xl">
@@ -789,9 +789,9 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
 
           <div className="space-y-6 max-w-3xl">
             {t.history.events.map((ev, i) => (
-              <div key={i} className="flex gap-4 md:gap-6 items-start">
-                {/* Column 1: Fixed-width Date column */}
-                <div className="w-32 md:w-40 shrink-0 text-right font-serif font-bold text-sm md:text-base text-[#B49661] pt-0.5">
+              <div key={i} className="flex gap-3 sm:gap-4 md:gap-6 items-start">
+                {/* Column 1: Responsive Date column */}
+                <div className="w-24 sm:w-32 md:w-40 shrink-0 text-right font-serif font-bold text-xs sm:text-sm md:text-base text-[#B49661] pt-0.5 break-words">
                   {ev.date}
                 </div>
 
@@ -802,11 +802,11 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
                 </div>
 
                 {/* Column 3: Event Content */}
-                <div className="pb-8 font-sans">
-                  <h3 className="font-bold text-black text-sm md:text-base mb-1">
+                <div className="pb-8 font-sans min-w-0 flex-1">
+                  <h3 className="font-bold text-black text-xs sm:text-sm md:text-base mb-1 break-words">
                     {ev.label}
                   </h3>
-                  <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
+                  <p className="text-gray-600 text-xs md:text-sm leading-relaxed break-words">
                     {ev.text}
                   </p>
                 </div>
@@ -819,11 +819,11 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       {/* SECTION 7: Where It Stands Today (Metric Pills Removed Per User Request) */}
       <section className="py-16 bg-white">
         <div className="vag-container max-w-3xl">
-          <div className="border-2 border-[#B49661] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
-            <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-xl">
+          <div className="border-2 border-[#B49661] p-6 sm:p-10 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
+            <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-lg sm:text-xl">
               {t.today.title}
             </h2>
-            <div className="text-3xl md:text-5xl font-serif font-bold text-[#B49661] mb-8">
+            <div className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-[#B49661] mb-8">
               {t.today.raised}
             </div>
 
@@ -836,7 +836,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             </div>
 
             {/* Updated status text */}
-            <p className="text-gray-700 font-sans max-w-xl mx-auto text-lg leading-relaxed">
+            <p className="text-gray-700 font-sans max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
               {t.today.status}
             </p>
           </div>
@@ -851,10 +851,10 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
       <section id="support" className="py-16 bg-[#F9F9F9]">
         <div className="vag-container max-w-3xl">
           <div
-            className="border-2 border-[#B49661] p-8 md:p-12 bg-[#002142] text-white text-center shadow-xl"
+            className="border-2 border-[#B49661] p-6 sm:p-10 md:p-12 bg-[#002142] text-white text-center shadow-xl"
             style={{ borderRadius: 'var(--card-radius)' }}
           >
-            <h2 className="text-[#B49661] uppercase tracking-widest mb-6 font-serif text-2xl md:text-4xl font-normal leading-tight">
+            <h2 className="text-[#B49661] uppercase tracking-widest mb-6 font-serif text-xl sm:text-2xl md:text-4xl font-normal leading-tight">
               {t.support.title}
             </h2>
             <p className="text-gray-300 font-sans max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-8">
@@ -873,7 +873,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
             <div className="text-center">
               <Link
                 href={`/${currentLang}/ziedojumi`}
-                className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-10 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
+                className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-8 sm:px-10 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
                 style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
               >
                 {t.support.button}
