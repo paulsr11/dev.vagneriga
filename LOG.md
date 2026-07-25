@@ -830,7 +830,7 @@
 - Summary:
   - **Contacts Section Headings Letter Spacing**: Updated `labels.komanda` ("MANAGEMENT & PROJECT MANAGERS") and `labels.rekviziti` ("ORGANISATION DETAILS") section headings in `src/app/[lang]/kontakti/page.tsx` to use responsive tracking (`tracking-wider sm:tracking-[0.2em]`) and font size (`text-base sm:text-xl md:text-2xl break-words`) to eliminate letter-spacing overflow on 360px wide mobile screens.
   - **Organisation Details Card Mobile Grid**: Added `flex-col sm:flex-row` fallback and `break-all` styling to registration number and IBAN values so organization details render cleanly inside mobile card padding.
-  - **Environment Scope**: Applied and verified on **localhost** per user instructions.
+  - **Environment Scope**: Pushed to `origin/fundraising` and deployed to live production server (`dev2-vagneriga` service on `204.168.171.251`).
 
 - Files changed:
   - `src/app/[lang]/kontakti/page.tsx`
@@ -838,6 +838,9 @@
 
 - Verification:
   - `npx tsc --noEmit` clean with 0 errors.
+  - Production build compiled successfully on server.
+  - Live routes returning `HTTP/2 200 OK` (`https://vagneriga.lv/en` & `https://vagneriga.lv/en/kontakti`).
+
 
 
 
