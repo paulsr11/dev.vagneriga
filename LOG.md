@@ -767,6 +767,29 @@
   - `npx tsc --noEmit` clean with 0 errors.
   - Live production URL `https://vagneriga.lv/en` returning `HTTP 200 OK`.
 
+### Task: Tracking tags (Google Analytics & Clarity) & WP post image loading fix
+- Summary:
+  - **Google Analytics**: Integrated `G-Y30BPR93H2` (gtag.js) into `RootLayout` (`src/app/[lang]/layout.tsx`) using Next.js `Script` (`afterInteractive`).
+  - **Microsoft Clarity**: Integrated project script (`xrzo1xw7px`) into `RootLayout` (`src/app/[lang]/layout.tsx`).
+  - **WP Post Image Routing Fix**: Updated Nginx site configs on production server (`/etc/nginx/sites-available/vagneriga.lv` & `dev2.vagneriga.lv`) to serve `/wp-content/` uploads and `/wp-json/` directly from `/home/deploy/sites/Vagneriga.lv`.
+  - **WP Image Sanitization & Fallbacks**: Updated `sanitizeUrls` in `src/lib/wp.ts` to convert `http` URLs to `https` for `vagneriga.lv`, `dev2.vagneriga.lv`, and `dev.vagneriga.lv`. Updated fallback image path in `src/lib/constants.ts` to valid `/wp-content/uploads/2021/09/` path.
+  - **Server Deployment**: Rebuilt Next.js application on production server (`204.168.171.251`) and reloaded Nginx and `dev2-vagneriga` service.
+
+- Files changed:
+  - `src/app/[lang]/layout.tsx`
+  - `next.config.ts`
+  - `src/lib/constants.ts`
+  - `src/lib/wp.ts`
+  - `/etc/nginx/sites-available/vagneriga.lv`
+  - `/etc/nginx/sites-available/dev2.vagneriga.lv`
+  - `LOG.md`
+
+- Verification:
+  - `npx tsc --noEmit` clean with 0 errors.
+  - Live WP media image `https://vagneriga.lv/wp-content/uploads/2021/09/20210830_VacijasVestnieciba_VagneraZale_039-650x433.jpg` returning `HTTP/2 200 OK` (`image/jpeg`).
+  - Live page HTML `https://vagneriga.lv/en` contains `G-Y30BPR93H2` and `xrzo1xw7px` tracking tags.
+
+
 
 
 
