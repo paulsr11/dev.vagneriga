@@ -138,7 +138,7 @@ export default async function BiedribaPage({ params }: { params: Promise<{ lang:
     }
   };
 
-  const heroImage = acf.hero_image || '/wp-content/uploads/2025/09/maris_gailis_intervija_grenardi_digitalais_zurnals_grenazine_lv.jpg';
+  const heroImage = acf.hero_image || '/images/projekts/maris_gailis_hero.jpg';
 
   const goals = [
     {
@@ -185,11 +185,12 @@ export default async function BiedribaPage({ params }: { params: Promise<{ lang:
           </div>
           
           <div className="w-full lg:w-1/2">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--card-radius)] border border-gray-100 shadow-xl">
+            <div className="relative aspect-[4/3] w-full min-h-[280px] sm:min-h-[340px] md:min-h-[380px] overflow-hidden rounded-[var(--card-radius)] border border-gray-100 shadow-xl">
               <Image 
                 src={heroImage}
                 alt={t.heroAuthor}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
                 priority
               />
