@@ -93,6 +93,7 @@ interface TranslationContent {
     oneTimeLabel: string;
     monthSuffix: string;
     oneTimeSuffix: string;
+    benefitsHeading?: string;
     benefits: string[];
   };
   transfer: {
