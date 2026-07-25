@@ -1,9 +1,9 @@
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://dev2.vagneriga.lv/wp-json/wp/v2';
+const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://vagneriga.lv/wp-json/wp/v2';
 const WP_HOST = (() => {
   try {
     return new URL(WP_API_URL).host;
   } catch (e) {
-    return 'dev2.vagneriga.lv';
+    return 'vagneriga.lv';
   }
 })();
 
@@ -22,7 +22,12 @@ function getHeaders() {
 
 function sanitizeUrls(data: any) {
   if (!data) return data;
-  return JSON.parse(JSON.stringify(data).replace(/http:\/\/dev2\.vagneriga\.lv/g, 'https://dev2.vagneriga.lv'));
+  return JSON.parse(
+    JSON.stringify(data)
+      .replace(/http:\/\/vagneriga\.lv/g, 'https://vagneriga.lv')
+      .replace(/http:\/\/dev2\.vagneriga\.lv/g, 'https://dev2.vagneriga.lv')
+      .replace(/http:\/\/dev\.vagneriga\.lv/g, 'https://dev.vagneriga.lv')
+  );
 }
 
 export async function getPage(id: number | string) {
