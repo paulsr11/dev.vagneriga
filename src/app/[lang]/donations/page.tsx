@@ -587,10 +587,74 @@ export default async function Ziedojumi2Page({ params }: { params: Promise<{ lan
             </div>
           </div>
 
-          {/* Become a Friend / Monthly Donations (Full-width Brand Blue #002142 Card) */}
-          <div className="max-w-5xl mx-auto">
+          {/* Become a Friend / Monthly Donations (Wider: full vag-container width) */}
+          <div className="w-full">
             <FriendDonationWidget lang={currentLang} translations={t.friend} />
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: What Your Support Restores */}
+      <section className="py-16 bg-white">
+        <div className="vag-container">
+          <div
+            className="border border-gray-200 overflow-hidden"
+            style={{ borderRadius: 'var(--card-radius)' }}
+          >
+            {/* Header */}
+            <div className="px-8 md:px-10 pt-8 pb-2">
+              <h2 className="text-black tracking-widest font-serif text-2xl md:text-3xl font-normal">
+                {t.restores.title}
+              </h2>
+            </div>
+
+            {/* Items */}
+            <div className="px-8 md:px-10 pb-8 pt-6 space-y-8">
+              {t.restores.items.map((item, i) => (
+                <div key={i} className="flex gap-6 items-start">
+                  <div className="flex-shrink-0 w-6 h-px bg-gray-300 mt-[10px]" />
+                  <div>
+                    <h4 className="font-sans font-bold text-black mb-1" style={{ fontSize: 'var(--body)' }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-gray-600 font-sans leading-relaxed" style={{ fontSize: 'var(--body)' }}>
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4b: Where it stands today — 1:1 from Rebuilding page */}
+      <section className="py-16 bg-[#F9F9F9]">
+        <div className="vag-container max-w-3xl">
+          <div className="border-2 border-[#B49661] p-8 md:p-12 bg-white text-center shadow-lg" style={{ borderRadius: 'var(--card-radius)' }}>
+            <h2 className="text-black uppercase tracking-widest mb-4 font-sans font-bold text-xl">
+              {t.fundraising.title}
+            </h2>
+            <div className="text-3xl md:text-5xl font-serif font-bold text-[#B49661] mb-8">
+              {t.fundraising.raised}
+            </div>
+
+            {/* Progress bar */}
+            <div className="w-full bg-gray-100 h-5 rounded-full overflow-hidden mb-8 border border-gray-200 p-0.5">
+              <div
+                className="bg-[#B49661] h-full rounded-full transition-all duration-1000 ease-out"
+                style={{ width: `${(21 / 51) * 100}%` }}
+              />
+            </div>
+
+            <p className="text-gray-700 font-sans max-w-xl mx-auto text-lg leading-relaxed">
+              {t.fundraising.status}
+            </p>
+          </div>
+
+          <p className="text-right text-xs text-gray-400 font-sans italic mt-4">
+            {t.fundraising.timestamp}
+          </p>
         </div>
       </section>
 
