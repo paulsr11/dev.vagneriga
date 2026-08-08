@@ -116,7 +116,7 @@ const footerLabels: Record<string, { lv: string; en: string; de: string }> = {
 const FOOTER_LINKS = {
   finansejums: [
     { labelKey: 'sponsori', href: '/sponsori' },
-    { labelKey: 'ziedojumi', href: '/ziedojumi' },
+    { labelKey: 'ziedojumi', href: '/donations' },
   ],
   biedriba: [
     { labelKey: 'par_mums', href: '/biedriba' },

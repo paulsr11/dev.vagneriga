@@ -872,7 +872,7 @@ export default async function RebuildingPage({ params }: { params: Promise<{ lan
 
             <div className="text-center">
               <Link
-                href={`/${currentLang}/ziedojumi`}
+                href={`/${currentLang}/donations`}
                 className="btn-flood inline-flex items-center justify-center bg-[#B49661] px-8 sm:px-10 font-bold uppercase tracking-wider text-white transition-all hover:bg-[#9F834F]"
                 style={{ height: 'var(--btn-height)', borderRadius: 'var(--card-radius-sm)', fontSize: 'var(--ui-nav)' }}
               >

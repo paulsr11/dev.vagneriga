@@ -12,7 +12,7 @@ export default function FooterLinksAdmin() {
     biedriba: [
       { labelKey: 'par_mums', href: '/par-mums' },
       { labelKey: 'jaunumi', href: '/jaunumi' },
-      { labelKey: 'ziedojumi', href: '/ziedojumi' },
+      { labelKey: 'ziedojumi', href: '/donations' },
     ],
     noteikumi: [
       { labelKey: 'bilesu_iegade', href: '/biletes' },

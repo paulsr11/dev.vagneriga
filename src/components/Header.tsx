@@ -102,7 +102,7 @@ export default function Header({ lang }: { lang: string }) {
     { key: 'biedriba', href: '/biedriba' },
     { key: 'sponsori', href: '/sponsori' },
     { key: 'kontakti', href: '/kontakti' },
-    { key: 'ziedojumi', href: '/ziedojumi', isHighlighted: true },
+    { key: 'ziedojumi', href: '/donations', isHighlighted: true },
   ];
 
   // Note: secondaryNav temporarily hidden, design & code preserved
